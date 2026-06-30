@@ -1,0 +1,232 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = '¿Qué es un SELECT en SQL? Aprende a consultar tus datos en 5 minutos';
+const description = 'Entiende desde cero cómo funciona el SELECT de SQL con ejemplos reales de oficina. Sin instalaciones, sin teoría innecesaria: solo lo esencial para empezar a consultar datos.';
+const publishDate = '2025-06-28';
+const readTime = '5 min';
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- AdSense top -->
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true">Espacio publicitario — 728×90</div>
+
+    <div class="flex gap-10">
+      <!-- Article content -->
+      <div class="min-w-0 flex-1">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6">
+          <a href="/" class="hover:text-slate-600 transition-colors">Inicio</a>
+          <span>/</span>
+          <a href="/sql/" class="hover:text-sky-700 transition-colors">SQL</a>
+          <span>/</span>
+          <span class="text-slate-600 truncate">Qué es un SELECT en SQL</span>
+        </nav>
+
+        <!-- Header -->
+        <header class="mb-10">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-sql">SQL</span>
+            <span class="text-slate-400 text-sm">{readTime} de lectura</span>
+            <span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={publishDate}>28 jun 2025</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] leading-tight mb-5">
+            {title}
+          </h1>
+          <p class="text-lg text-slate-600 leading-relaxed border-l-4 border-sky-500 pl-4">
+            Si nunca has escrito una línea de SQL, esta es la instrucción con la que vas a empezar. El <code class="text-sky-700 bg-sky-50 px-1 rounded text-base">SELECT</code> es la base de casi todo lo que harás con bases de datos: extraer información, filtrarla, ordenarla y analizarla. Vamos al grano.
+          </p>
+        </header>
+
+        <!-- AdSense rectangle in-article -->
+        <div class="float-right ml-6 mb-6 hidden lg:block">
+          <div class="adsense-slot adsense-slot--rectangle" aria-hidden="true">Espacio publicitario — 336×250</div>
+        </div>
+
+        <div class="article-body">
+
+          <h2>¿Qué hace exactamente SELECT?</h2>
+          <p>
+            En SQL, <code>SELECT</code> sirve para <strong>pedir datos</strong> a una base de datos. No los modifica, no los borra, no los crea: solo los recupera y te los muestra. Es una operación de solo lectura, lo que significa que puedes practicar con <code>SELECT</code> sin ningún riesgo de alterar nada.
+          </p>
+          <p>
+            Imagina que tienes una base de datos con información de ventas de tu empresa. Cada venta es una fila. Cada detalle de esa venta (fecha, producto, importe, vendedor) es una columna. Con <code>SELECT</code> puedes decirle a la base de datos: "dame todas las ventas de este mes" o "dame solo el nombre y el importe de los pedidos superiores a 500€".
+          </p>
+
+          <h2>La estructura mínima de un SELECT</h2>
+          <p>
+            Todo <code>SELECT</code> necesita al menos dos partes: qué quieres ver y de dónde lo quieres sacar.
+          </p>
+          <pre><code>SELECT nombre_columna
+FROM nombre_tabla;</code></pre>
+          <p>
+            Veamos un ejemplo con una tabla llamada <code>clientes</code> que tiene las columnas <code>nombre</code>, <code>email</code> y <code>ciudad</code>:
+          </p>
+          <pre><code>SELECT nombre
+FROM clientes;</code></pre>
+          <p>
+            Resultado: una lista con todos los nombres de la tabla <code>clientes</code>. Solo la columna <code>nombre</code>, nada más.
+          </p>
+
+          <h3>Seleccionar varias columnas</h3>
+          <p>
+            Para traer más de una columna, las separas con comas:
+          </p>
+          <pre><code>SELECT nombre, email, ciudad
+FROM clientes;</code></pre>
+          <p>
+            El orden en el que las escribes determina el orden en que aparecen en el resultado. Si quieres mostrar primero la ciudad y luego el nombre, simplemente cambia el orden.
+          </p>
+
+          <h3>Seleccionar todas las columnas con *</h3>
+          <p>
+            Si quieres ver todas las columnas de una tabla sin escribirlas una por una, usa el asterisco:
+          </p>
+          <pre><code>SELECT *
+FROM clientes;</code></pre>
+          <p>
+            Es útil para explorar una tabla nueva y ver qué contiene. En producción o en consultas definitivas, es mejor especificar las columnas que necesitas: es más eficiente y más claro.
+          </p>
+
+          <h2>Filtrar resultados con WHERE</h2>
+          <p>
+            El <code>SELECT</code> sin filtros trae todos los registros de la tabla. La mayoría de las veces no quieres eso: quieres datos específicos. Para eso se añade la cláusula <code>WHERE</code>:
+          </p>
+          <pre><code>SELECT nombre, email
+FROM clientes
+WHERE ciudad = 'Madrid';</code></pre>
+          <p>
+            Esto trae solo los clientes cuya ciudad sea Madrid. Nada más. Las condiciones de texto van entre comillas simples en SQL estándar.
+          </p>
+
+          <h3>Condiciones numéricas y de comparación</h3>
+          <p>
+            Con números no hacen falta comillas:
+          </p>
+          <pre><code>SELECT *
+FROM pedidos
+WHERE importe > 500;</code></pre>
+          <p>
+            Puedes usar los operadores habituales: <code>=</code>, <code>></code>, <code><</code>, <code>>=</code>, <code><=</code>, y <code><></code> (este último significa "distinto de").
+          </p>
+
+          <h3>Combinar condiciones con AND y OR</h3>
+          <pre><code>SELECT *
+FROM pedidos
+WHERE ciudad = 'Barcelona'
+  AND importe > 200;</code></pre>
+          <p>
+            <code>AND</code> exige que se cumplan las dos condiciones. <code>OR</code> basta con que se cumpla una. Cuando mezclas ambas, usa paréntesis para dejar claro el orden de evaluación:
+          </p>
+          <pre><code>SELECT *
+FROM pedidos
+WHERE (ciudad = 'Madrid' OR ciudad = 'Barcelona')
+  AND importe > 200;</code></pre>
+
+          <h2>Ordenar los resultados con ORDER BY</h2>
+          <p>
+            Por defecto, SQL no garantiza ningún orden en los resultados. Si quieres que vengan ordenados, lo indicas explícitamente:
+          </p>
+          <pre><code>SELECT nombre, importe
+FROM pedidos
+ORDER BY importe DESC;</code></pre>
+          <p>
+            <code>DESC</code> ordena de mayor a menor (descendente). <code>ASC</code> ordena de menor a mayor y es el valor por defecto si no escribes nada.
+          </p>
+
+          <h2>Limitar la cantidad de resultados con LIMIT</h2>
+          <p>
+            Si la tabla tiene miles de filas y solo quieres ver las primeras para hacerte una idea del contenido:
+          </p>
+          <pre><code>SELECT *
+FROM clientes
+LIMIT 10;</code></pre>
+          <p>
+            Esto devuelve exactamente 10 filas. En SQL Server y Oracle la sintaxis es diferente (<code>TOP 10</code> y <code>ROWNUM</code> respectivamente), pero el concepto es el mismo.
+          </p>
+
+          <h2>Resumen: estructura completa de un SELECT</h2>
+          <p>Un SELECT con todas sus cláusulas básicas tiene este orden:</p>
+          <pre><code>SELECT columna1, columna2
+FROM tabla
+WHERE condicion
+ORDER BY columna1 ASC
+LIMIT 20;</code></pre>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Cláusula</th>
+                <th>Para qué sirve</th>
+                <th>¿Obligatoria?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>SELECT</code></td>
+                <td>Qué columnas mostrar</td>
+                <td>Sí</td>
+              </tr>
+              <tr>
+                <td><code>FROM</code></td>
+                <td>De qué tabla leer</td>
+                <td>Sí</td>
+              </tr>
+              <tr>
+                <td><code>WHERE</code></td>
+                <td>Filtrar filas por condición</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td><code>ORDER BY</code></td>
+                <td>Ordenar los resultados</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td><code>LIMIT</code></td>
+                <td>Número máximo de filas</td>
+                <td>No</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>¿Dónde puedo practicar sin instalar nada?</h2>
+          <p>
+            Si quieres probar estas consultas ahora mismo sin instalar ninguna base de datos en tu equipo, tienes varias opciones gratuitas online: <strong>SQLiteOnline</strong>, <strong>DB Fiddle</strong> o la consola integrada de <strong>Supabase</strong> si ya tienes una cuenta. Crea una tabla de prueba con datos inventados y empieza a hacer consultas. La práctica con datos reales es lo que acelera el aprendizaje.
+          </p>
+          <p>
+            Con esto ya tienes la base para entender y escribir tus primeras consultas SQL. El siguiente paso, cuando te sientas cómodo con SELECT y WHERE, es aprender <code>JOIN</code> para cruzar datos de varias tablas. Pero eso merece su propio artículo.
+          </p>
+        </div>
+
+        <!-- Related -->
+        <div class="mt-12 pt-8 border-t border-slate-200">
+          <h3 class="text-lg font-bold text-[#1E293B] mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/excel/como-sumar-celdas-en-excel/" class="block bg-white border border-emerald-100 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-excel mb-2 inline-block">Excel</span>
+              <p class="font-semibold text-sm text-[#1E293B]">Cómo sumar celdas en Excel: guía rápida</p>
+            </a>
+            <a href="/powerbi/como-conectar-excel-con-power-bi/" class="block bg-white border border-amber-100 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-powerbi mb-2 inline-block">Power BI</span>
+              <p class="font-semibold text-sm text-[#1E293B]">Cómo conectar Excel con Power BI paso a paso</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6">
+        <div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true">
+          Espacio publicitario — Sidebar
+        </div>
+      </aside>
+    </div>
+
+    <!-- AdSense bottom -->
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true">Espacio publicitario — 728×90</div>
+  </div>
+</Layout>

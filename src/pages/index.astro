@@ -1,0 +1,295 @@
+---
+import '@/styles/globals.css';
+import Layout from '../layouts/Layout.astro';
+
+const featuredArticles = [
+  {
+    title: 'Cómo sumar celdas en Excel: Guía rápida para principiantes (y el truco del teclado)',
+    excerpt: 'Aprende a usar SUMA, sumar rangos discontinuos y el atajo de teclado que te ahorra tiempo en cualquier hoja de cálculo.',
+    category: 'Excel',
+    badge: 'badge-excel',
+    accent: 'emerald',
+    href: '/excel/como-sumar-celdas-en-excel/',
+    featured: true,
+    readTime: '5 min',
+  },
+  {
+    title: 'Cómo conectar Excel con Power BI paso a paso (sin dar errores)',
+    excerpt: 'Una guía directa para importar tu libro de Excel en Power BI Desktop sin pasos innecesarios ni configuraciones complicadas.',
+    category: 'Power BI',
+    badge: 'badge-powerbi',
+    accent: 'amber',
+    href: '/powerbi/como-conectar-excel-con-power-bi/',
+    featured: false,
+    readTime: '7 min',
+  },
+  {
+    title: '¿Qué es un SELECT en SQL? Aprende a consultar tus datos en 5 minutos',
+    excerpt: 'Entiende cómo funciona la instrucción SELECT desde cero, con ejemplos reales de oficina y sin necesidad de instalar nada.',
+    category: 'SQL',
+    badge: 'badge-sql',
+    accent: 'sky',
+    href: '/sql/que-es-un-select-en-sql/',
+    featured: false,
+    readTime: '5 min',
+  },
+];
+---
+
+<Layout
+  title="ExcelyDatos — Excel, Power BI y SQL para analistas de datos"
+  description="Aprende Excel, Power BI y SQL con guías prácticas en español. Sin relleno, sin teoría innecesaria: solo lo que necesitas para trabajar mejor con tus datos."
+>
+  <!-- AdSense Leaderboard Top -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true">
+      Espacio publicitario — 728×90
+    </div>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="relative overflow-hidden">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 via-[#F8FAFC] to-sky-50 opacity-70"></div>
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #e2e8f0 1px, transparent 0); background-size: 32px 32px; opacity: 0.5;"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <!-- Label -->
+        <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+          <span class="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-pulse"></span>
+          Excel, Power BI y SQL en español
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1E293B] leading-tight mb-6">
+          Tus datos,<br />
+          <span class="text-emerald-700">bajo control.</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-600 leading-relaxed mb-8 max-w-2xl">
+          Guías prácticas y directas para aprender a manejar Excel, Power BI y SQL.
+          Sin introducciones eternas ni teoría innecesaria: cada artículo resuelve una duda concreta desde el primer párrafo.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a
+            href="/excel/"
+            class="inline-flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm"
+          >
+            Empezar con Excel
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a
+            href="#articulos"
+            class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#1E293B] font-semibold px-6 py-3 rounded-lg border border-slate-200 transition-colors duration-200"
+          >
+            Ver artículos recientes
+          </a>
+        </div>
+
+        <!-- Stats row -->
+        <div class="flex flex-wrap gap-6 mt-12 pt-8 border-t border-slate-200">
+          <div>
+            <div class="text-2xl font-bold text-emerald-700">+50</div>
+            <div class="text-sm text-slate-500">Guías publicadas</div>
+          </div>
+          <div class="w-px bg-slate-200"></div>
+          <div>
+            <div class="text-2xl font-bold text-[#1E293B]">3</div>
+            <div class="text-sm text-slate-500">Categorías especializadas</div>
+          </div>
+          <div class="w-px bg-slate-200"></div>
+          <div>
+            <div class="text-2xl font-bold text-[#1E293B]">100%</div>
+            <div class="text-sm text-slate-500">Contenido en español</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SILO CARDS ===================== -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-[#1E293B] mb-3">Elige tu área de aprendizaje</h2>
+      <p class="text-slate-500 max-w-xl mx-auto">Cada categoría es un silo independiente con artículos organizados por nivel y tema.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- Excel — Featured / Larger -->
+      <div class="lg:col-span-2 group relative bg-white rounded-2xl border border-emerald-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
+        <!-- Top accent bar -->
+        <div class="h-1.5 bg-gradient-to-r from-emerald-500 to-emerald-700"></div>
+        <div class="p-8">
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center">
+              <!-- Excel-like grid icon -->
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="11" height="11" rx="2" fill="#047857"/>
+                <rect x="15" y="2" width="11" height="11" rx="2" fill="#6ee7b7"/>
+                <rect x="2" y="15" width="11" height="11" rx="2" fill="#6ee7b7"/>
+                <rect x="15" y="15" width="11" height="11" rx="2" fill="#047857" opacity="0.7"/>
+              </svg>
+            </div>
+            <span class="bg-emerald-700 text-white text-xs font-bold px-3 py-1 rounded-full">Principal</span>
+          </div>
+          <h3 class="text-2xl font-bold text-[#1E293B] mb-3">Excel & Google Sheets</h3>
+          <p class="text-slate-500 leading-relaxed mb-6">
+            Desde fórmulas básicas hasta tablas dinámicas avanzadas. Aprende a automatizar tareas repetitivas,
+            crear dashboards funcionales y dominar las funciones que más se usan en entornos de trabajo reales.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-emerald-50 text-emerald-700 text-xs font-medium px-2.5 py-1 rounded-md">Fórmulas</span>
+            <span class="bg-emerald-50 text-emerald-700 text-xs font-medium px-2.5 py-1 rounded-md">Tablas dinámicas</span>
+            <span class="bg-emerald-50 text-emerald-700 text-xs font-medium px-2.5 py-1 rounded-md">XLOOKUP</span>
+            <span class="bg-emerald-50 text-emerald-700 text-xs font-medium px-2.5 py-1 rounded-md">Macros VBA</span>
+            <span class="bg-emerald-50 text-emerald-700 text-xs font-medium px-2.5 py-1 rounded-md">Power Query</span>
+          </div>
+          <a
+            href="/excel/"
+            class="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors duration-200"
+          >
+            Explorar Excel
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right column: Power BI + SQL stacked -->
+      <div class="flex flex-col gap-6">
+        <!-- Power BI -->
+        <div class="group bg-white rounded-2xl border border-amber-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex-1">
+          <div class="h-1.5 bg-gradient-to-r from-amber-400 to-amber-600"></div>
+          <div class="p-6">
+            <div class="w-11 h-11 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="14" width="4" height="8" rx="1" fill="#D97706"/>
+                <rect x="8" y="9" width="4" height="13" rx="1" fill="#D97706" opacity="0.7"/>
+                <rect x="14" y="5" width="4" height="17" rx="1" fill="#D97706" opacity="0.5"/>
+                <rect x="20" y="2" width="2" height="20" rx="1" fill="#D97706" opacity="0.3"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-[#1E293B] mb-2">Power BI</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">
+              Crea dashboards visuales que hablan por sí solos. Conecta tus datos y genera informes en minutos.
+            </p>
+            <a href="/powerbi/" class="inline-flex items-center gap-1.5 text-amber-700 hover:text-amber-900 font-semibold text-sm transition-colors">
+              Ver guías
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- SQL -->
+        <div class="group bg-white rounded-2xl border border-sky-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex-1">
+          <div class="h-1.5 bg-gradient-to-r from-sky-400 to-sky-600"></div>
+          <div class="p-6">
+            <div class="w-11 h-11 bg-sky-100 rounded-xl flex items-center justify-center mb-4">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="12" cy="6" rx="9" ry="3" fill="#0284C7" opacity="0.8"/>
+                <path d="M3 6v5c0 1.657 4.03 3 9 3s9-1.343 9-3V6" stroke="#0284C7" stroke-width="1.5" fill="none"/>
+                <path d="M3 11v5c0 1.657 4.03 3 9 3s9-1.343 9-3v-5" stroke="#0284C7" stroke-width="1.5" fill="none" opacity="0.5"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-[#1E293B] mb-2">SQL</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">
+              Consulta y transforma bases de datos con confianza. Aprende SELECT, JOIN, GROUP BY y mucho más.
+            </p>
+            <a href="/sql/" class="inline-flex items-center gap-1.5 text-sky-700 hover:text-sky-900 font-semibold text-sm transition-colors">
+              Ver guías
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AdSense mid-page -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 my-4">
+    <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true">
+      Espacio publicitario — 728×90
+    </div>
+  </div>
+
+  <!-- ===================== ÚLTIMOS ARTÍCULOS ===================== -->
+  <section id="articulos" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <h2 class="text-3xl font-bold text-[#1E293B] mb-2">Últimos artículos publicados</h2>
+        <p class="text-slate-500">Las guías más recientes, listas para aplicar hoy mismo.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {featuredArticles.map((article) => (
+        <article class={`bg-white rounded-2xl border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col ${article.featured ? 'md:col-span-1 ring-2 ring-emerald-200' : ''}`}>
+          <!-- Category color bar -->
+          <div class={`h-1 ${article.accent === 'emerald' ? 'bg-emerald-600' : article.accent === 'amber' ? 'bg-amber-500' : 'bg-sky-500'}`}></div>
+
+          <!-- Image placeholder -->
+          <div class={`h-40 flex items-center justify-center text-5xl font-bold ${article.accent === 'emerald' ? 'bg-emerald-50 text-emerald-200' : article.accent === 'amber' ? 'bg-amber-50 text-amber-200' : 'bg-sky-50 text-sky-200'}`}>
+            {article.accent === 'emerald' ? '∑' : article.accent === 'amber' ? '◈' : '⊞'}
+          </div>
+
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-center gap-2 mb-3">
+              <span class={article.badge}>{article.category}</span>
+              <span class="text-slate-400 text-xs">{article.readTime} de lectura</span>
+              {article.featured && (
+                <span class="ml-auto bg-emerald-700 text-white text-xs font-bold px-2 py-0.5 rounded">Destacado</span>
+              )}
+            </div>
+
+            <h3 class="text-base font-bold text-[#1E293B] leading-snug mb-3 flex-1">
+              <a href={article.href} class={`hover:text-${article.accent}-700 transition-colors`}>
+                {article.title}
+              </a>
+            </h3>
+
+            <p class="text-sm text-slate-500 leading-relaxed mb-5">{article.excerpt}</p>
+
+            <a
+              href={article.href}
+              class={`inline-flex items-center gap-1.5 text-sm font-semibold transition-colors ${article.accent === 'emerald' ? 'text-emerald-700 hover:text-emerald-900' : article.accent === 'amber' ? 'text-amber-700 hover:text-amber-900' : 'text-sky-700 hover:text-sky-900'}`}
+            >
+              Leer artículo
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===================== NEWSLETTER PLACEHOLDER ===================== -->
+  <section class="bg-emerald-700 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4">Recibe nuevas guías cada semana</h2>
+        <p class="text-emerald-100 mb-8 leading-relaxed">
+          Sin spam. Solo artículos prácticos sobre Excel, Power BI y SQL que puedes aplicar en tu trabajo de inmediato.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="tucorreo@empresa.com"
+            class="flex-1 px-4 py-3 rounded-lg text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-white"
+          />
+          <button class="bg-white text-emerald-800 hover:bg-emerald-50 font-semibold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap">
+            Suscribirme
+          </button>
+        </div>
+        <p class="text-emerald-200 text-xs mt-4">Puedes darte de baja cuando quieras.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AdSense Bottom -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true">
+      Espacio publicitario — 728×90
+    </div>
+  </div>
+</Layout>

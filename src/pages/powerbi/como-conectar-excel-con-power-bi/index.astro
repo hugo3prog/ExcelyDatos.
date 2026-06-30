@@ -1,0 +1,178 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo conectar Excel con Power BI paso a paso (sin dar errores)';
+const description = 'Guía práctica para importar archivos de Excel en Power BI Desktop correctamente. Pasos claros, errores frecuentes y cómo evitarlos desde el principio.';
+const publishDate = '2025-06-28';
+const readTime = '7 min';
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- AdSense top -->
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true">Espacio publicitario — 728×90</div>
+
+    <div class="flex gap-10">
+      <!-- Article content -->
+      <div class="min-w-0 flex-1">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6">
+          <a href="/" class="hover:text-slate-600 transition-colors">Inicio</a>
+          <span>/</span>
+          <a href="/powerbi/" class="hover:text-amber-700 transition-colors">Power BI</a>
+          <span>/</span>
+          <span class="text-slate-600 truncate">Conectar Excel con Power BI</span>
+        </nav>
+
+        <!-- Header -->
+        <header class="mb-10">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-powerbi">Power BI</span>
+            <span class="text-slate-400 text-sm">{readTime} de lectura</span>
+            <span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={publishDate}>28 jun 2025</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] leading-tight mb-5">
+            {title}
+          </h1>
+          <p class="text-lg text-slate-600 leading-relaxed border-l-4 border-amber-500 pl-4">
+            Muchas personas pasan por lo mismo: abren Power BI por primera vez, intentan cargar su Excel y algo sale mal. Un error de formato, datos que no aparecen, columnas mal reconocidas. Esta guía te lleva paso a paso para que la conexión funcione desde el primer intento.
+          </p>
+        </header>
+
+        <!-- AdSense rectangle in-article -->
+        <div class="float-right ml-6 mb-6 hidden lg:block">
+          <div class="adsense-slot adsense-slot--rectangle" aria-hidden="true">Espacio publicitario — 336×250</div>
+        </div>
+
+        <div class="article-body">
+
+          <h2>Antes de empezar: prepara bien tu archivo de Excel</h2>
+          <p>
+            El 80% de los problemas al conectar Excel con Power BI no vienen de Power BI sino del archivo de origen. Hay tres cosas que debes revisar antes de importar:
+          </p>
+          <ul>
+            <li><strong>Usa una tabla de Excel, no un rango normal.</strong> Selecciona tus datos y pulsa <code>Ctrl + T</code> para convertirlos en tabla. Power BI entiende mucho mejor las tablas formales que los rangos sueltos.</li>
+            <li><strong>La primera fila debe ser el encabezado.</strong> Cada columna necesita un nombre claro y sin espacios dobles. Evita encabezados combinados o celdas fusionadas.</li>
+            <li><strong>Una hoja, un tipo de datos.</strong> Si tienes datos de ventas en una pestaña y datos de clientes en otra, eso está bien. Lo que no funciona bien es mezclar tablas distintas en la misma hoja con filas vacías entre ellas.</li>
+          </ul>
+
+          <h2>Paso 1: Abrir Power BI Desktop y obtener datos</h2>
+          <p>
+            Abre Power BI Desktop. En la pantalla de inicio, verás el botón <strong>Obtener datos</strong> directamente. Si ya tienes un informe abierto, ve a la pestaña <strong>Inicio</strong> en la cinta de opciones y haz clic en <strong>Obtener datos</strong>.
+          </p>
+          <p>
+            Se abrirá una ventana con los tipos de orígenes disponibles. En el buscador, escribe "Excel" o selecciona directamente <strong>Libro de Excel</strong> de la lista. Luego pulsa <strong>Conectar</strong>.
+          </p>
+
+          <h2>Paso 2: Seleccionar el archivo</h2>
+          <p>
+            Aparecerá el explorador de archivos de Windows. Navega hasta tu archivo <code>.xlsx</code> o <code>.xls</code> y selecciónalo. Haz clic en <strong>Abrir</strong>.
+          </p>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 my-6">
+            <p class="text-amber-900 text-sm font-medium mb-1">Punto importante sobre la ruta del archivo</p>
+            <p class="text-amber-800 text-sm">Si el archivo está en una carpeta local de OneDrive sincronizada, Power BI lo leerá como un archivo local normal. Si lo mueves de carpeta después, el informe perderá la conexión y tendrás que actualizar la ruta manualmente.</p>
+          </div>
+
+          <h2>Paso 3: El navegador de tablas</h2>
+          <p>
+            Power BI mostrará el <strong>Navegador</strong>, que lista todo lo que encontró dentro de tu archivo: hojas de Excel y tablas formales. Aquí es donde la preparación previa marca la diferencia.
+          </p>
+          <p>
+            Si convertiste tus datos en tabla con <code>Ctrl + T</code>, verás el nombre de esa tabla (por ejemplo, "Tabla1" o el nombre que le hayas dado). Si no lo hiciste, verás el nombre de la hoja con un icono distinto, y los datos pueden venir con problemas de formato.
+          </p>
+          <p>
+            Marca la casilla de la tabla o hoja que quieres importar. En el panel derecho verás una vista previa de los datos. Revisa que los encabezados se ven bien y que los tipos de datos parecen correctos (números como números, fechas como fechas).
+          </p>
+
+          <h3>¿Cargar o transformar datos?</h3>
+          <p>
+            En la parte inferior del Navegador tienes dos botones:
+          </p>
+          <ul>
+            <li><strong>Cargar:</strong> importa los datos tal como están. Úsalo solo si estás seguro de que los datos ya están limpios.</li>
+            <li><strong>Transformar datos:</strong> abre el Editor de Power Query, donde puedes limpiar, renombrar columnas, cambiar tipos de datos y hacer transformaciones antes de cargar. Recomendado para la mayoría de casos.</li>
+          </ul>
+
+          <h2>Paso 4: Limpiar los datos en Power Query (si es necesario)</h2>
+          <p>
+            Si elegiste <strong>Transformar datos</strong>, se abre Power Query. Las acciones más comunes en este paso son:
+          </p>
+          <ul>
+            <li><strong>Verificar los tipos de datos:</strong> haz clic en el icono junto al nombre de cada columna y comprueba que el tipo es correcto. Una columna de fechas que se lee como texto no funcionará bien en los filtros del informe.</li>
+            <li><strong>Eliminar filas vacías:</strong> en la pestaña <strong>Inicio</strong>, usa <strong>Quitar filas</strong> → <strong>Quitar filas en blanco</strong>.</li>
+            <li><strong>Renombrar columnas:</strong> doble clic sobre el encabezado de la columna para editarlo. Usa nombres descriptivos sin caracteres especiales.</li>
+          </ul>
+          <p>
+            Cuando termines, haz clic en <strong>Cerrar y aplicar</strong> (esquina superior izquierda). Power BI cargará los datos procesados en el modelo.
+          </p>
+
+          <h2>Paso 5: Actualizar los datos cuando cambia el Excel</h2>
+          <p>
+            Una pregunta habitual es: si actualizo el Excel, ¿se actualizan también los datos en Power BI? La respuesta es sí, pero tienes que pedírselo manualmente en Power BI Desktop. En la pestaña <strong>Inicio</strong>, haz clic en <strong>Actualizar</strong>.
+          </p>
+          <p>
+            Si publicas el informe en Power BI Service (la versión web), puedes configurar la actualización programada para que se haga automáticamente, pero eso ya entra en otro nivel de configuración.
+          </p>
+
+          <h2>Errores más frecuentes y cómo resolverlos</h2>
+
+          <h3>Error: "No se puede abrir el archivo"</h3>
+          <p>
+            Ocurre cuando el archivo de Excel está abierto al mismo tiempo en tu equipo. Cierra Excel completamente antes de actualizar los datos en Power BI.
+          </p>
+
+          <h3>Las fechas aparecen como números (ej. 44927)</h3>
+          <p>
+            Excel almacena las fechas internamente como números. Si Power Query no detecta bien el tipo, la columna aparecerá como número entero. Solución: en Power Query, haz clic en el icono del tipo de la columna y selecciona <strong>Fecha</strong> o <strong>Fecha/Hora</strong>.
+          </p>
+
+          <h3>Columnas vacías o filas de encabezado extra</h3>
+          <p>
+            Pasa cuando el Excel tiene títulos decorativos por encima de los datos reales. En Power Query ve a <strong>Inicio</strong> → <strong>Usar la primera fila como encabezado</strong> o elimina las filas sobrantes con <strong>Quitar filas superiores</strong>.
+          </p>
+
+          <h2>Checklist de conexión correcta</h2>
+          <p>Antes de dar por buena la conexión, repasa esta lista:</p>
+          <ul>
+            <li>Los datos en Excel están en formato tabla (<code>Ctrl + T</code>)</li>
+            <li>Los encabezados son únicos y descriptivos</li>
+            <li>Los tipos de datos en Power Query son correctos</li>
+            <li>No hay filas vacías ni columnas fantasma en la vista previa</li>
+            <li>Al hacer clic en Actualizar, los datos se cargan sin error</li>
+          </ul>
+
+          <p>
+            Con esto ya tienes lo suficiente para conectar cualquier archivo de Excel con Power BI sin sorpresas. El siguiente paso lógico es empezar a construir visualizaciones, pero eso es historia para otro artículo.
+          </p>
+        </div>
+
+        <!-- Related -->
+        <div class="mt-12 pt-8 border-t border-slate-200">
+          <h3 class="text-lg font-bold text-[#1E293B] mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/excel/como-sumar-celdas-en-excel/" class="block bg-white border border-emerald-100 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-excel mb-2 inline-block">Excel</span>
+              <p class="font-semibold text-sm text-[#1E293B]">Cómo sumar celdas en Excel: guía rápida</p>
+            </a>
+            <a href="/sql/que-es-un-select-en-sql/" class="block bg-white border border-sky-100 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-sql mb-2 inline-block">SQL</span>
+              <p class="font-semibold text-sm text-[#1E293B]">¿Qué es un SELECT en SQL? Aprende en 5 minutos</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6">
+        <div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true">
+          Espacio publicitario — Sidebar
+        </div>
+      </aside>
+    </div>
+
+    <!-- AdSense bottom -->
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true">Espacio publicitario — 728×90</div>
+  </div>
+</Layout>

@@ -1,0 +1,96 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Sobre Nosotros — ExcelyDatos"
+  description="Conoce quién está detrás de ExcelyDatos: un proyecto creado para ayudar a profesionales a trabajar mejor con sus datos usando Excel, Power BI y SQL."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-emerald-700 to-emerald-900 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <nav class="flex items-center gap-2 text-sm text-emerald-300 mb-8" aria-label="Ruta de navegación">
+        <a href="/" class="hover:text-white transition-colors">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-emerald-100">Sobre Nosotros</span>
+      </nav>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Sobre ExcelyDatos</h1>
+      <p class="text-emerald-100 text-lg max-w-2xl leading-relaxed">
+        Un proyecto creado por y para profesionales que trabajan con datos cada día y necesitan respuestas claras, no teoría.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="article-body">
+
+      <h2>¿Qué es ExcelyDatos?</h2>
+      <p>
+        ExcelyDatos es un portal de contenido educativo en español centrado en tres herramientas que se usan a diario en casi cualquier oficina: <strong>Excel y Google Sheets</strong>, <strong>Power BI</strong> y <strong>SQL</strong>. Nació de una necesidad concreta: encontrar respuestas directas a dudas reales de trabajo sin tener que leer artículos de veinte minutos para obtener la respuesta que estás buscando.
+      </p>
+      <p>
+        Cada guía publicada en este sitio tiene un objetivo único: que quien la lea pueda aplicar lo aprendido en su trabajo el mismo día. Sin relleno, sin introducciones que no aportan nada, sin ejemplos que nunca nadie ha visto en una oficina real.
+      </p>
+
+      <h2>Quién está detrás</h2>
+      <p>
+        ExcelyDatos es un proyecto independiente. No somos una academia, no vendemos cursos ni certificaciones. Somos personas que llevamos años trabajando con datos y decidimos documentar lo que sabemos de forma accesible y gratuita.
+      </p>
+      <p>
+        El sitio está escrito por analistas con experiencia práctica en entornos corporativos reales: departamentos de finanzas, operaciones, marketing y logística que usan Excel como herramienta central de su día a día. Eso se nota en los ejemplos que elegimos y en el tono de los artículos.
+      </p>
+
+      <h2>Nuestra filosofía de contenido</h2>
+      <p>
+        Seguimos tres reglas para cada artículo que publicamos:
+      </p>
+      <ul>
+        <li><strong>Directo al problema.</strong> La introducción ocupa lo justo para contextualizar. El primer párrafo ya tiene información útil.</li>
+        <li><strong>Ejemplos de oficina, no de libro de texto.</strong> Trabajamos con datos de ventas, nóminas, inventarios y presupuestos porque eso es lo que maneja la mayoría de nuestros lectores.</li>
+        <li><strong>Sin asumir conocimientos previos.</strong> Explicamos los conceptos base antes de dar el paso siguiente. No damos nada por sabido sin haberlo explicado antes.</li>
+      </ul>
+
+      <h2>La arquitectura del sitio</h2>
+      <p>
+        ExcelyDatos está organizado en tres categorías independientes, lo que en SEO se conoce como arquitectura en silos:
+      </p>
+      <ul>
+        <li><strong><a href="/excel/" class="text-emerald-700 underline hover:text-emerald-900">Excel & Google Sheets</a></strong> — El núcleo del sitio. Fórmulas, tablas dinámicas, Power Query, VBA y todo lo que rodea al trabajo con hojas de cálculo.</li>
+        <li><strong><a href="/powerbi/" class="text-amber-700 underline hover:text-amber-900">Power BI</a></strong> — Dashboards, visualizaciones, DAX y conexión de datos para quienes ya manejan Excel y quieren dar el siguiente paso.</li>
+        <li><strong><a href="/sql/" class="text-sky-700 underline hover:text-sky-900">SQL</a></strong> — Consultas, filtros, agregaciones y joins para quienes trabajan con bases de datos o quieren empezar a hacerlo.</li>
+      </ul>
+
+      <h2>Publicidad y transparencia</h2>
+      <p>
+        ExcelyDatos muestra anuncios a través de <strong>Google AdSense</strong> para financiar el mantenimiento del sitio y poder seguir publicando contenido gratuito. Los anuncios están claramente diferenciados del contenido editorial y nunca influyen en la selección de temas ni en las recomendaciones de herramientas que hacemos en nuestros artículos.
+      </p>
+      <p>
+        No aceptamos artículos patrocinados ni colaboraciones de pago que alteren el contenido. Si en algún momento eso cambia, lo indicaremos de forma explícita en el artículo correspondiente.
+      </p>
+
+      <h2>¿Tienes una duda que no hemos resuelto?</h2>
+      <p>
+        Si buscas una guía sobre algo concreto y no la encuentras en el sitio, escríbenos. Tomamos en cuenta las sugerencias de los lectores para priorizar los próximos artículos. Puedes hacerlo desde nuestra página de <a href="/contacto/" class="text-emerald-700 underline hover:text-emerald-900">Contacto</a>.
+      </p>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 bg-emerald-50 border border-emerald-200 rounded-2xl p-8 text-center">
+      <h3 class="text-xl font-bold text-[#1E293B] mb-3">Empieza a aprender ahora</h3>
+      <p class="text-slate-600 text-sm mb-6">Elige la herramienta con la que trabajas más y encuentra la guía que necesitas.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/excel/" class="inline-flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors">
+          Excel & Sheets
+        </a>
+        <a href="/powerbi/" class="inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors">
+          Power BI
+        </a>
+        <a href="/sql/" class="inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors">
+          SQL
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

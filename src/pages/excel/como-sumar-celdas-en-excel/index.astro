@@ -1,0 +1,191 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo sumar celdas en Excel: Guía rápida para principiantes (y el truco del teclado)';
+const description = 'Aprende a sumar celdas en Excel usando la función SUMA, rangos continuos y discontinuos, y el atajo de teclado que te ahorra clics cada día.';
+const publishDate = '2025-06-28';
+const readTime = '5 min';
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- AdSense top -->
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true">Espacio publicitario — 728×90</div>
+
+    <div class="flex gap-10">
+      <!-- Article content -->
+      <div class="min-w-0 flex-1">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6">
+          <a href="/" class="hover:text-slate-600 transition-colors">Inicio</a>
+          <span>/</span>
+          <a href="/excel/" class="hover:text-emerald-700 transition-colors">Excel & Sheets</a>
+          <span>/</span>
+          <span class="text-slate-600 truncate">Cómo sumar celdas</span>
+        </nav>
+
+        <!-- Header -->
+        <header class="mb-10">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-excel">Excel</span>
+            <span class="text-slate-400 text-sm">{readTime} de lectura</span>
+            <span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={publishDate}>28 jun 2025</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] leading-tight mb-5">
+            {title}
+          </h1>
+          <p class="text-lg text-slate-600 leading-relaxed border-l-4 border-emerald-500 pl-4">
+            Sumar celdas es lo primero que hace casi todo el mundo en Excel, y también lo primero en lo que muchos se complican sin necesidad. En esta guía vas a ver tres formas distintas de hacerlo —la manual, la correcta y la rápida— para que elijas la que mejor se adapte a tu situación.
+          </p>
+        </header>
+
+        <!-- AdSense rectangle in-article -->
+        <div class="float-right ml-6 mb-6 hidden lg:block">
+          <div class="adsense-slot adsense-slot--rectangle" aria-hidden="true">Espacio publicitario — 336×250</div>
+        </div>
+
+        <div class="article-body">
+
+          <h2>El método básico: escribir los valores directamente</h2>
+          <p>
+            Cuando alguien empieza en Excel, lo más instintivo es hacer algo así: <code>=A1+A2+A3</code>. Técnicamente funciona, pero tiene un problema grande: si mañana añades una fila nueva entre A1 y A3, Excel no la incluirá en la suma automáticamente. Tendrás que editar la fórmula a mano.
+          </p>
+          <p>
+            Este método tiene sentido cuando sumas dos o tres celdas que no van a cambiar. Para cualquier otro caso, lo que necesitas es la función <code>SUMA</code>.
+          </p>
+
+          <h2>La función SUMA: la forma correcta de hacerlo</h2>
+          <p>
+            La sintaxis es más simple de lo que parece:
+          </p>
+          <pre><code>=SUMA(A1:A10)</code></pre>
+          <p>
+            Eso suma todas las celdas desde A1 hasta A10, incluyendo cualquier valor que añadas en ese rango después. Si insertas una fila nueva en la mitad, Excel la incluye solo.
+          </p>
+          <p>
+            El rango <code>A1:A10</code> significa "desde A1 hasta A10". Los dos puntos (<code>:</code>) son el separador de rango en Excel. Esto es básico pero conviene dejarlo claro.
+          </p>
+
+          <h3>Sumar celdas que no son contiguas</h3>
+          <p>
+            ¿Qué pasa si necesitas sumar celdas que no están juntas? Por ejemplo, A1, C3 y F7. En ese caso, separas los argumentos con punto y coma:
+          </p>
+          <pre><code>=SUMA(A1;C3;F7)</code></pre>
+          <p>
+            También puedes mezclar celdas individuales con rangos:
+          </p>
+          <pre><code>=SUMA(A1:A5;C1:C5;E10)</code></pre>
+          <p>
+            La función acepta hasta 255 argumentos, así que tienes margen de sobra para combinarlos como necesites.
+          </p>
+
+          <h2>El truco del teclado que nadie te cuenta (pero todos usan)</h2>
+          <p>
+            Este es el atajo que marca la diferencia cuando trabajas con muchos datos. Selecciona la celda donde quieres que aparezca el total, y pulsa:
+          </p>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 my-6 flex items-center gap-4">
+            <div class="text-3xl font-mono font-bold text-emerald-700">Alt + =</div>
+            <div class="text-slate-600 text-sm leading-relaxed">
+              Excel detecta automáticamente el rango de números más cercano y escribe la función SUMA por ti. Solo tienes que pulsar Enter para confirmar.
+            </div>
+          </div>
+          <p>
+            Si estás en Mac, el atajo equivalente es <code>Cmd + Shift + T</code>. También puedes encontrar el botón en la pestaña <strong>Inicio</strong>, dentro del grupo <strong>Edición</strong>, con el símbolo Σ (sigma).
+          </p>
+
+          <h3>Truco extra: suma de una columna completa</h3>
+          <p>
+            Si sabes que tu tabla puede crecer con el tiempo y no quieres estar ajustando el rango cada vez, puedes sumar una columna entera así:
+          </p>
+          <pre><code>=SUMA(A:A)</code></pre>
+          <p>
+            Esto suma todos los números de la columna A, sin importar cuántas filas tengas. Eso sí, asegúrate de no tener la celda de resultado dentro de esa misma columna, o crearás una referencia circular.
+          </p>
+
+          <h2>Sumar con condiciones: SUMAR.SI</h2>
+          <p>
+            Una vez que dominas <code>SUMA</code>, el siguiente paso natural es aprender a sumar solo cuando se cumple una condición. Para eso existe <code>SUMAR.SI</code>:
+          </p>
+          <pre><code>=SUMAR.SI(B2:B20;"Madrid";C2:C20)</code></pre>
+          <p>
+            Esta fórmula suma los valores del rango C2:C20, pero solo para las filas donde B2:B20 contiene la palabra "Madrid". Muy útil para informes por zona, categoría o cualquier otro criterio.
+          </p>
+
+          <h2>Errores comunes al sumar en Excel</h2>
+          <ul>
+            <li><strong>Celdas con formato de texto:</strong> si un número está guardado como texto, Excel lo ignora en la suma. Verás un pequeño triángulo verde en la esquina de la celda. Solución: selecciona esas celdas, haz clic en el aviso amarillo y elige "Convertir a número".</li>
+            <li><strong>Espacios invisibles:</strong> a veces los datos importados de otros sistemas traen espacios antes o después del número. Usa <code>VALOR(RECORTAR(A1))</code> para limpiarlos antes de sumar.</li>
+            <li><strong>Celdas combinadas:</strong> las celdas fusionadas pueden dar resultados inesperados en los rangos. Lo mejor es evitarlas en zonas de datos y usarlas solo para presentación.</li>
+          </ul>
+
+          <h2>Resumen rápido</h2>
+          <p>
+            Para sumar en Excel tienes varias opciones según la situación:
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Situación</th>
+                <th>Fórmula recomendada</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sumar un rango continuo</td>
+                <td><code>=SUMA(A1:A10)</code></td>
+              </tr>
+              <tr>
+                <td>Sumar celdas sueltas</td>
+                <td><code>=SUMA(A1;C3;F7)</code></td>
+              </tr>
+              <tr>
+                <td>Sumar rápido con teclado</td>
+                <td><code>Alt + =</code></td>
+              </tr>
+              <tr>
+                <td>Sumar con condición</td>
+                <td><code>=SUMAR.SI(rango;criterio;rango_suma)</code></td>
+              </tr>
+              <tr>
+                <td>Sumar toda una columna</td>
+                <td><code>=SUMA(A:A)</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            Con esto tienes cubiertos el 90% de los casos que vas a encontrar en el día a día. Si tu siguiente duda es sobre cómo conectar estos datos con Power BI, tienes la guía justo debajo.
+          </p>
+        </div>
+
+        <!-- Related -->
+        <div class="mt-12 pt-8 border-t border-slate-200">
+          <h3 class="text-lg font-bold text-[#1E293B] mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/powerbi/como-conectar-excel-con-power-bi/" class="block bg-white border border-amber-100 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-powerbi mb-2 inline-block">Power BI</span>
+              <p class="font-semibold text-sm text-[#1E293B]">Cómo conectar Excel con Power BI paso a paso</p>
+            </a>
+            <a href="/sql/que-es-un-select-en-sql/" class="block bg-white border border-sky-100 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-sql mb-2 inline-block">SQL</span>
+              <p class="font-semibold text-sm text-[#1E293B]">¿Qué es un SELECT en SQL? Aprende en 5 minutos</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6">
+        <!-- AdSense sidebar -->
+        <div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true">
+          Espacio publicitario — Sidebar
+        </div>
+      </aside>
+    </div>
+
+    <!-- AdSense bottom -->
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true">Espacio publicitario — 728×90</div>
+  </div>
+</Layout>
