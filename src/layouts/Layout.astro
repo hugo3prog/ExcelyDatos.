@@ -193,19 +193,8 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
 
     {isHome && (
       <style is:global>
-        html body main {
-          padding-top: 0 !important;
-          margin-top: 0 !important;
-        }
-        
-        html body main > :first-child,
-        html body main > :first-child > :first-child,
-        html body main > :first-child > :first-child > :first-child,
-        html body main > :first-child > :first-child > :first-child > :first-child,
-        html body main > :first-child > :first-child > :first-child > :first-child > :first-child {
-          padding-top: 0 !important;
-          margin-top: 0 !important;
-          min-height: 0 !important; /* Destruye el centrado vertical que aplica Tailwind con alturas de pantalla completas */
+        main {
+          margin-top: -5rem !important; /* Arrastra el contenido principal hacia arriba pegándolo al banner */
         }
       </style>
     )}
