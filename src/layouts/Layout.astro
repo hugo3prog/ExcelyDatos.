@@ -32,7 +32,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -40,7 +39,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={siteName} />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -50,7 +48,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
     <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Inter font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -66,7 +63,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
   </head>
   <body class="bg-[#F8FAFC] dark:bg-slate-950 text-[#1E293B] dark:text-slate-100 font-inter antialiased transition-colors duration-200">
 
-    <!-- Reading progress bar -->
     {showReadingProgress && (
       <div
         id="reading-progress"
@@ -76,11 +72,9 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
       ></div>
     )}
 
-    <!-- Header / Navigation -->
     <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 shadow-sm">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-28">
-          <!-- Logo: muestra el logo recortado de marca en su tamaño definitivo optimizado -->
           <a href="/" class="flex items-center group py-2" aria-label="ExcelyDatos — Inicio">
             <img 
               src="/logo-horizontal.png" 
@@ -89,7 +83,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
             />
           </a>
 
-          <!-- Desktop Nav -->
           <nav class="hidden md:flex items-center gap-1">
             <a
               href="/excel/"
@@ -110,10 +103,8 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
               SQL
             </a>
 
-            <!-- Separator -->
             <span class="w-px h-5 bg-slate-200 dark:bg-slate-700 mx-1"></span>
 
-            <!-- Home button -->
             <a
               href="/"
               class="p-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
@@ -126,7 +117,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
               </svg>
             </a>
 
-            <!-- Dark mode toggle -->
             <button
               id="theme-toggle"
               class="p-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
@@ -145,9 +135,7 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
             </button>
           </nav>
 
-          <!-- Mobile right controls -->
           <div class="flex items-center gap-1 md:hidden">
-            <!-- Home button mobile -->
             <a
               href="/"
               class="p-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
@@ -159,7 +147,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
               </svg>
             </a>
 
-            <!-- Dark mode toggle mobile -->
             <button
               id="theme-toggle-mobile"
               class="p-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
@@ -177,7 +164,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
               </svg>
             </button>
 
-            <!-- Mobile menu button -->
             <button
               id="mobile-menu-btn"
               class="p-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
@@ -197,7 +183,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
           </div>
         </div>
 
-        <!-- Mobile Nav -->
         <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 dark:border-slate-800 py-3 space-y-1">
           <a href="/excel/" class="block px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Excel & Google Sheets</a>
           <a href="/powerbi/" class="block px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:text-amber-700 dark:hover:text-amber-400 transition-colors">Power BI</a>
@@ -206,31 +191,27 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
       </div>
     </header>
 
-    <!-- Eliminación absoluta de espacios para pegar el texto de la Home directamente al header -->
     {isHome && (
       <style is:inline>
+        main {
+          margin-top: 0px !important;
+          padding-top: 0px !important;
+        }
         main > div:first-of-type {
           padding-top: 0px !important;
           margin-top: 0px !important;
         }
         main > div:first-of-type > div:first-of-type {
-          display: block !important;
           padding-top: 0px !important;
-          margin-top: 0px !important;
-        }
-        main > div:first-of-type > div:first-of-type > div:first-child {
-          padding-top: 0px !important;
-          margin-top: 0px !important;
+          margin-top: -4rem !important; /* Fuerza de tracción negativa para pegar el texto arriba */
         }
       </style>
     )}
 
-    <!-- Main content -->
     <main>
       <slot />
     </main>
 
-    <!-- Cookie consent banner -->
     <div
       id="cookie-banner"
       class="fixed bottom-0 left-0 right-0 z-[100] px-4 py-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 shadow-lg hidden"
@@ -265,11 +246,9 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
       </div>
     </div>
 
-    <!-- Footer -->
     <footer class="bg-slate-900 dark:bg-slate-950 text-slate-400 mt-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
 
-        <!-- Author / About section -->
         <div class="bg-slate-800 dark:bg-slate-900 rounded-2xl p-6 mb-10 border border-slate-700">
           <div class="flex items-start gap-4">
             <div class="w-12 h-12 rounded-full bg-emerald-700 flex items-center justify-center flex-shrink-0">
@@ -288,9 +267,7 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
                   Conoce más
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <!-- Social links -->
                 <div class="flex items-center gap-3 ml-auto">
-                  <!-- Instagram -->
                   <a
                     href="#"
                     aria-label="Instagram"
@@ -302,7 +279,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
                       <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                     </svg>
                   </a>
-                  <!-- TikTok -->
                   <a
                     href="#"
                     aria-label="TikTok"
@@ -319,7 +295,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <!-- Brand -->
           <div class="md:col-span-1">
             <div class="flex items-center gap-2 mb-4">
               <img 
@@ -334,7 +309,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
             </p>
           </div>
 
-          <!-- Categorías -->
           <div>
             <h3 class="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Categorías</h3>
             <ul class="space-y-2 text-sm">
@@ -344,7 +318,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
             </ul>
           </div>
 
-          <!-- Legal -->
           <div>
             <h3 class="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Legal</h3>
             <ul class="space-y-2 text-sm">
@@ -354,7 +327,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
             </ul>
           </div>
 
-          <!-- Acerca de -->
           <div>
             <h3 class="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Acerca de</h3>
             <ul class="space-y-2 text-sm">
