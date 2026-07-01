@@ -55,6 +55,17 @@ const featuredArticles = [
 
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
       <div class="max-w-3xl">
+
+        <!-- Logo banner (visible once logo-horizontal.png is uploaded to /public/) -->
+        <div class="w-full max-w-xl mx-auto mb-8 flex justify-center" id="hero-logo-wrap" style="display:none!important">
+          <img
+            src="/logo-horizontal.png"
+            alt="ExcelyDatos"
+            class="h-14 w-auto object-contain"
+            id="hero-logo-img"
+          />
+        </div>
+
         <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
           <span class="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-pulse"></span>
           Excel, Power BI y SQL en español
@@ -343,6 +354,15 @@ const featuredArticles = [
 
 <script is:inline>
   (function () {
+    // Show hero logo if image exists
+    var heroWrap = document.getElementById('hero-logo-wrap');
+    var heroImg = document.getElementById('hero-logo-img');
+    if (heroWrap && heroImg) {
+      var t = new Image();
+      t.onload = function() { heroWrap.style.removeProperty('display'); heroWrap.style.display = 'flex'; };
+      t.src = '/logo-horizontal.png';
+    }
+
     var searchInput = document.getElementById('article-search');
     var articlesGrid = document.getElementById('articles-grid');
     var emptyState = document.getElementById('search-empty');
