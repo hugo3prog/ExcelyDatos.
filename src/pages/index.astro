@@ -61,12 +61,12 @@ const featuredArticles = [
           Excel, Power BI y SQL en español
         </div>
 
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1E293B] leading-tight mb-6">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1E293B] dark:text-white leading-tight mb-6">
           Tus datos,<br />
-          <span class="text-emerald-700">bajo control.</span>
+          <span class="text-emerald-700 dark:text-emerald-400">bajo control.</span>
         </h1>
 
-        <p class="text-lg sm:text-xl text-slate-600 leading-relaxed mb-8 max-w-2xl">
+        <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-2xl">
           Guías prácticas y directas para aprender a manejar Excel, Power BI y SQL.
           Sin introducciones eternas ni teoría innecesaria: cada artículo resuelve una duda concreta desde el primer párrafo.
         </p>
@@ -88,20 +88,20 @@ const featuredArticles = [
         </div>
 
         <!-- Stats row -->
-        <div class="flex flex-wrap gap-6 mt-12 pt-8 border-t border-slate-200">
+        <div class="flex flex-wrap gap-6 mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
           <div>
-            <div class="text-2xl font-bold text-emerald-700">+50</div>
-            <div class="text-sm text-slate-500">Guías publicadas</div>
+            <div class="text-2xl font-bold text-emerald-700 dark:text-emerald-400">Guías detalladas</div>
+            <div class="text-sm text-slate-500 dark:text-slate-400">paso a paso</div>
           </div>
-          <div class="w-px bg-slate-200"></div>
+          <div class="w-px bg-slate-200 dark:bg-slate-700"></div>
           <div>
-            <div class="text-2xl font-bold text-[#1E293B]">3</div>
-            <div class="text-sm text-slate-500">Categorías especializadas</div>
+            <div class="text-2xl font-bold text-[#1E293B] dark:text-slate-100">3</div>
+            <div class="text-sm text-slate-500 dark:text-slate-400">Categorías especializadas</div>
           </div>
-          <div class="w-px bg-slate-200"></div>
+          <div class="w-px bg-slate-200 dark:bg-slate-700"></div>
           <div>
-            <div class="text-2xl font-bold text-[#1E293B]">100%</div>
-            <div class="text-sm text-slate-500">Contenido en español</div>
+            <div class="text-2xl font-bold text-[#1E293B] dark:text-slate-100">100%</div>
+            <div class="text-sm text-slate-500 dark:text-slate-400">Contenido en español</div>
           </div>
         </div>
       </div>
@@ -111,14 +111,14 @@ const featuredArticles = [
   <!-- ===================== SILO CARDS ===================== -->
   <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-[#1E293B] mb-3">Elige tu área de aprendizaje</h2>
-      <p class="text-slate-500 max-w-xl mx-auto">Cada categoría es un silo independiente con artículos organizados por nivel y tema.</p>
+      <h2 class="text-3xl font-bold text-[#1E293B] dark:text-slate-100 mb-3">Elige tu área de aprendizaje</h2>
+      <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">Cada categoría es un silo independiente con artículos organizados por nivel y tema.</p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
       <!-- Excel — Featured / Larger -->
-      <div class="lg:col-span-2 group relative bg-white rounded-2xl border border-emerald-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
+      <div class="lg:col-span-2 group relative bg-white dark:bg-slate-800 rounded-2xl border border-emerald-100 dark:border-emerald-900/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
         <!-- Top accent bar -->
         <div class="h-1.5 bg-gradient-to-r from-emerald-500 to-emerald-700"></div>
         <div class="p-8">
@@ -134,8 +134,8 @@ const featuredArticles = [
             </div>
             <span class="bg-emerald-700 text-white text-xs font-bold px-3 py-1 rounded-full">Principal</span>
           </div>
-          <h3 class="text-2xl font-bold text-[#1E293B] mb-3">Excel & Google Sheets</h3>
-          <p class="text-slate-500 leading-relaxed mb-6">
+          <h3 class="text-2xl font-bold text-[#1E293B] dark:text-slate-100 mb-3">Excel & Google Sheets</h3>
+          <p class="text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
             Desde fórmulas básicas hasta tablas dinámicas avanzadas. Aprende a automatizar tareas repetitivas,
             crear dashboards funcionales y dominar las funciones que más se usan en entornos de trabajo reales.
           </p>
@@ -159,7 +159,7 @@ const featuredArticles = [
       <!-- Right column: Power BI + SQL stacked -->
       <div class="flex flex-col gap-6">
         <!-- Power BI -->
-        <div class="group bg-white rounded-2xl border border-amber-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex-1">
+        <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-amber-100 dark:border-amber-900/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex-1">
           <div class="h-1.5 bg-gradient-to-r from-amber-400 to-amber-600"></div>
           <div class="p-6">
             <div class="w-11 h-11 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
@@ -170,8 +170,8 @@ const featuredArticles = [
                 <rect x="20" y="2" width="2" height="20" rx="1" fill="#D97706" opacity="0.3"/>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-[#1E293B] mb-2">Power BI</h3>
-            <p class="text-slate-500 text-sm leading-relaxed mb-4">
+            <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-2">Power BI</h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">
               Crea dashboards visuales que hablan por sí solos. Conecta tus datos y genera informes en minutos.
             </p>
             <a href="/powerbi/" class="inline-flex items-center gap-1.5 text-amber-700 hover:text-amber-900 font-semibold text-sm transition-colors">
@@ -182,7 +182,7 @@ const featuredArticles = [
         </div>
 
         <!-- SQL -->
-        <div class="group bg-white rounded-2xl border border-sky-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex-1">
+        <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-sky-100 dark:border-sky-900/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex-1">
           <div class="h-1.5 bg-gradient-to-r from-sky-400 to-sky-600"></div>
           <div class="p-6">
             <div class="w-11 h-11 bg-sky-100 rounded-xl flex items-center justify-center mb-4">
@@ -192,8 +192,8 @@ const featuredArticles = [
                 <path d="M3 11v5c0 1.657 4.03 3 9 3s9-1.343 9-3v-5" stroke="#0284C7" stroke-width="1.5" fill="none" opacity="0.5"/>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-[#1E293B] mb-2">SQL</h3>
-            <p class="text-slate-500 text-sm leading-relaxed mb-4">
+            <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-2">SQL</h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">
               Consulta y transforma bases de datos con confianza. Aprende SELECT, JOIN, GROUP BY y mucho más.
             </p>
             <a href="/sql/" class="inline-flex items-center gap-1.5 text-sky-700 hover:text-sky-900 font-semibold text-sm transition-colors">
@@ -217,20 +217,42 @@ const featuredArticles = [
   <section id="articulos" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="flex items-center justify-between mb-10">
       <div>
-        <h2 class="text-3xl font-bold text-[#1E293B] mb-2">Últimos artículos publicados</h2>
-        <p class="text-slate-500">Las guías más recientes, listas para aplicar hoy mismo.</p>
+        <h2 class="text-3xl font-bold text-[#1E293B] dark:text-slate-100 mb-2">Últimos artículos publicados</h2>
+        <p class="text-slate-500 dark:text-slate-400">Las guías más recientes, listas para aplicar hoy mismo.</p>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {featuredArticles.map((article) => (
-        <article class={`bg-white rounded-2xl border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col ${article.featured ? 'md:col-span-1 ring-2 ring-emerald-200' : ''}`}>
+        <article class={`bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col ${article.featured ? 'md:col-span-1 ring-2 ring-emerald-200 dark:ring-emerald-800' : ''}`}>
           <!-- Category color bar -->
           <div class={`h-1 ${article.accent === 'emerald' ? 'bg-emerald-600' : article.accent === 'amber' ? 'bg-amber-500' : 'bg-sky-500'}`}></div>
 
-          <!-- Image placeholder -->
-          <div class={`h-40 flex items-center justify-center text-5xl font-bold ${article.accent === 'emerald' ? 'bg-emerald-50 text-emerald-200' : article.accent === 'amber' ? 'bg-amber-50 text-amber-200' : 'bg-sky-50 text-sky-200'}`}>
-            {article.accent === 'emerald' ? '∑' : article.accent === 'amber' ? '◈' : '⊞'}
+          <!-- Article icon banner -->
+          <div class={`h-40 flex items-center justify-center ${article.accent === 'emerald' ? 'bg-emerald-50 dark:bg-emerald-900/20' : article.accent === 'amber' ? 'bg-amber-50 dark:bg-amber-900/20' : 'bg-sky-50 dark:bg-sky-900/20'}`}>
+            {article.accent === 'emerald' && (
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-30">
+                <rect x="4" y="4" width="22" height="22" rx="3" fill="#047857"/>
+                <rect x="30" y="4" width="22" height="22" rx="3" fill="#047857" opacity="0.5"/>
+                <rect x="4" y="30" width="22" height="22" rx="3" fill="#047857" opacity="0.5"/>
+                <rect x="30" y="30" width="22" height="22" rx="3" fill="#047857" opacity="0.7"/>
+              </svg>
+            )}
+            {article.accent === 'amber' && (
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-30">
+                <rect x="4" y="30" width="10" height="22" rx="2" fill="#D97706"/>
+                <rect x="18" y="22" width="10" height="30" rx="2" fill="#D97706" opacity="0.8"/>
+                <rect x="32" y="14" width="10" height="38" rx="2" fill="#D97706" opacity="0.6"/>
+                <rect x="46" y="6" width="6" height="46" rx="2" fill="#D97706" opacity="0.4"/>
+              </svg>
+            )}
+            {article.accent === 'sky' && (
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-30">
+                <ellipse cx="28" cy="14" rx="22" ry="8" fill="#0284C7" opacity="0.8"/>
+                <path d="M6 14v14c0 4.418 9.85 8 22 8s22-3.582 22-8V14" stroke="#0284C7" stroke-width="3" fill="none"/>
+                <path d="M6 28v14c0 4.418 9.85 8 22 8s22-3.582 22-8V28" stroke="#0284C7" stroke-width="3" fill="none" opacity="0.5"/>
+              </svg>
+            )}
           </div>
 
           <div class="p-6 flex flex-col flex-1">
@@ -242,13 +264,13 @@ const featuredArticles = [
               )}
             </div>
 
-            <h3 class="text-base font-bold text-[#1E293B] leading-snug mb-3 flex-1">
-              <a href={article.href} class={`hover:text-${article.accent}-700 transition-colors`}>
+            <h3 class="text-base font-bold text-[#1E293B] dark:text-slate-100 leading-snug mb-3 flex-1">
+              <a href={article.href} class={`hover:text-${article.accent}-700 dark:hover:text-${article.accent}-400 transition-colors`}>
                 {article.title}
               </a>
             </h3>
 
-            <p class="text-sm text-slate-500 leading-relaxed mb-5">{article.excerpt}</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-5">{article.excerpt}</p>
 
             <a
               href={article.href}
