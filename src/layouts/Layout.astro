@@ -199,7 +199,9 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
           margin-top: 0 !important;
         }
         main > *:first-child,
-        main > *:first-child > * {
+        main > *:first-child > *,
+        main > *:first-child > * > *,
+        main > *:first-child > * > * > * {
           padding-top: 0 !important;
           margin-top: 0 !important;
         }
