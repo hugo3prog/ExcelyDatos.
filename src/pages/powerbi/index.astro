@@ -9,7 +9,7 @@ const articles = [
     href: '/powerbi/como-conectar-excel-con-power-bi/',
     readTime: '7 min',
     tag: 'Principiante',
-    tagColor: 'bg-amber-100 text-amber-800',
+    tagColor: 'bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300',
   },
 ];
 ---
@@ -19,8 +19,9 @@ const articles = [
   description="Aprende Power BI desde cero: conectar fuentes de datos, crear dashboards, usar DAX y publicar informes. Guías prácticas en español sin relleno."
 >
   <!-- Hero silo -->
-  <section class="bg-gradient-to-br from-amber-600 to-amber-800 text-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+  <section class="bg-gradient-to-br from-amber-600 to-amber-800 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 28px 28px;"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
       <div class="flex items-center gap-3 mb-5">
         <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +37,6 @@ const articles = [
       <p class="text-amber-100 text-lg max-w-2xl leading-relaxed">
         Convierte datos en decisiones. Aprende a construir dashboards claros, conectar fuentes de datos y usar DAX para crear métricas que realmente sirvan en tu trabajo.
       </p>
-
       <div class="flex flex-wrap gap-2 mt-8">
         {['Power Query', 'DAX básico', 'Dashboards', 'Conectar Excel', 'Power BI Service', 'Visualizaciones', 'Filtros y segmentadores'].map(tag => (
           <span class="bg-white/10 text-amber-100 text-xs font-medium px-3 py-1.5 rounded-full">{tag}</span>
@@ -45,31 +45,45 @@ const articles = [
     </div>
   </section>
 
+  <!-- Cover image -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-10">
+    <div class="rounded-2xl overflow-hidden shadow-lg">
+      <img
+        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=80"
+        alt="Cuadros de mando modernos con gráficos de barras y analítica visual"
+        class="w-full max-h-[320px] object-cover"
+        loading="eager"
+        width="1400"
+        height="320"
+      />
+    </div>
+  </div>
+
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="adsense-slot adsense-slot--leaderboard mb-10" aria-hidden="true">Espacio publicitario — 728×90</div>
+    <div class="adsense-slot adsense-slot--leaderboard mb-10" aria-hidden="true"></div>
 
     <div class="flex gap-10">
       <div class="flex-1 min-w-0">
-        <h2 class="text-xl font-bold text-[#1E293B] mb-6 flex items-center gap-2">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6 flex items-center gap-2">
           <span class="w-1 h-5 bg-amber-500 rounded-full inline-block"></span>
           Artículos publicados
         </h2>
 
         <div class="space-y-5">
           {articles.map((article) => (
-            <article class="bg-white rounded-2xl border border-slate-200 hover:border-amber-200 hover:shadow-md transition-all duration-200 p-6 flex gap-5">
+            <article class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-amber-300 dark:hover:border-amber-700 hover:shadow-md transition-all duration-200 p-6 flex gap-5">
               <div class="flex-1 min-w-0">
                 <div class="flex items-center gap-2 mb-2">
                   <span class={`text-xs font-semibold px-2.5 py-1 rounded-full ${article.tagColor}`}>{article.tag}</span>
-                  <span class="text-slate-400 text-xs">{article.readTime} de lectura</span>
+                  <span class="text-slate-400 dark:text-slate-500 text-xs">{article.readTime} de lectura</span>
                 </div>
-                <h3 class="font-bold text-[#1E293B] mb-2 leading-snug">
-                  <a href={article.href} class="hover:text-amber-700 transition-colors">{article.title}</a>
+                <h3 class="font-bold text-slate-900 dark:text-slate-100 mb-2 leading-snug">
+                  <a href={article.href} class="hover:text-amber-700 dark:hover:text-amber-400 transition-colors">{article.title}</a>
                 </h3>
-                <p class="text-slate-500 text-sm leading-relaxed">{article.excerpt}</p>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{article.excerpt}</p>
               </div>
               <div class="hidden sm:flex items-center">
-                <a href={article.href} class="text-amber-600 hover:text-amber-800 transition-colors" aria-label="Leer artículo">
+                <a href={article.href} class="text-amber-600 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 transition-colors" aria-label="Leer artículo">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
               </div>
@@ -77,30 +91,27 @@ const articles = [
           ))}
         </div>
 
-        <div class="mt-8 bg-amber-50 border border-dashed border-amber-200 rounded-2xl p-8 text-center">
-          <p class="text-amber-700 font-semibold mb-1">Más guías en camino</p>
-          <p class="text-amber-600 text-sm">Próximamente: DAX desde cero, segmentadores avanzados y publicar en Power BI Service.</p>
+        <div class="mt-8 bg-amber-50 dark:bg-amber-900/20 border border-dashed border-amber-200 dark:border-amber-800 rounded-2xl p-8 text-center">
+          <p class="text-amber-700 dark:text-amber-400 font-semibold mb-1">Más guías en camino</p>
+          <p class="text-amber-600 dark:text-amber-500 text-sm">Próximamente: DAX desde cero, segmentadores avanzados y publicar en Power BI Service.</p>
         </div>
       </div>
 
       <aside class="hidden lg:block w-72 flex-shrink-0 space-y-6">
-        <div class="bg-white rounded-2xl border border-slate-200 p-5">
-          <h3 class="font-bold text-[#1E293B] text-sm mb-4">Otras categorías</h3>
+        <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5">
+          <h3 class="font-bold text-slate-900 dark:text-slate-100 text-sm mb-4">Otras categorías</h3>
           <div class="space-y-2">
-            <a href="/excel/" class="flex items-center gap-2 text-sm text-emerald-700 hover:text-emerald-900 font-medium transition-colors py-1.5">
+            <a href="/excel/" class="flex items-center gap-2 text-sm text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-300 font-medium transition-colors py-1.5">
               <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
               Excel & Google Sheets
             </a>
-            <a href="/sql/" class="flex items-center gap-2 text-sm text-sky-700 hover:text-sky-900 font-medium transition-colors py-1.5">
+            <a href="/sql/" class="flex items-center gap-2 text-sm text-sky-700 dark:text-sky-400 hover:text-sky-900 dark:hover:text-sky-300 font-medium transition-colors py-1.5">
               <span class="w-2 h-2 bg-sky-400 rounded-full"></span>
               SQL
             </a>
           </div>
         </div>
-
-        <div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true">
-          Espacio publicitario — Sidebar
-        </div>
+        <div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div>
       </aside>
     </div>
   </div>

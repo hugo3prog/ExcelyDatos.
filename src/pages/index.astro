@@ -12,6 +12,7 @@ const featuredArticles = [
     href: '/excel/como-sumar-celdas-en-excel/',
     featured: true,
     readTime: '5 min',
+    keywords: 'excel suma fórmulas hoja de cálculo',
   },
   {
     title: 'Cómo conectar Excel con Power BI paso a paso (sin dar errores)',
@@ -22,6 +23,7 @@ const featuredArticles = [
     href: '/powerbi/como-conectar-excel-con-power-bi/',
     featured: false,
     readTime: '7 min',
+    keywords: 'power bi excel conectar importar dashboard',
   },
   {
     title: '¿Qué es un SELECT en SQL? Aprende a consultar tus datos en 5 minutos',
@@ -32,6 +34,7 @@ const featuredArticles = [
     href: '/sql/que-es-un-select-en-sql/',
     featured: false,
     readTime: '5 min',
+    keywords: 'sql select consulta base de datos where',
   },
 ];
 ---
@@ -42,21 +45,17 @@ const featuredArticles = [
 >
   <!-- AdSense Leaderboard Top -->
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-    <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true">
-      Espacio publicitario — 728×90
-    </div>
+    <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true"></div>
   </div>
 
   <!-- ===================== HERO ===================== -->
   <section class="relative overflow-hidden">
-    <!-- Background pattern -->
-    <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 via-[#F8FAFC] to-sky-50 opacity-70"></div>
-    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #e2e8f0 1px, transparent 0); background-size: 32px 32px; opacity: 0.5;"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 via-[#F8FAFC] to-sky-50 dark:from-emerald-950/30 dark:via-slate-950 dark:to-sky-950/30 opacity-70"></div>
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #e2e8f0 1px, transparent 0); background-size: 32px 32px; opacity: 0.4;"></div>
 
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
       <div class="max-w-3xl">
-        <!-- Label -->
-        <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+        <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
           <span class="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-pulse"></span>
           Excel, Power BI y SQL en español
         </div>
@@ -71,6 +70,25 @@ const featuredArticles = [
           Sin introducciones eternas ni teoría innecesaria: cada artículo resuelve una duda concreta desde el primer párrafo.
         </p>
 
+        <!-- Search bar -->
+        <div class="relative max-w-xl mb-8">
+          <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+          </div>
+          <input
+            id="article-search"
+            type="search"
+            placeholder="Buscar artículos... (ej: SUMA, Power Query, SELECT)"
+            class="w-full pl-12 pr-4 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm transition-all"
+            autocomplete="off"
+          />
+          <div id="search-no-results" class="hidden absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 text-sm text-slate-500 dark:text-slate-400 shadow-lg z-10">
+            No se encontraron artículos. Prueba con otro término.
+          </div>
+        </div>
+
         <div class="flex flex-col sm:flex-row gap-3">
           <a
             href="/excel/"
@@ -81,7 +99,7 @@ const featuredArticles = [
           </a>
           <a
             href="#articulos"
-            class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#1E293B] font-semibold px-6 py-3 rounded-lg border border-slate-200 transition-colors duration-200"
+            class="inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-[#1E293B] dark:text-slate-100 font-semibold px-6 py-3 rounded-lg border border-slate-200 dark:border-slate-700 transition-colors duration-200"
           >
             Ver artículos recientes
           </a>
@@ -119,12 +137,10 @@ const featuredArticles = [
 
       <!-- Excel — Featured / Larger -->
       <div class="lg:col-span-2 group relative bg-white dark:bg-slate-800 rounded-2xl border border-emerald-100 dark:border-emerald-900/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
-        <!-- Top accent bar -->
         <div class="h-1.5 bg-gradient-to-r from-emerald-500 to-emerald-700"></div>
         <div class="p-8">
           <div class="flex items-start justify-between mb-6">
-            <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center">
-              <!-- Excel-like grid icon -->
+            <div class="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/40 rounded-xl flex items-center justify-center">
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="2" y="2" width="11" height="11" rx="2" fill="#047857"/>
                 <rect x="15" y="2" width="11" height="11" rx="2" fill="#6ee7b7"/>
@@ -140,11 +156,11 @@ const featuredArticles = [
             crear dashboards funcionales y dominar las funciones que más se usan en entornos de trabajo reales.
           </p>
           <div class="flex flex-wrap gap-2 mb-6">
-            <span class="bg-emerald-50 text-emerald-700 text-xs font-medium px-2.5 py-1 rounded-md">Fórmulas</span>
-            <span class="bg-emerald-50 text-emerald-700 text-xs font-medium px-2.5 py-1 rounded-md">Tablas dinámicas</span>
-            <span class="bg-emerald-50 text-emerald-700 text-xs font-medium px-2.5 py-1 rounded-md">XLOOKUP</span>
-            <span class="bg-emerald-50 text-emerald-700 text-xs font-medium px-2.5 py-1 rounded-md">Macros VBA</span>
-            <span class="bg-emerald-50 text-emerald-700 text-xs font-medium px-2.5 py-1 rounded-md">Power Query</span>
+            <span class="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-medium px-2.5 py-1 rounded-md">Fórmulas</span>
+            <span class="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-medium px-2.5 py-1 rounded-md">Tablas dinámicas</span>
+            <span class="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-medium px-2.5 py-1 rounded-md">XLOOKUP</span>
+            <span class="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-medium px-2.5 py-1 rounded-md">Macros VBA</span>
+            <span class="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-medium px-2.5 py-1 rounded-md">Power Query</span>
           </div>
           <a
             href="/excel/"
@@ -162,7 +178,7 @@ const featuredArticles = [
         <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-amber-100 dark:border-amber-900/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex-1">
           <div class="h-1.5 bg-gradient-to-r from-amber-400 to-amber-600"></div>
           <div class="p-6">
-            <div class="w-11 h-11 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+            <div class="w-11 h-11 bg-amber-100 dark:bg-amber-900/40 rounded-xl flex items-center justify-center mb-4">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="2" y="14" width="4" height="8" rx="1" fill="#D97706"/>
                 <rect x="8" y="9" width="4" height="13" rx="1" fill="#D97706" opacity="0.7"/>
@@ -174,7 +190,7 @@ const featuredArticles = [
             <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">
               Crea dashboards visuales que hablan por sí solos. Conecta tus datos y genera informes en minutos.
             </p>
-            <a href="/powerbi/" class="inline-flex items-center gap-1.5 text-amber-700 hover:text-amber-900 font-semibold text-sm transition-colors">
+            <a href="/powerbi/" class="inline-flex items-center gap-1.5 text-amber-700 dark:text-amber-400 hover:text-amber-900 dark:hover:text-amber-300 font-semibold text-sm transition-colors">
               Ver guías
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -185,7 +201,7 @@ const featuredArticles = [
         <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-sky-100 dark:border-sky-900/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex-1">
           <div class="h-1.5 bg-gradient-to-r from-sky-400 to-sky-600"></div>
           <div class="p-6">
-            <div class="w-11 h-11 bg-sky-100 rounded-xl flex items-center justify-center mb-4">
+            <div class="w-11 h-11 bg-sky-100 dark:bg-sky-900/40 rounded-xl flex items-center justify-center mb-4">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <ellipse cx="12" cy="6" rx="9" ry="3" fill="#0284C7" opacity="0.8"/>
                 <path d="M3 6v5c0 1.657 4.03 3 9 3s9-1.343 9-3V6" stroke="#0284C7" stroke-width="1.5" fill="none"/>
@@ -196,7 +212,7 @@ const featuredArticles = [
             <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">
               Consulta y transforma bases de datos con confianza. Aprende SELECT, JOIN, GROUP BY y mucho más.
             </p>
-            <a href="/sql/" class="inline-flex items-center gap-1.5 text-sky-700 hover:text-sky-900 font-semibold text-sm transition-colors">
+            <a href="/sql/" class="inline-flex items-center gap-1.5 text-sky-700 dark:text-sky-400 hover:text-sky-900 dark:hover:text-sky-300 font-semibold text-sm transition-colors">
               Ver guías
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -208,9 +224,7 @@ const featuredArticles = [
 
   <!-- AdSense mid-page -->
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 my-4">
-    <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true">
-      Espacio publicitario — 728×90
-    </div>
+    <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true"></div>
   </div>
 
   <!-- ===================== ÚLTIMOS ARTÍCULOS ===================== -->
@@ -222,16 +236,18 @@ const featuredArticles = [
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {featuredArticles.map((article) => (
-        <article class={`bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col ${article.featured ? 'md:col-span-1 ring-2 ring-emerald-200 dark:ring-emerald-800' : ''}`}>
-          <!-- Category color bar -->
+        <article
+          class={`article-card bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col ${article.featured ? 'md:col-span-1 ring-2 ring-emerald-200 dark:ring-emerald-800' : ''}`}
+          data-title={article.title.toLowerCase()}
+          data-keywords={article.keywords}
+        >
           <div class={`h-1 ${article.accent === 'emerald' ? 'bg-emerald-600' : article.accent === 'amber' ? 'bg-amber-500' : 'bg-sky-500'}`}></div>
 
-          <!-- Article icon banner -->
           <div class={`h-40 flex items-center justify-center ${article.accent === 'emerald' ? 'bg-emerald-50 dark:bg-emerald-900/20' : article.accent === 'amber' ? 'bg-amber-50 dark:bg-amber-900/20' : 'bg-sky-50 dark:bg-sky-900/20'}`}>
             {article.accent === 'emerald' && (
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-30">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" class="opacity-30">
                 <rect x="4" y="4" width="22" height="22" rx="3" fill="#047857"/>
                 <rect x="30" y="4" width="22" height="22" rx="3" fill="#047857" opacity="0.5"/>
                 <rect x="4" y="30" width="22" height="22" rx="3" fill="#047857" opacity="0.5"/>
@@ -239,7 +255,7 @@ const featuredArticles = [
               </svg>
             )}
             {article.accent === 'amber' && (
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-30">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" class="opacity-30">
                 <rect x="4" y="30" width="10" height="22" rx="2" fill="#D97706"/>
                 <rect x="18" y="22" width="10" height="30" rx="2" fill="#D97706" opacity="0.8"/>
                 <rect x="32" y="14" width="10" height="38" rx="2" fill="#D97706" opacity="0.6"/>
@@ -247,7 +263,7 @@ const featuredArticles = [
               </svg>
             )}
             {article.accent === 'sky' && (
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-30">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" class="opacity-30">
                 <ellipse cx="28" cy="14" rx="22" ry="8" fill="#0284C7" opacity="0.8"/>
                 <path d="M6 14v14c0 4.418 9.85 8 22 8s22-3.582 22-8V14" stroke="#0284C7" stroke-width="3" fill="none"/>
                 <path d="M6 28v14c0 4.418 9.85 8 22 8s22-3.582 22-8V28" stroke="#0284C7" stroke-width="3" fill="none" opacity="0.5"/>
@@ -283,6 +299,17 @@ const featuredArticles = [
         </article>
       ))}
     </div>
+
+    <!-- Empty state for search -->
+    <div id="search-empty" class="hidden text-center py-16">
+      <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400 font-semibold mb-1">Sin resultados</p>
+      <p class="text-slate-400 dark:text-slate-500 text-sm">Prueba con otro término de búsqueda.</p>
+    </div>
   </section>
 
   <!-- ===================== NEWSLETTER PLACEHOLDER ===================== -->
@@ -310,8 +337,35 @@ const featuredArticles = [
 
   <!-- AdSense Bottom -->
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true">
-      Espacio publicitario — 728×90
-    </div>
+    <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true"></div>
   </div>
 </Layout>
+
+<script is:inline>
+  (function () {
+    var searchInput = document.getElementById('article-search');
+    var articlesGrid = document.getElementById('articles-grid');
+    var emptyState = document.getElementById('search-empty');
+
+    if (!searchInput || !articlesGrid) return;
+
+    searchInput.addEventListener('input', function () {
+      var query = this.value.trim().toLowerCase();
+      var cards = articlesGrid.querySelectorAll('.article-card');
+      var visibleCount = 0;
+
+      cards.forEach(function (card) {
+        var title = card.getAttribute('data-title') || '';
+        var keywords = card.getAttribute('data-keywords') || '';
+        var matches = !query || title.includes(query) || keywords.includes(query);
+        card.style.display = matches ? '' : 'none';
+        if (matches) visibleCount++;
+      });
+
+      if (emptyState) {
+        emptyState.classList.toggle('hidden', visibleCount > 0);
+      }
+      articlesGrid.style.display = visibleCount === 0 ? 'none' : '';
+    });
+  })();
+</script>
