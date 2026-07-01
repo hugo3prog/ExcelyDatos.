@@ -18,11 +18,11 @@ const articles = [
   title="Excel & Google Sheets — Guías prácticas | ExcelyDatos"
   description="Aprende Excel y Google Sheets desde cero con guías claras y directas. Fórmulas, tablas dinámicas, macros VBA y Power Query explicados sin relleno."
 >
-  <!-- Hero silo -->
+  <!-- Hero silo: He ajustado pt-16 y flex flex-col items-start para que el contenido nazca arriba -->
   <section class="bg-gradient-to-br from-emerald-700 to-emerald-900 text-white relative overflow-hidden">
     <!-- Subtle pattern overlay -->
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 28px 28px;"></div>
-    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
       <div class="flex items-center gap-3 mb-5">
         <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
           <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@ const articles = [
     </div>
   </section>
 
-  <!-- Cover image -->
+  <!-- Cover image: Mantenemos el solapamiento estético -->
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-10">
     <div class="rounded-2xl overflow-hidden shadow-lg">
       <img
@@ -86,7 +86,7 @@ const articles = [
                 <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{article.excerpt}</p>
               </div>
               <div class="hidden sm:flex items-center">
-                <a href={article.href} class="text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-300 transition-colors" aria-label="Leer artículo">
+                <a href={article.href} class="text-emerald-700 dark:hover:text-emerald-400 transition-colors" aria-label="Leer artículo">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
               </div>
