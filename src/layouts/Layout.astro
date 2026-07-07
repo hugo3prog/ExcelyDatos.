@@ -60,6 +60,16 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
     {jsonLdString && (
       <script type="application/ld+json" set:html={jsonLdString} />
     )}
+
+    <!-- MailerLite Universal -->
+    <script is:inline>
+      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+      window,document,'script','https://assets.mailerlite.com/js/universal.js','ml';
+      ml('account', '2495707');
+    </script>
+    <!-- End MailerLite Universal -->
   </head>
   <body class="bg-[#F8FAFC] dark:bg-slate-950 text-[#1E293B] dark:text-slate-100 font-inter antialiased transition-colors duration-200">
 
