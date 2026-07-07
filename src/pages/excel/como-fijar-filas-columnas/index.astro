@@ -1,0 +1,254 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo fijar filas y columnas en Excel para que no se muevan al hacer scroll';
+const description = 'Fija la primera fila, la primera columna o ambas a la vez con Inmovilizar paneles. Incluye el atajo de teclado y cómo quitar el bloqueo cuando ya no lo necesitas.';
+const publishDate = '2025-07-07';
+const updateDate = '2026-07-07';
+const readTime = '4 min';
+const url = 'https://excelydatos.com/excel/como-fijar-filas-columnas/';
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": updateDate,
+    "author": {
+      "@type": "Organization",
+      "name": "ExcelyDatos",
+      "url": "https://excelydatos.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ExcelyDatos",
+      "url": "https://excelydatos.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": url
+    },
+    "image": "https://images.unsplash.com/photo-1543286386-2e659264c951?w=1200&q=80"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Excel & Sheets", "item": "https://excelydatos.com/excel/" },
+      { "@type": "ListItem", "position": 3, "name": "Cómo fijar filas y columnas", "item": url }
+    ]
+  }
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- AdSense top -->
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+
+    <div class="flex gap-10">
+      <!-- Article content -->
+      <div class="min-w-0 flex-1">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a>
+          <span>/</span>
+          <a href="/excel/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Excel & Sheets</a>
+          <span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">Cómo fijar filas y columnas</span>
+        </nav>
+
+        <!-- Header -->
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-excel">Excel</span>
+            <span class="text-slate-400 text-sm">{readTime} de lectura</span>
+            <span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado julio 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">
+            {title}
+          </h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
+            Tienes una tabla de inventario con 200 columnas y 3.000 filas. Al bajar para ver la fila 2.500, los encabezados desaparecen y ya no sabes qué significa cada número. La solución se llama "Inmovilizar paneles" y se activa en dos clics.
+          </p>
+        </header>
+
+        <!-- Cover image -->
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <img
+            src="https://images.unsplash.com/photo-1543286386-2e659264c951?w=1200&q=80"
+            alt="Hoja de Excel con paneles inmovilizados al hacer scroll"
+            class="w-full max-h-[400px] object-cover"
+            loading="eager"
+            width="1200"
+            height="400"
+          />
+        </div>
+
+        <!-- AdSense rectangle in-article -->
+        <div class="float-right ml-6 mb-6 hidden lg:block">
+          <div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div>
+        </div>
+
+        <div class="article-body">
+
+          <h2>El problema: los encabezados se pierden al hacer scroll</h2>
+          <p>
+            En cualquier tabla grande, los títulos de columna están en la fila 1 y los de fila en la columna A. En cuanto bajas o te desplazas a la derecha, esos títulos se van de la pantalla y dejas de saber qué miras. "Inmovilizar paneles" deja esas filas y columnas fijas mientras el resto sigue moviéndose.
+          </p>
+
+          <h2>Caso 1: fijar solo la primera fila</h2>
+          <p>
+            Si solo necesitas que los encabezados de columna se queden arriba:
+          </p>
+          <ol>
+            <li>Ve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
+            <li>Elige <strong>Inmovilizar fila superior</strong>.</li>
+          </ol>
+          <p>
+            A partir de ahora, la fila 1 se queda pegada arriba por mucho que hagas scroll. Verás una línea gris fina debajo de la fila 1 que indica dónde empieza el bloqueo.
+          </p>
+
+          <img
+            src="/excel-fijar-fila-superior.png"
+            alt="Excel con la primera fila inmovilizada"
+            class="rounded-xl shadow-md border border-slate-200 block my-6"
+            loading="lazy"
+          />
+
+          <h2>Caso 2: fijar solo la primera columna</h2>
+          <p>
+            Si lo que se pierde es el identificador de cada fila (por ejemplo, el nombre del producto en la columna A):
+          </p>
+          <ol>
+            <li>Ve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
+            <li>Elige <strong>Inmovilizar primera columna</strong>.</li>
+          </ol>
+          <p>
+            La columna A se queda fija a la izquierda mientras te desplazas a la derecha.
+          </p>
+
+          <h2>Caso 3: fijar filas y columnas a la vez</h2>
+          <p>
+            Aquí está el caso real: quieres la fila 1 arriba y la columna A a la izquierda al mismo tiempo. La opción "Inmovilizar fila superior" no te sirve porque no fija la columna. Tienes que usar la opción general:
+          </p>
+          <ol>
+            <li>Selecciona la celda <strong>B2</strong> (la que está justo debajo de la fila a fijar y justo a la derecha de la columna a fijar).</li>
+            <li>Ve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
+          </ol>
+          <p>
+            Excel fija todo lo que está por encima y a la izquierda de la celda activa. Con B2 seleccionada, se quedan fijas la fila 1 y la columna A. Si quisieras fijar las dos primeras filas y las dos primeras columnas, seleccionarías C3.
+          </p>
+
+          <pre><code>Regla: la celda seleccionada marca la esquina.
+Todo lo de arriba y a la izquierda queda fijo.</code></pre>
+
+          <img
+            src="/excel-inmovilizar-paneles.png"
+            alt="Inmovilizar paneles en Excel seleccionando la celda B2"
+            class="rounded-xl shadow-md border border-slate-200 block my-6"
+            loading="lazy"
+          />
+
+          <h2>Cómo quitar el bloqueo</h2>
+          <p>
+            Cuando ya no lo necesitas, vuelve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong> y elige <strong>Movilizar paneles</strong>. La línea gris desaparece y todo vuelve a hacer scroll normal.
+          </p>
+
+          <h2>Errores comunes</h2>
+          <ul>
+            <li><strong>Las opciones aparecen en gris:</strong> probablemente estás en modo "Editar" dentro de una celda. Pulsa <code>Esc</code> y vuelve a intentarlo.</li>
+            <li><strong>Fija más filas de las que querías:</strong> tenías seleccionada una celda más abajo de la que creías. Moviliza y repite eligiendo la celda correcta.</li>
+            <li><strong>No veo la línea de separación:</strong> en Excel para web la línea es más sutil. Comprueba que funciona haciendo scroll, no solo mirando el menú.</li>
+          </ul>
+
+          <h2>Pro Tip</h2>
+          <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 my-6 flex items-center gap-4">
+            <div class="text-3xl font-mono font-bold text-emerald-700 dark:text-emerald-400">Alt + W + F + F</div>
+            <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+              Con la celda correcta seleccionada, pulsa <strong>Alt</strong>, <strong>W</strong>, <strong>F</strong> y otra vez <strong>F</strong> para inmovilizar paneles sin tocar el ratón. Para movilizar (quitar el bloqueo), la secuencia es <strong>Alt + W + F + F</strong> de nuevo: el menú cambia entre "Inmovilizar" y "Movilizar" según el estado.
+            </div>
+          </div>
+
+          <p>
+            Con los paneles bien fijados, moverte por tablas enormes deja de ser un ejercicio de memoria. Si además combinas esto con una tabla dinámica, tienes la base para trabajar cómodamente con cualquier volumen de datos.
+          </p>
+        </div>
+
+        <!-- Share buttons -->
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg>
+              WhatsApp
+            </button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter / X
+            </button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </button>
+          </div>
+        </div>
+
+        <!-- Author block -->
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center flex-shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p>
+          </div>
+        </div>
+
+        <!-- Related -->
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/excel/como-hacer-tabla-dinamica/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-excel mb-2 inline-block">Excel</span>
+              <p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo hacer una tabla dinámica en Excel desde cero</p>
+            </a>
+            <a href="/excel/guia-buscarv-paso-a-paso/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-excel mb-2 inline-block">Excel</span>
+              <p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Guía básica de la función BUSCARV paso a paso</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6">
+        <!-- AdSense sidebar -->
+        <div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div>
+      </aside>
+    </div>
+
+    <!-- AdSense bottom -->
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+
+<script is:inline>
+  function shareArticle(platform) {
+    var url = encodeURIComponent(window.location.href);
+    var text = encodeURIComponent(document.title);
+    var shareUrl = '';
+    if (platform === 'whatsapp') shareUrl = 'https://wa.me/?text=' + text + '%20' + url;
+    if (platform === 'twitter') shareUrl = 'https://twitter.com/intent/tweet?text=' + text + '&url=' + url;
+    if (platform === 'linkedin') shareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
+    if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500,noopener,noreferrer');
+  }
+</script>

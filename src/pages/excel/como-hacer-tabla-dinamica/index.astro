@@ -1,0 +1,264 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo hacer una tabla dinámica en Excel desde cero en menos de 5 minutos';
+const description = 'Crea tu primera tabla dinámica en Excel paso a paso: prepara los datos, inserta la tabla, arrastra campos y filtra resultados. Incluye el atajo de teclado definitivo.';
+const publishDate = '2025-07-07';
+const updateDate = '2026-07-07';
+const readTime = '6 min';
+const url = 'https://excelydatos.com/excel/como-hacer-tabla-dinamica/';
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": updateDate,
+    "author": {
+      "@type": "Organization",
+      "name": "ExcelyDatos",
+      "url": "https://excelydatos.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ExcelyDatos",
+      "url": "https://excelydatos.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": url
+    },
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Excel & Sheets", "item": "https://excelydatos.com/excel/" },
+      { "@type": "ListItem", "position": 3, "name": "Cómo hacer una tabla dinámica", "item": url }
+    ]
+  }
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- AdSense top -->
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+
+    <div class="flex gap-10">
+      <!-- Article content -->
+      <div class="min-w-0 flex-1">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a>
+          <span>/</span>
+          <a href="/excel/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Excel & Sheets</a>
+          <span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">Cómo hacer una tabla dinámica</span>
+        </nav>
+
+        <!-- Header -->
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-excel">Excel</span>
+            <span class="text-slate-400 text-sm">{readTime} de lectura</span>
+            <span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado julio 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">
+            {title}
+          </h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
+            Tienes un Excel con 5.000 filas de ventas y tu jefe quiere un resumen por región y producto para esta tarde. En lugar de pelear con filtros y SUBTOTALES, una tabla dinámica te lo resuelve en cinco minutos. Aquí verás exactamente cómo.
+          </p>
+        </header>
+
+        <!-- Cover image -->
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <img
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80"
+            alt="Tabla dinámica de Excel resumiendo datos de ventas"
+            class="w-full max-h-[400px] object-cover"
+            loading="eager"
+            width="1200"
+            height="400"
+          />
+        </div>
+
+        <!-- AdSense rectangle in-article -->
+        <div class="float-right ml-6 mb-6 hidden lg:block">
+          <div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div>
+        </div>
+
+        <div class="article-body">
+
+          <h2>El problema: 5.000 filas que nadie puede leer</h2>
+          <p>
+            Imagina una hoja con columnas <code>Fecha</code>, <code>Región</code>, <code>Producto</code>, <code>Vendedor</code> e <code>Importe</code>. Cada fila es una venta. Tu jefe pregunta: ¿qué producto vende más en cada región? Si intentas responder con filtros y sumas manuales, tardas una hora y te equivocas en algún subtotal. La tabla dinámica te lo da en clics.
+          </p>
+
+          <h2>Paso 1: prepara los datos</h2>
+          <p>
+            Antes de insertar nada, los datos tienen que cumplir dos reglas:
+          </p>
+          <ul>
+            <li><strong>Encabezados en la primera fila:</strong> cada columna necesita un título único. Sin encabezados no hay tabla dinámica.</li>
+            <li><strong>Sin filas vacías ni totales intermedios:</strong> quita las filas en blanco y los subtotales que alguien haya puesto a mano. La tabla dinámica calcula los totales por ti.</li>
+          </ul>
+          <p>
+            Selecciona cualquier celda con datos. Lo más rápido es convertir el rango en tabla oficial: ve a <strong>Insertar</strong> &gt; <strong>Tabla</strong> (o pulsa <code>Ctrl + T</code>). Confirmar que "La tabla tiene encabezados" está marcado. A partir de aquí, si añades filas nuevas, la tabla dinámica las incluirá al refrescar.
+          </p>
+
+          <img
+            src="/excel-tabla-dinamica-1-datos.png"
+            alt="Datos de ventas preparados como tabla en Excel"
+            class="rounded-xl shadow-md border border-slate-200 block my-6"
+            loading="lazy"
+          />
+
+          <h2>Paso 2: inserta la tabla dinámica</h2>
+          <p>
+            Con cualquier celda de tu tabla seleccionada, ve a <strong>Insertar</strong> &gt; <strong>Tabla dinámica</strong>. Excel detecta automáticamente todo el rango. En el diálogo que aparece:
+          </p>
+          <ul>
+            <li><strong>Rango:</strong> confirma que abarca toda la tabla (si la convertiste en tabla, dirá algo como <code>Ventas[#Todos]</code>).</li>
+            <li><strong>Ubicación:</strong> elige "Nueva hoja de cálculo" si es tu primera. Más adelante puedes colocarla en la misma hoja.</li>
+          </ul>
+          <p>
+            Pulsa <strong>Aceptar</strong> y se abrirás el panel de campos a la derecha.
+          </p>
+
+          <h2>Paso 3: arrastra los campos</h2>
+          <p>
+            El panel muestra cuatro áreas: <strong>Filtros</strong>, <strong>Columnas</strong>, <strong>Filas</strong> y <strong>Valores</strong>. Para responder a "qué producto vende más en cada región", haz así:
+          </p>
+          <ul>
+            <li>Arrastra <code>Región</code> al área de <strong>Filas</strong>.</li>
+            <li>Arrastra <code>Producto</code> al área de <strong>Columnas</strong>.</li>
+            <li>Arrastra <code>Importe</code> al área de <strong>Valores</strong>.</li>
+          </ul>
+          <p>
+            Excel construye la tabla al instante: cada fila es una región, cada columna un producto, y las celdas muestran la suma de importes. Si en lugar de la suma quieres ver el promedio, haz clic en la celda de valores del panel, elige <strong>Configuración del campo</strong> y cambia "Suma" por "Promedio" (o "Cuenta", "Máximo", etc.).
+          </p>
+
+          <pre><code>Valores: Suma de Importe
+Filas: Región
+Columnas: Producto</code></pre>
+
+          <img
+            src="/excel-tabla-dinamica-2-campos.png"
+            alt="Panel de campos de tabla dinámica con Región, Producto e Importe"
+            class="rounded-xl shadow-md border border-slate-200 block my-6"
+            loading="lazy"
+          />
+
+          <h2>Paso 4: filtra y refina</h2>
+          <p>
+            Arrastra <code>Vendedor</code> al área de <strong>Filtros</strong> y aparecerá un selector encima de la tabla. Úsalo para ver solo las ventas de un vendedor concreto sin tocar el resto. También puedes hacer clic en la flecha de cualquier fila o columna para marcar/desmarcar elementos concretos.
+          </p>
+          <p>
+            Para ordenar de mayor a menor, haz clic en la flecha de la fila de totales y elige <strong>Ordenar de mayor a menor</strong>. Así ves de un vistazo qué región lidera.
+          </p>
+
+          <h2>Paso 5: refresca cuando cambien los datos</h2>
+          <p>
+            Si añades ventas nuevas a la tabla original, la tabla dinámica no se actualiza sola. Haz clic derecho en cualquier celda de la tabla dinámica y elige <strong>Actualizar</strong> (o <strong>Actualizar todo</strong> en la pestaña <strong>Análisis de tabla dinámica</strong>).
+          </p>
+
+          <h2>Errores comunes</h2>
+          <ul>
+            <li><strong>"No se puede agrupar esa selección":</strong> suele pasar cuando hay celdas vacías o texto mezclado con fechas en una columna de fechas. Limpia los datos y refresca.</li>
+            <li><strong>Los totales no cuadran:</strong> comprueba que no haya filas con importe en blanco; Excel las ignora y el total parece menor.</li>
+            <li><strong>La tabla no se actualiza:</strong> recuerda que hay que refrescar a mano. No es un error, es cómo funciona.</li>
+          </ul>
+
+          <h2>Pro Tip</h2>
+          <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 my-6 flex items-center gap-4">
+            <div class="text-3xl font-mono font-bold text-emerald-700 dark:text-emerald-400">Alt + N + V</div>
+            <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+              Con cualquier celda de tu tabla seleccionada, pulsa <strong>Alt</strong>, luego <strong>N</strong> y luego <strong>V</strong> para abrir directamente el diálogo de tabla dinámica sin tocar el ratón. Y si quieres refrescarla sin menús: <strong>Alt + F5</strong>.
+            </div>
+          </div>
+
+          <p>
+            Con esto tienes cubierto el flujo completo: preparar datos, insertar, configurar campos, filtrar y refrescar. Si tu siguiente paso es llevar ese resumen a un cuadro de mando, la guía de Power BI te explica cómo conectar esta misma tabla.
+          </p>
+        </div>
+
+        <!-- Share buttons -->
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg>
+              WhatsApp
+            </button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter / X
+            </button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </button>
+          </div>
+        </div>
+
+        <!-- Author block -->
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center flex-shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p>
+          </div>
+        </div>
+
+        <!-- Related -->
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/excel/como-sumar-celdas-en-excel/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-excel mb-2 inline-block">Excel</span>
+              <p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo sumar celdas en Excel: Guía rápida para principiantes</p>
+            </a>
+            <a href="/powerbi/como-conectar-excel-con-power-bi/" class="block bg-white dark:bg-slate-800 border border-amber-100 dark:border-amber-900/50 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-powerbi mb-2 inline-block">Power BI</span>
+              <p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo conectar Excel con Power BI paso a paso</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6">
+        <!-- AdSense sidebar -->
+        <div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div>
+      </aside>
+    </div>
+
+    <!-- AdSense bottom -->
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+
+<script is:inline>
+  function shareArticle(platform) {
+    var url = encodeURIComponent(window.location.href);
+    var text = encodeURIComponent(document.title);
+    var shareUrl = '';
+    if (platform === 'whatsapp') shareUrl = 'https://wa.me/?text=' + text + '%20' + url;
+    if (platform === 'twitter') shareUrl = 'https://twitter.com/intent/tweet?text=' + text + '&url=' + url;
+    if (platform === 'linkedin') shareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
+    if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500,noopener,noreferrer');
+  }
+</script>
