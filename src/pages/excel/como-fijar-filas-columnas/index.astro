@@ -74,14 +74,14 @@ const jsonLd = [
             {title}
           </h1>
           <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
-            Tienes una tabla de inventario con 200 columnas y 3.000 filas. Al bajar para ver la fila 2.500, los encabezados desaparecen y ya no sabes qué significa cada número. La solución se llama "Inmovilizar paneles" y se activa en dos clics.
+            Tienes una tabla de inventario con 200 columnas y 3.000 filas. Bajas para ver la fila 2.500 y los encabezados desaparecen: ya no sabes qué significa cada número. La solución se llama "Inmovilizar paneles" y se activa en dos clics. Vamos al lío.
           </p>
         </header>
 
         <!-- Cover image -->
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
           <img
-            src="https://images.unsplash.com/photo-1543286386-2e659264c951?w=1200&q=80"
+            src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1200&q=80"
             alt="Hoja de Excel con paneles inmovilizados al hacer scroll"
             class="w-full max-h-[400px] object-cover"
             loading="eager"
@@ -99,79 +99,65 @@ const jsonLd = [
 
           <h2>El problema: los encabezados se pierden al hacer scroll</h2>
           <p>
-            En cualquier tabla grande, los títulos de columna están en la fila 1 y los de fila en la columna A. En cuanto bajas o te desplazas a la derecha, esos títulos se van de la pantalla y dejas de saber qué miras. "Inmovilizar paneles" deja esas filas y columnas fijas mientras el resto sigue moviéndose.
+            En cualquier tabla grande, los títulos de columna están en la fila 1 y los de fila en la columna A. En cuanto bajas o te vas a la derecha, esos títulos salen de la pantalla y dejas de saber qué miras. "Inmovilizar paneles" deja esas filas y columnas fijas mientras el resto sigue moviéndose. Nada de magia, solo sentido común.
           </p>
 
           <h2>Caso 1: fijar solo la primera fila</h2>
           <p>
-            Si solo necesitas que los encabezados de columna se queden arriba:
+            Si lo que necesitas es que los encabezados de columna se queden arriba, es lo más sencillo:
           </p>
           <ol>
-            <li>Ve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
-            <li>Elige <strong>Inmovilizar fila superior</strong>.</li>
+            <li><strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
+            <li><strong>Inmovilizar fila superior</strong>.</li>
           </ol>
           <p>
-            A partir de ahora, la fila 1 se queda pegada arriba por mucho que hagas scroll. Verás una línea gris fina debajo de la fila 1 que indica dónde empieza el bloqueo.
+            Listo. La fila 1 se queda pegada arriba por mucho que hagas scroll. Verás una línea gris fina debajo de la fila 1 que marca dónde empieza el bloqueo.
           </p>
-
-          <img
-            src="/excel-fijar-fila-superior.png"
-            alt="Excel con la primera fila inmovilizada"
-            class="rounded-xl shadow-md border border-slate-200 block my-6"
-            loading="lazy"
-          />
 
           <h2>Caso 2: fijar solo la primera columna</h2>
           <p>
-            Si lo que se pierde es el identificador de cada fila (por ejemplo, el nombre del producto en la columna A):
+            Si lo que se pierde es el identificador de cada fila (el nombre del producto en la columna A, por ejemplo):
           </p>
           <ol>
-            <li>Ve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
-            <li>Elige <strong>Inmovilizar primera columna</strong>.</li>
+            <li><strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
+            <li><strong>Inmovilizar primera columna</strong>.</li>
           </ol>
           <p>
-            La columna A se queda fija a la izquierda mientras te desplazas a la derecha.
+            La columna A se queda fija a la izquierda mientras te desplazas a la derecha. Igual de fácil.
           </p>
 
           <h2>Caso 3: fijar filas y columnas a la vez</h2>
           <p>
-            Aquí está el caso real: quieres la fila 1 arriba y la columna A a la izquierda al mismo tiempo. La opción "Inmovilizar fila superior" no te sirve porque no fija la columna. Tienes que usar la opción general:
+            Aquí está el caso real, el que te hace perder la cabeza. Quieres la fila 1 arriba y la columna A a la izquierda al mismo tiempo. "Inmovilizar fila superior" no te sirve porque no fija la columna. Tienes que usar la opción general, y aquí es donde la mayoría mete la pata.
           </p>
           <ol>
-            <li>Selecciona la celda <strong>B2</strong> (la que está justo debajo de la fila a fijar y justo a la derecha de la columna a fijar).</li>
-            <li>Ve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
+            <li>Selecciona la celda <strong>B2</strong>. Ojo: la que está justo debajo de la fila a fijar y justo a la derecha de la columna a fijar.</li>
+            <li><strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
           </ol>
           <p>
-            Excel fija todo lo que está por encima y a la izquierda de la celda activa. Con B2 seleccionada, se quedan fijas la fila 1 y la columna A. Si quisieras fijar las dos primeras filas y las dos primeras columnas, seleccionarías C3.
+            Excel fija todo lo que está por encima y a la izquierda de la celda activa. Con B2 seleccionada, se quedan fijas la fila 1 y la columna A. Si quisieras fijar las dos primeras filas y las dos primeras columnas, seleccionarías C3. Es una regla simple: la celda que eliges marca la esquina.
           </p>
 
           <pre><code>Regla: la celda seleccionada marca la esquina.
 Todo lo de arriba y a la izquierda queda fijo.</code></pre>
 
-          <img
-            src="/excel-inmovilizar-paneles.png"
-            alt="Inmovilizar paneles en Excel seleccionando la celda B2"
-            class="rounded-xl shadow-md border border-slate-200 block my-6"
-            loading="lazy"
-          />
-
           <h2>Cómo quitar el bloqueo</h2>
           <p>
-            Cuando ya no lo necesitas, vuelve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong> y elige <strong>Movilizar paneles</strong>. La línea gris desaparece y todo vuelve a hacer scroll normal.
+            Cuando ya no lo necesitas, <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong> &gt; <strong>Movilizar paneles</strong>. La línea gris desaparece y todo vuelve a hacer scroll normal.
           </p>
 
-          <h2>Errores comunes</h2>
+          <h2>Los errores que te hacen perder la tarde</h2>
           <ul>
-            <li><strong>Las opciones aparecen en gris:</strong> probablemente estás en modo "Editar" dentro de una celda. Pulsa <code>Esc</code> y vuelve a intentarlo.</li>
+            <li><strong>Las opciones aparecen en gris:</strong> estás en modo "Editar" dentro de una celda. Pulsa <code>Esc</code> y vuelve a intentarlo.</li>
             <li><strong>Fija más filas de las que querías:</strong> tenías seleccionada una celda más abajo de la que creías. Moviliza y repite eligiendo la celda correcta.</li>
-            <li><strong>No veo la línea de separación:</strong> en Excel para web la línea es más sutil. Comprueba que funciona haciendo scroll, no solo mirando el menú.</li>
+            <li><strong>No ves la línea de separación:</strong> en Excel para web la línea es más sutil. Haz scroll y comprueba que funciona, no te fíes solo del menú.</li>
           </ul>
 
           <h2>Pro Tip</h2>
           <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 my-6 flex items-center gap-4">
             <div class="text-3xl font-mono font-bold text-emerald-700 dark:text-emerald-400">Alt + W + F + F</div>
             <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-              Con la celda correcta seleccionada, pulsa <strong>Alt</strong>, <strong>W</strong>, <strong>F</strong> y otra vez <strong>F</strong> para inmovilizar paneles sin tocar el ratón. Para movilizar (quitar el bloqueo), la secuencia es <strong>Alt + W + F + F</strong> de nuevo: el menú cambia entre "Inmovilizar" y "Movilizar" según el estado.
+              Con la celda correcta seleccionada, pulsa <strong>Alt</strong>, <strong>W</strong>, <strong>F</strong> y otra vez <strong>F</strong> para inmovilizar paneles sin tocar el ratón. Para movilizar (quitar el bloqueo), la misma secuencia: el menú cambia entre "Inmovilizar" y "Movilizar" según el estado.
             </div>
           </div>
 
