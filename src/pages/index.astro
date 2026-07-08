@@ -43,10 +43,12 @@ const featuredArticles = [
   title="ExcelyDatos — Excel, Power BI y SQL para analistas de datos"
   description="Aprende Excel, Power BI y SQL con guías prácticas en español. Sin relleno, sin teoría innecesaria: solo lo que necesitas para trabajar mejor con tus datos."
 >
+  <!-- AdSense Leaderboard Top -->
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true"></div>
   </div>
 
+  <!-- ===================== HERO ===================== -->
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 via-[#F8FAFC] to-sky-50 dark:from-emerald-950/30 dark:via-slate-950 dark:to-sky-950/30 opacity-70"></div>
     <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #e2e8f0 1px, transparent 0); background-size: 32px 32px; opacity: 0.4;"></div>
@@ -54,6 +56,7 @@ const featuredArticles = [
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
       <div class="max-w-3xl">
 
+        <!-- Hero logo banner: shows the full logo (left half of the brand image) -->
         <div class="w-full max-w-sm mb-8 flex justify-start">
           <div
             class="h-20"
@@ -78,6 +81,7 @@ const featuredArticles = [
           Sin introducciones eternas ni teoría innecesaria: cada artículo resuelve una duda concreta desde el primer párrafo.
         </p>
 
+        <!-- Search bar -->
         <div class="relative max-w-xl mb-8">
           <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
             <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -109,6 +113,7 @@ const featuredArticles = [
           </a>
         </div>
 
+        <!-- Stats row -->
         <div class="flex flex-wrap gap-6 mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
           <div>
             <div class="text-2xl font-bold text-emerald-700 dark:text-emerald-400">Guías detalladas</div>
@@ -129,6 +134,7 @@ const featuredArticles = [
     </div>
   </section>
 
+  <!-- ===================== SILO CARDS ===================== -->
   <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="text-center mb-12">
       <h2 class="text-3xl font-bold text-[#1E293B] dark:text-slate-100 mb-3">Elige tu área de aprendizaje</h2>
@@ -137,6 +143,7 @@ const featuredArticles = [
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
+      <!-- Excel — Featured / Larger -->
       <div class="lg:col-span-2 group relative bg-white dark:bg-slate-800 rounded-2xl border border-emerald-100 dark:border-emerald-900/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
         <div class="h-1.5 bg-gradient-to-r from-emerald-500 to-emerald-700"></div>
         <div class="p-8">
@@ -173,7 +180,9 @@ const featuredArticles = [
         </div>
       </div>
 
+      <!-- Right column: Power BI + SQL stacked -->
       <div class="flex flex-col gap-6">
+        <!-- Power BI -->
         <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-amber-100 dark:border-amber-900/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex-1">
           <div class="h-1.5 bg-gradient-to-r from-amber-400 to-amber-600"></div>
           <div class="p-6">
@@ -196,6 +205,7 @@ const featuredArticles = [
           </div>
         </div>
 
+        <!-- SQL -->
         <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-sky-100 dark:border-sky-900/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex-1">
           <div class="h-1.5 bg-gradient-to-r from-sky-400 to-sky-600"></div>
           <div class="p-6">
@@ -220,10 +230,12 @@ const featuredArticles = [
     </div>
   </section>
 
+  <!-- AdSense mid-page -->
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 my-4">
     <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true"></div>
   </div>
 
+  <!-- ===================== ÚLTIMOS ARTÍCULOS ===================== -->
   <section id="articulos" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="flex items-center justify-between mb-10">
       <div>
@@ -236,8 +248,6 @@ const featuredArticles = [
       {featuredArticles.map((article) => (
         <article
           class={`article-card bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col ${article.featured ? 'ring-2 ring-emerald-200 dark:ring-emerald-800' : ''}`}
-          data-title={article.title.toLowerCase()}
-          data-keywords={article.keywords}
         >
           <div class={`h-1 ${article.accent === 'emerald' ? 'bg-emerald-600' : article.accent === 'amber' ? 'bg-amber-500' : 'bg-sky-500'}`}></div>
 
@@ -296,6 +306,7 @@ const featuredArticles = [
       ))}
     </div>
 
+    <!-- Empty state for search -->
     <div id="search-empty" class="hidden text-center py-16">
       <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
         <svg class="w-8 h-8 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -307,6 +318,7 @@ const featuredArticles = [
     </div>
   </section>
 
+  <!-- ===================== NEWSLETTER ===================== -->
   <section class="bg-emerald-700 text-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       <div class="max-w-2xl mx-auto text-center">
@@ -339,11 +351,12 @@ const featuredArticles = [
             </button>
           </div>
           
+          <!-- Mensajes de estado -->
           <div id="newsletter-success" class="hidden text-emerald-200 text-sm font-medium mt-2 text-center">
-            ¡Gracias por suscribirte! Revisa tu bandeja de entrada para confirmar.
+            ¡Gracias por suscribirte! Tu correo ha sido registrado.
           </div>
           <div id="newsletter-error" class="hidden text-red-200 text-sm font-medium mt-2 text-center">
-            Algo ha salido mal. Por favor, revisa el correo e inténtalo de nuevo.
+            Ha ocurrido un error. Por favor, inténtalo de nuevo.
           </div>
         </form>
         
@@ -352,6 +365,7 @@ const featuredArticles = [
     </div>
   </section>
 
+  <!-- AdSense Bottom -->
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="adsense-slot adsense-slot--leaderboard" aria-hidden="true"></div>
   </div>
@@ -359,53 +373,43 @@ const featuredArticles = [
 
 <script is:inline>
   (function () {
-    // Show hero logo if image exists
-    var heroWrap = document.getElementById('hero-logo-wrap');
-    var heroImg = document.getElementById('hero-logo-img');
-    if (heroWrap && heroImg) {
-      var t = new Image();
-      t.onload = function() { heroWrap.style.removeProperty('display'); heroWrap.style.display = 'flex'; };
-      t.src = '/logo-horizontal.png';
-    }
-
-    // --- Lógica del Buscador Mejorada ---
+    // --- Lógica del Buscador a Prueba de Fallos ---
     var searchInput = document.getElementById('article-search');
     var articlesGrid = document.getElementById('articles-grid');
     var emptyState = document.getElementById('search-empty');
 
     if (searchInput && articlesGrid) {
+      // Función para quitar tildes y mayúsculas
+      var normalizar = function(texto) {
+        return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+      };
+
       searchInput.addEventListener('input', function () {
-        var query = this.value.trim().toLowerCase();
-        var cards = articlesGrid.querySelectorAll('.article-card');
+        var query = normalizar(this.value.trim());
+        var cards = document.querySelectorAll('.article-card');
         var visibleCount = 0;
 
-        cards.forEach(function (card) {
-          var title = card.getAttribute('data-title') || '';
-          var keywords = card.getAttribute('data-keywords') || '';
-          var matches = !query || title.includes(query) || keywords.includes(query);
+        for (var i = 0; i < cards.length; i++) {
+          var card = cards[i];
+          // Leer absolutamente todo el texto que haya dentro de la tarjeta
+          var textoTarjeta = normalizar(card.textContent || '');
           
-          // Usamos la clase hidden de Tailwind para forzar que desaparezca en el grid
-          if (matches) {
-            card.classList.remove('hidden');
+          if (query === '' || textoTarjeta.indexOf(query) !== -1) {
+            card.style.display = ''; // Restaurar la visibilidad original
             visibleCount++;
           } else {
-            card.classList.add('hidden');
+            card.style.display = 'none'; // Ocultar por fuerza bruta
           }
-        });
+        }
 
         if (emptyState) {
-          emptyState.classList.toggle('hidden', visibleCount > 0);
+          emptyState.style.display = (visibleCount === 0) ? 'block' : 'none';
         }
-        
-        if (visibleCount === 0) {
-          articlesGrid.classList.add('hidden');
-        } else {
-          articlesGrid.classList.remove('hidden');
-        }
+        articlesGrid.style.display = (visibleCount === 0) ? 'none' : '';
       });
     }
 
-    // --- Lógica de la Newsletter ---
+    // --- Lógica de MailerLite (Método JSONP Nativo) ---
     var newsForm = document.getElementById('newsletter-form');
     var newsBtn = document.getElementById('newsletter-btn');
     var newsSuccess = document.getElementById('newsletter-success');
@@ -428,39 +432,41 @@ const featuredArticles = [
         if (newsSuccess) newsSuccess.classList.add('hidden');
         if (newsError) newsError.classList.add('hidden');
 
+        var emailInput = document.getElementById('newsletter-email').value;
         var url = newsForm.action;
-        var emailInput = document.getElementById('newsletter-email');
+
+        // Creamos un callback único para que MailerLite nos devuelva la respuesta
+        var callbackName = 'mailerlite_callback_' + Math.round(100000 * Math.random());
         
-        if (emailInput) {
-          var data = 'fields%5Bemail%5D=' + encodeURIComponent(emailInput.value);
-
-          var xhr = new XMLHttpRequest();
-          xhr.open('POST', url, true);
-          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-          
-          xhr.onload = function () {
-            if (xhr.status >= 200 && xhr.status < 400) {
-              if (newsSuccess) newsSuccess.classList.remove('hidden');
-              newsForm.reset();
-            } else {
-              if (newsError) newsError.classList.remove('hidden');
-            }
-            if (newsBtn) {
-              newsBtn.disabled = false;
-              newsBtn.textContent = 'Suscribirme';
-            }
-          };
-
-          xhr.onerror = function () {
+        window[callbackName] = function(data) {
+          if (data && data.success) {
+            if (newsSuccess) newsSuccess.classList.remove('hidden');
+            newsForm.reset();
+          } else {
             if (newsError) newsError.classList.remove('hidden');
-            if (newsBtn) {
-              newsBtn.disabled = false;
-              newsBtn.textContent = 'Suscribirme';
-            }
-          };
+          }
+          if (newsBtn) {
+            newsBtn.disabled = false;
+            newsBtn.textContent = 'Suscribirme';
+          }
+          // Limpiamos la función y el script para no ensuciar la web
+          delete window[callbackName];
+          document.head.removeChild(script);
+        };
 
-          xhr.send(data);
-        }
+        // Creamos la petición JSONP inyectando un script
+        var script = document.createElement('script');
+        script.src = url + '?fields%5Bemail%5D=' + encodeURIComponent(emailInput) + '&callback=' + callbackName;
+        
+        script.onerror = function() {
+          if (newsError) newsError.classList.remove('hidden');
+          if (newsBtn) {
+            newsBtn.disabled = false;
+            newsBtn.textContent = 'Suscribirme';
+          }
+        };
+
+        document.head.appendChild(script);
       });
     }
   })();
