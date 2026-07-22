@@ -332,7 +332,12 @@ const featuredArticles = [
         <p class="text-emerald-100 mb-8 leading-relaxed">
           Sin spam. Solo artículos prácticos sobre Excel, Power BI y SQL que puedes aplicar en tu trabajo de inmediato.
         </p>
-        <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <form
+          id="newsletter-form"
+          action="https://assets.mailerlite.com/jsonp/2495707/forms/192351734327150216/subscribe"
+          method="POST"
+          class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+        >
           <input
             id="newsletter-email"
             name="fields[email]"
@@ -344,13 +349,12 @@ const featuredArticles = [
           <button
             id="newsletter-button"
             type="submit"
-            class="bg-white text-emerald-800 hover:bg-emerald-50 font-semibold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed"
+            class="bg-white text-emerald-800 hover:bg-emerald-50 font-semibold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
           >
             Suscribirme
           </button>
         </form>
-        <p id="newsletter-success" class="hidden text-white font-semibold mt-4">¡Gracias por suscribirte!</p>
-        <p id="newsletter-error" class="hidden text-amber-200 font-medium mt-4">Algo salió mal. Inténtalo de nuevo en unos segundos.</p>
+        <p id="newsletter-success" class="hidden text-white font-semibold mt-4">¡Gracias por suscribirte! Revisa tu correo para confirmar.</p>
         <p class="text-emerald-200 text-xs mt-4">Puedes darte de baja cuando quieras.</p>
       </div>
     </div>
@@ -452,64 +456,6 @@ const featuredArticles = [
         });
         if (emptyState) emptyState.classList.toggle('hidden', visibleCount > 0);
         articlesGrid.style.display = visibleCount === 0 ? 'none' : '';
-      });
-    }
-
-    /* ===================== NEWSLETTER (MAILERLITE JSONP) ===================== */
-    var form = document.getElementById('newsletter-form');
-    var emailInput = document.getElementById('newsletter-email');
-    var button = document.getElementById('newsletter-button');
-    var successMsg = document.getElementById('newsletter-success');
-    var errorMsg = document.getElementById('newsletter-error');
-    var MAILERLITE_URL = 'https://assets.mailerlite.com/jsonp/2495707/forms/192351734327150216/subscribe';
-
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (!emailInput || !emailInput.value.trim()) return;
-
-        var originalText = button.textContent;
-        button.textContent = 'Procesando...';
-        button.disabled = true;
-        successMsg.classList.add('hidden');
-        errorMsg.classList.add('hidden');
-
-        var callbackName = 'mlcb_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
-        var script = document.createElement('script');
-        var timeoutId;
-
-        window[callbackName] = function (data) {
-          clearTimeout(timeoutId);
-          try { delete window[callbackName]; } catch (e) { window[callbackName] = undefined; }
-          if (script.parentNode) script.parentNode.removeChild(script);
-
-          if (data && data.success) {
-            successMsg.classList.remove('hidden');
-            emailInput.value = '';
-          } else {
-            errorMsg.classList.remove('hidden');
-          }
-          button.textContent = originalText;
-          button.disabled = false;
-        };
-
-        var params = 'callback=' + encodeURIComponent(callbackName) + '&fields[email]=' + encodeURIComponent(emailInput.value.trim());
-        script.src = MAILERLITE_URL + '?' + params;
-        script.onerror = function () {
-          clearTimeout(timeoutId);
-          if (script.parentNode) script.parentNode.removeChild(script);
-          errorMsg.classList.remove('hidden');
-          button.textContent = originalText;
-          button.disabled = false;
-        };
-        document.body.appendChild(script);
-
-        timeoutId = setTimeout(function () {
-          if (script.parentNode) script.parentNode.removeChild(script);
-          errorMsg.classList.remove('hidden');
-          button.textContent = originalText;
-          button.disabled = false;
-        }, 10000);
       });
     }
   })();
