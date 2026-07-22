@@ -332,29 +332,7 @@ const featuredArticles = [
         <p class="text-emerald-100 mb-8 leading-relaxed">
           Sin spam. Solo artículos prácticos sobre Excel, Power BI y SQL que puedes aplicar en tu trabajo de inmediato.
         </p>
-        <form
-          id="newsletter-form"
-          action="https://assets.mailerlite.com/jsonp/2495707/forms/192351734327150216/subscribe"
-          method="POST"
-          class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-        >
-          <input
-            id="newsletter-email"
-            name="fields[email]"
-            type="email"
-            required
-            placeholder="tucorreo@empresa.com"
-            class="flex-1 px-4 py-3 rounded-lg text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-white"
-          />
-          <button
-            id="newsletter-button"
-            type="submit"
-            class="bg-white text-emerald-800 hover:bg-emerald-50 font-semibold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
-          >
-            Suscribirme
-          </button>
-        </form>
-        <p id="newsletter-success" class="hidden text-white font-semibold mt-4">¡Gracias por suscribirte! Revisa tu correo para confirmar.</p>
+        <div class="ml-embedded" data-form="192351734327150216"></div>
         <p class="text-emerald-200 text-xs mt-4">Puedes darte de baja cuando quieras.</p>
       </div>
     </div>
