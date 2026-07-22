@@ -248,6 +248,20 @@ const featuredArticles = [
       </div>
     </div>
 
+    <div class="max-w-xl mx-auto my-8 px-4">
+      <div class="relative">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Buscar tutoriales de Excel, Power BI, SQL..."
+          class="w-full px-5 py-3 pl-12 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-600 text-gray-800 shadow-sm"
+        />
+        <svg class="w-6 h-6 text-gray-400 absolute left-3 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+    </div>
+
     <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {featuredArticles.map((article) => (
         <article
@@ -324,17 +338,39 @@ const featuredArticles = [
     </div>
   </section>
 
-  <!-- ===================== NEWSLETTER PLACEHOLDER ===================== -->
-  <section class="bg-emerald-700 text-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      <div class="max-w-2xl mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-4">Recibe nuevas guías cada semana</h2>
-        <p class="text-emerald-100 mb-8 leading-relaxed">
-          Sin spam. Solo artículos prácticos sobre Excel, Power BI y SQL que puedes aplicar en tu trabajo de inmediato.
-        </p>
-        <div class="ml-embedded" data-form="192351734327150216"></div>
-        <p class="text-emerald-200 text-xs mt-4">Puedes darte de baja cuando quieras.</p>
+  <!-- ===================== NEWSLETTER ===================== -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-[#00754a] text-white py-12 px-6 rounded-2xl text-center my-10 shadow-lg">
+      <h2 class="text-3xl font-bold mb-3">Recibe nuevas guías cada semana</h2>
+      <p class="text-base sm:text-lg opacity-90 max-w-2xl mx-auto mb-6">
+        Sin spam. Solo artículos prácticos sobre Excel, Power BI y SQL que puedes aplicar en tu trabajo de inmediato.
+      </p>
+
+      <div id="newsletter-container" class="max-w-md mx-auto min-h-[50px] flex flex-col justify-center items-center">
+        <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 w-full justify-center">
+          <input
+            type="email"
+            id="newsletter-email"
+            name="email"
+            placeholder="Tu correo electrónico..."
+            required
+            class="px-4 py-3 rounded-xl text-gray-900 bg-white border border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-300 flex-1 text-base shadow-sm"
+          />
+          <button
+            type="submit"
+            id="newsletter-btn"
+            class="px-6 py-3 bg-gray-900 text-white font-semibold rounded-xl hover:bg-black transition-all shadow-md active:scale-95 whitespace-nowrap"
+          >
+            Suscribirme
+          </button>
+        </form>
+
+        <div id="newsletter-message" class="hidden text-amber-200 font-medium text-lg mt-2">
+          ¡Gracias por suscribirte! Revisa tu bandeja de entrada.
+        </div>
       </div>
+
+      <p class="text-xs opacity-75 mt-4">Puedes darte de baja cuando quieras.</p>
     </div>
   </section>
 
@@ -437,4 +473,62 @@ const featuredArticles = [
       });
     }
   })();
+</script>
+
+<script>
+  function initPageLogic() {
+    // 1. Lógica del Buscador de artículos
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const articles = document.querySelectorAll('article, .article-card');
+
+    if (searchInput && articles.length > 0) {
+      searchInput.addEventListener('input', (e) => {
+        const query = (e.target as HTMLInputElement).value.toLowerCase();
+        articles.forEach((article) => {
+          const text = article.textContent?.toLowerCase() || '';
+          if (text.includes(query)) {
+            (article as HTMLElement).style.display = '';
+          } else {
+            (article as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // 2. Lógica de la Newsletter (MailerLite JSONP)
+    const form = document.getElementById('newsletter-form') as HTMLFormElement;
+    const message = document.getElementById('newsletter-message');
+    const btn = document.getElementById('newsletter-btn') as HTMLButtonElement;
+    const input = document.getElementById('newsletter-email') as HTMLInputElement;
+
+    if (form && message && btn && input) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = input.value.trim();
+        if (!email) return;
+
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+
+        const callbackName = 'ml_cb_' + Math.random().toString(36).substring(7);
+        (window as any)[callbackName] = function() {
+          delete (window as any)[callbackName];
+        };
+
+        const script = document.createElement('script');
+        script.src = `https://assets.mailerlite.com/jsonp/2495707/forms/192351734327150216/subscribe?fields%5Bemail%5D=${encodeURIComponent(email)}&callback=${callbackName}`;
+
+        document.body.appendChild(script);
+
+        setTimeout(() => {
+          form.classList.add('hidden');
+          message.classList.remove('hidden');
+          if (script.parentNode) script.parentNode.removeChild(script);
+        }, 800);
+      });
+    }
+  }
+
+  initPageLogic();
+  document.addEventListener('astro:page-load', initPageLogic);
 </script>
