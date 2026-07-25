@@ -1,0 +1,204 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = '¿Qué es Power BI y para qué sirve? Guía para principiantes que no quieren meterse en líos';
+const description = 'Descubre qué es Power BI, para qué sirve realmente y por qué tu jefe te pide que lo uses. Guía práctica sin tecnicismos para principiantes en visualización de datos.';
+const publishDate = '2025-08-15';
+const updateDate = '2026-08-15';
+const readTime = '7 min';
+const url = 'https://excelydatos.com/powerbi/que-es-power-bi-para-que-sirve/';
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
+    "datePublished": publishDate,
+    "dateModified": updateDate,
+    "author": {
+      "@type": "Organization",
+      "name": "ExcelyDatos",
+      "logo": "https://excelydatos.com/logo.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ExcelyDatos",
+      "logo": "https://excelydatos.com/logo.png"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Power BI", "item": "https://excelydatos.com/powerbi/" },
+      { "@type": "ListItem", "position": 3, "name": "¿Qué es Power BI?", "item": url }
+    ]
+  }
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a>
+          <span>/</span>
+          <a href="/powerbi/" class="hover:text-amber-700 dark:hover:text-amber-400 transition-colors">Power BI</a>
+          <span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">¿Qué es Power BI?</span>
+        </nav>
+
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-powerbi">Power BI</span>
+            <span class="text-slate-400 text-sm">{readTime} de lectura</span>
+            <span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado agosto 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-amber-500 pl-4">
+            Vamos al lío. Si tu jefe te ha mandado a Power BI sin explicarte nada, o acabas de oír hablar de él en una reunión y no tienes ni idea de qué es, este artículo te va a ahorrar horas de confusión. Te cuento qué es, para qué sirve realmente en la oficina, y por qué puede ser el mejor amigo de tu equipo de datos.
+          </p>
+        </header>
+
+        <!-- Cover image -->
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <img src="/[CAPTURA-PANTALLA-DASHBOARD-POWER-BI-CON-MULTIPLES-GRAFICOS-INTERACTIVOS-COLORIDOS].png" alt="Dashboard de Power BI con gráficos de ventas y análisis" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+
+        <div class="float-right ml-6 mb-6 hidden lg:block">
+          <div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div>
+        </div>
+
+        <div class="article-body">
+          <h2>El problema: tienes un montón de datos en Excel y nadie los mira</h2>
+          <p>Imagina esto. Tu empresa tiene un Excel con miles de filas de datos de ventas, clientes, gastos, lo que sea. Cada semana pasas 2 horas haciendo gráficos a mano, filtrando información y mandando reportes por correo que la gente abre, ve rápido y cierra sin leer. El problema real: <strong>los datos están ahí, pero nadie los entiende a simple vista</strong>.</p>
+
+          <h2>¿Qué es Power BI exactamente?</h2>
+          <p>Power BI es una herramienta de Microsoft que convierte esos datos aburridos en <strong>dashboards interactivos</strong> que cualquiera puede entender en 5 segundos. No es magia, es simplemente: conectas tus datos (Excel, SQL, bases de datos, lo que tengas), creas gráficos bonitos y visuales, y luego tú y tu equipo podéis interactuar con ellos en tiempo real.</p>
+          <p>La clave está ahí: <strong>interactivo</strong>. No es un PDF estático que alguien hizo hace 3 semanas. Es un dashboard vivo donde puedes filtrar, hacer zoom, ver detalles y descubrir cosas sin tener que pedirle a nadie que te genere otro reporte.</p>
+
+          <h2>Para qué sirve en la oficina (casos reales)</h2>
+          <p>Voy a serte sincero: Power BI sirve para que veas tu negocio de un vistazo. Algunos ejemplos:</p>
+          <ul class="list-disc list-inside text-slate-700 dark:text-slate-300 space-y-2 mb-6">
+            <li><strong>Ventas:</strong> ¿Cuánto hemos vendido este mes? ¿En qué categoría? ¿Qué cliente gasta más? Todo lo ves en un tablero.</li>
+            <li><strong>Operaciones:</strong> ¿Cuántos proyectos tenemos en proceso? ¿Cuáles están retrasados? Power BI te lo muestra en segundos.</li>
+            <li><strong>Marketing:</strong> ¿Cuál de nuestras campañas está funcionando? ¿Dónde metemos el dinero? Los gráficos te lo dicen claro.</li>
+            <li><strong>RH:</strong> Rotación de personal, ausencias, horas trabajadas. Todo centralizado y visible.</li>
+          </ul>
+          <p>En realidad, Power BI es para cualquier departamento que tenga datos y quiera <strong>entenderlos sin dolor de cabeza</strong>.</p>
+
+          <h2>Cómo funciona (sin tecnicismos)</h2>
+          <p>El proceso es simple y se resume en 3 pasos:</p>
+          <ol class="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-2 mb-6">
+            <li><strong>Conectas los datos:</strong> Traes tu Excel, tu SQL, tu Google Sheets, tu API, lo que sea. Power BI se conecta a la fuente.</li>
+            <li><strong>Limpias y estructuras:</strong> A veces los datos llegan sucios. Power BI tiene Power Query (que es como Excel con superpoderes) para limpiarlos.</li>
+            <li><strong>Haces gráficos:</strong> Arrastras y sueltas campos, eliges el tipo de gráfico que quieres, y listo. No necesitas saber programar.</li>
+          </ol>
+
+          <h2>El error más común: pensar que es difícil</h2>
+          <p>La gente ve Power BI y piensa "esto es para informáticos". Mentira. Los gráficos se hacen arrastrando campos con el ratón, exactamente igual que cuando haces un gráfico en Excel, pero mucho más potente. Si sabes hacer un gráfico en Excel, puedes hacer gráficos en Power BI sin problemas.</p>
+          <p>El segundo error: pensar que necesitas saber SQL o programación. Tampoco. Power Query es visual, y si en algún momento necesitas SQL, Power BI te lo facilita, pero no es obligatorio.</p>
+
+          <div class="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-5 my-6">
+            <h3 class="font-bold text-amber-900 dark:text-amber-100 mb-2">Pro Tip: empieza con un dashboard pequeño</h3>
+            <p class="text-amber-900 dark:text-amber-100 text-sm">No intentes conectar toda tu empresa el primer día. Coge un Excel con datos de ventas o clientes, conéctalo a Power BI, haz 3 o 4 gráficos. En 2 horas habrás entendido cómo funciona y la gente de tu equipo quedará sorprendida. Eso es Power BI.</p>
+          </div>
+
+          <h2>Las versiones: Desktop, Service y Premium (sin confundirte)</h2>
+          <p><strong>Power BI Desktop</strong> es lo que descargas en tu ordenador (es gratis). Ahí creas los dashboards. <strong>Power BI Service</strong> es la versión online donde subes esos dashboards para que el equipo los vea. Y <strong>Power BI Premium</strong> es para empresas grandes que necesitan más capacidad. Punto. No compliques.</p>
+
+          <h2>Diferencia con Excel: cuando usar cada uno</h2>
+          <p>Excel sigue siendo tuyo para análisis rápido, presupuestos, listas. Power BI es cuando esos datos necesitan ser <strong>bonitos, interactivos y compartibles</strong> en tiempo real con tu equipo. Si 5 personas necesitan ver tus datos todos los días, Power BI. Si es solo tú trabajando en números, Excel sigue siendo más rápido.</p>
+
+          <h2>El siguiente paso</h2>
+          <p>Ahora que sabes qué es, el siguiente paso es <strong>crear tu primer gráfico</strong>. No te preocupes: es literalmente elegir datos, elegir un gráfico, y listo. En nuestro siguiente artículo te enseño exactamente cómo hacerlo en 3 pasos.</p>
+
+          <!-- Errores comunes -->
+          <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 my-8">
+            <h3 class="font-bold text-[#1E293B] dark:text-slate-100 mb-4">Errores comunes (y cómo evitarlos)</h3>
+            <ul class="space-y-3 text-slate-700 dark:text-slate-300 text-sm">
+              <li><strong>❌ Conectar datos sucios:</strong> Si tus datos en Excel tienen espacios raros, mayúsculas inconsistentes o valores vacíos, Power BI se volverá loco. Limpia primero.</li>
+              <li><strong>❌ Hacer dashboards demasiado complejos:</strong> Menos es más. 5 gráficos claros son mejor que 20 que nadie entiende.</li>
+              <li><strong>❌ Olvidarse de actualizar los datos:</strong> Power BI conecta a la fuente, pero si no configuras la actualización, los gráficos mostrarán datos antiguos.</li>
+              <li><strong>❌ No compartir correctamente:</strong> Crear un dashboard en Desktop es fácil, pero tiene que estar en Service para que otros lo vean. No lo olvides.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Share buttons -->
+        <div class="flex gap-3 mt-8 py-6 border-t border-slate-200 dark:border-slate-700">
+          <button onclick="shareArticle('twitter')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 dark:hover:bg-amber-900 rounded-lg text-sm font-medium transition-colors">Twitter</button>
+          <button onclick="shareArticle('linkedin')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 dark:hover:bg-amber-900 rounded-lg text-sm font-medium transition-colors">LinkedIn</button>
+          <button onclick="shareArticle('copy')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 dark:hover:bg-amber-900 rounded-lg text-sm font-medium transition-colors">Copiar enlace</button>
+        </div>
+
+        <!-- Author block -->
+        <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 mt-8">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full"></div>
+            <div>
+              <p class="font-bold text-[#1E293B] dark:text-slate-100">ExcelyDatos Team</p>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Especialistas en Excel, SQL, Google Sheets y Power BI. Desde 2019 ayudando a oficinas a dominar sus datos sin dolor de cabeza.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related articles -->
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-6">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a href="/powerbi/crear-primer-grafico-interactivo-power-bi/" class="group">
+              <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-400 rounded-lg p-4 transition-colors">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="badge-powerbi">Power BI</span>
+                </div>
+                <h4 class="font-semibold text-[#1E293B] dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">Cómo crear tu primer gráfico interactivo en 3 pasos</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Guía paso a paso para hacer tu primer dashboard sin asustarte.</p>
+              </div>
+            </a>
+            <a href="/powerbi/power-query-limpiar-datos/" class="group">
+              <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-400 rounded-lg p-4 transition-colors">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="badge-powerbi">Power BI</span>
+                </div>
+                <h4 class="font-semibold text-[#1E293B] dark:text-slate-100 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">Cómo limpiar datos con Power Query sin perder la cabeza</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Herramienta imprescindible para que tus datos lleguen listos.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6">
+        <div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div>
+      </aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+
+<script is:inline>
+  function shareArticle(platform) {
+    const url = 'https://excelydatos.com/powerbi/que-es-power-bi-para-que-sirve/';
+    const title = '¿Qué es Power BI y para qué sirve?';
+    
+    if (platform === 'twitter') {
+      window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+    } else if (platform === 'linkedin') {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+    } else if (platform === 'copy') {
+      navigator.clipboard.writeText(url);
+      alert('Enlace copiado');
+    }
+  }
+</script>
