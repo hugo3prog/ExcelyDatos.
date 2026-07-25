@@ -3,7 +3,7 @@ import '@/styles/globals.css';
 import Layout from '../../../layouts/Layout.astro';
 
 const title = 'Guía básica de la función BUSCARV: Qué es y cómo se usa paso a paso';
-const description = 'Aprende BUSCARV en Excel con un ejemplo real de inventario: sintaxis, los 4 argumentos, el truco del FALSO y los errores más comunes. Incluye atajo de teclado.';
+const description = 'Aprende BUSCARV en Excel y Google Sheets con un ejemplo real de inventario: sintaxis, los 4 argumentos, el truco del FALSO y los errores más comunes. Incluye atajo de teclado.';
 const publishDate = '2025-07-07';
 const updateDate = '2026-07-07';
 const readTime = '7 min';
@@ -74,7 +74,7 @@ const jsonLd = [
             {title}
           </h1>
           <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
-            Tienes una columna con 800 referencias de producto y necesitas traer el precio de otra hoja. A mano te vas una tarde; con BUSCARV son cinco minutos. Vamos a ver qué hace, cómo se construye y por qué ese <code>FALSO</code> del final no es opcional.
+            Tienes una columna con 800 referencias de producto y necesitas traer el precio de otra hoja. A mano te vas una tarde; con BUSCARV en Excel o Google Sheets son cinco minutos. Vamos a ver qué hace, cómo se construye y por qué ese <code>FALSO</code> del final no es opcional.
           </p>
         </header>
 
@@ -104,14 +104,14 @@ const jsonLd = [
 
           <h2>La sintaxis, argumento por argumento</h2>
           <p>
-            La función tiene cuatro argumentos separados por punto y coma. Vamos a verlos uno a uno:
+            En ambas aplicaciones la lógica es idéntica. En Google Sheets la función se llama exactamente igual (<code>BUSCARV</code> en español o <code>VLOOKUP</code> si usas la interfaz en inglés). Consta de cuatro argumentos separados por punto y coma (o comas, según tu configuración regional):
           </p>
           <pre><code>=BUSCARV(valor_buscado; matriz_tabla; indicador_columna; coincidencia)</code></pre>
           <ul>
             <li><strong>valor_buscado:</strong> qué estás buscando. Suele ser una celda, por ejemplo <code>A2</code>.</li>
             <li><strong>matriz_tabla:</strong> dónde buscas. El rango o la tabla que tiene los datos. Y ojo aquí: <strong>la búsqueda siempre se hace en la primera columna de este rango.</strong> Si el valor que buscas está en la columna B, el rango tiene que empezar por B.</li>
             <li><strong>indicador_columna:</strong> qué columna quieres devolver. La 1 es la primera columna de la matriz (donde buscas), la 2 la siguiente, y así.</li>
-            <li><strong>coincidencia:</strong> <code>FALSO</code> para buscar el valor exacto; <code>VERDADERO</code> (o nada) para una aproximada. En el 99% de los casos de oficina quieres <code>FALSO</code>. Luego te cuento por qué.</li>
+            <li><strong>coincidencia:</strong> <code>FALSO</code> (o <code>0</code>) para buscar el valor exacto; <code>VERDADERO</code> (o <code>1</code> / omitido) para una aproximada. En el 99% de los casos de oficina quieres <code>FALSO</code> o <code>0</code>. Luego te cuento por qué.</li>
           </ul>
 
           <h2>El ejemplo: precios de un inventario</h2>
@@ -128,49 +128,52 @@ const jsonLd = [
           </p>
           <pre><code>=BUSCARV(A2; Catalogo!A:C; 3; FALSO)</code></pre>
           <p>
-            Excel coge el valor de A2, lo busca en la columna A del catálogo, y cuando lo encuentra, se va a la columna 3 (Precio) y te devuelve lo que hay ahí. El <code>FALSO</code> le dice: "busca el valor exacto, y si no lo encuentras, devuelve error". Nada de inventar.
+            Excel o Google Sheets cogen el valor de A2, lo buscan en la columna A del catálogo, y cuando lo encuentran, se van a la columna 3 (Precio) y te devuelven lo que hay ahí. El <code>FALSO</code> (que también puedes escribir como <code>0</code>) le dice: "busca el valor exacto, y si no lo encuentras, devuelve error". Nada de inventar.
           </p>
 
           <h2>Paso a paso en la interfaz</h2>
           <p>
-            Si no te apetece escribir la fórmula a mano, también puedes abrirla desde <strong>Fórmulas</strong> &gt; <strong>Búsqueda y referencia</strong> &gt; <strong>BUSCARV</strong>. Pero cuando la usas un par de veces, escribir es más rápido. El flujo:
+            En Excel puedes abrir la función desde <strong>Fórmulas</strong> &gt; <strong>Búsqueda y referencia</strong> &gt; <strong>BUSCARV</strong>, mientras que en Google Sheets la encuentras en <strong>Insertar</strong> &gt; <strong>Función</strong> &gt; <strong>Búsqueda</strong> &gt; <strong>BUSCARV</strong>. Sin embargo, cuando la usas un par de veces, escribirla directamente es mucho más rápido:
           </p>
           <ol>
             <li>Colócate en la celda donde quieres el resultado (por ejemplo B2 de la hoja de pedidos).</li>
             <li>Escribe <code>=BUSCARV(</code> y haz clic en A2 para el primer argumento.</li>
             <li>Escribe <code>;</code>, ve a la hoja <strong>Catalogo</strong> y selecciona las columnas A a C (o toda la tabla).</li>
             <li>Escribe <code>; 3 ; FALSO)</code> y pulsa Enter.</li>
-            <li>Arrastra la fórmula hacia abajo para el resto de filas. O doble clic en el cuadrito de la esquina y se copia sola hasta el final.</li>
+            <li>Arrastra la fórmula hacia abajo para el resto de filas (o haz doble clic en la esquina inferior derecha de la celda para autorrellenar).</li>
           </ol>
 
           <h2>Por qué el FALSO no es opcional</h2>
           <p>
-            Aquí es donde la mayoría mete la pata, y es grave. Si omites el último argumento, Excel asume <code>VERDADERO</code> y hace una búsqueda aproximada. Eso significa que si no encuentra el valor exacto, te devuelve el más cercano por debajo. En un inventario es un desastre: te cobra 18 € por un producto de 180 € y nadie se entera hasta que el cliente reclama. Con <code>FALSO</code>, si no existe, devuelve <code>#N/A</code>. Es feo, sí, pero es honesto: te avisa en lugar de mentirte.
+            Aquí es donde la mayoría mete la pata, y es grave. Si omites el último argumento, la hoja de cálculo asume <code>VERDADERO</code> y hace una búsqueda aproximada. Eso significa que si no encuentra el valor exacto, te devuelve el más cercano por debajo. En un inventario es un desastre: te cobra 18 € por un producto de 180 € y nadie se entera hasta que el cliente reclama. Con <code>FALSO</code> (o <code>0</code>), si el dato no existe, devuelve <code>#N/A</code>. Es feo, sí, pero es honesto: te avisa en lugar de mentirte.
           </p>
 
           <h2>Los errores que te hacen perder la tarde</h2>
           <ul>
-            <li><strong>#N/A:</strong> el valor buscado no existe en la primera columna. Casi siempre es un espacio, una mayúscula o un cero a la izquierda. <code>REF-001</code> no es lo mismo que <code>REF-001 </code> (con espacio al final). Revisa con <code>RECORTAR</code> si hace falta.</li>
-            <li><strong>#REF!:</strong> el indicador de columna pide una columna que no existe. Si la matriz es A:C, el máximo es 3. Si pones 4, explota.</li>
-            <li><strong>Devuelve un valor incorrecto sin error:</strong> casi siempre es que olvidaste el <code>FALSO</code> y Excel está haciendo coincidencia aproximada. Es el error más peligroso porque no da error, solo te da el número equivocado.</li>
-            <li><strong>Funciona en la primera fila y falla al copiar:</strong> no bloqueaste la matriz. Pon <code>$</code>: <code>Catalogo!$A:$C</code>. Si no, el rango se desplaza al copiar hacia abajo y a partir de la fila 10 estás buscando en un sitio que no existe.</li>
+            <li><strong>#N/A:</strong> el valor buscado no existe en la primera columna. Casi siempre es un espacio, una mayúscula o un cero a la izquierda. <code>REF-001</code> no es lo mismo que <code>REF-001 </code> (con espacio al final). Limpia los espacios con <code>RECORTAR</code> en Excel o <code>ESPACIOS</code> / <code>TRIM</code> en Google Sheets.</li>
+            <li><strong>#REF!:</strong> el indicador de columna pide una columna que no existe dentro del rango seleccionado. Si la matriz cubre de A a C (3 columnas) y pones un 4, la fórmula falla.</li>
+            <li><strong>Devuelve un valor incorrecto sin error:</strong> casi siempre es que olvidaste poner <code>FALSO</code> o <code>0</code> al final y la hoja de cálculo está aplicando una coincidencia aproximada. Es el error más peligroso porque no da aviso visual.</li>
+            <li><strong>Funciona en la primera fila y falla al copiar:</strong> no bloqueaste el rango de la matriz. Añade signos de dólar: <code>Catalogo!$A:$C</code> o <code>Catalogo!$A$2:$C$500</code>. Si no lo haces, el rango se desplaza al arrastrar la fórmula hacia abajo y buscará en zonas vacías.</li>
           </ul>
 
           <h2>Cuándo BUSCARV no basta</h2>
           <p>
-            BUSCARV tiene una limitación que te va a tocar tarde o temprano: solo busca hacia la derecha. El valor buscado tiene que estar en la primera columna de la matriz, y el resultado en una columna a su derecha. Si necesitas buscar hacia la izquierda, tienes dos opciones: <code>INDICE + COINCIDIR</code> (el clásico) o, si usas una versión moderna de Excel, <code>XLOOKUP</code> (BUSCARX), que no tiene esa limitación y además no necesita el <code>FALSO</code>.
+            BUSCARV tiene una limitación clásica que te afectará antes o después: solo busca hacia la derecha. El valor buscado debe estar obligatoriamente en la primera columna de la matriz y el dato a extraer en una columna situada a su derecha.
+          </p>
+          <p>
+            Si necesitas buscar hacia la izquierda, la combinación tradicional es <code>INDICE + COINCIDIR</code> (funciona exactamente igual en Excel y Google Sheets). Si utilizas versiones modernas de cualquiera de las dos herramientas, la mejor alternativa es <code>BUSCARX</code> (o <code>XLOOKUP</code> en inglés), que busca en cualquier dirección y no requiere el argumento <code>FALSO</code> para coincidencias exactas.
           </p>
 
           <h2>Pro Tip</h2>
           <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 my-6 flex items-center gap-4">
             <div class="text-3xl font-mono font-bold text-emerald-700 dark:text-emerald-400">F4</div>
             <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-              Mientras editas la fórmula, coloca el cursor sobre la referencia de la matriz y pulsa <strong>F4</strong> para convertirla en absoluta (<code>$A$2:$C$500</code>). Púlsalo varias veces para alternar entre <code>$A$2</code>, <code>A$2</code>, <code>$A2</code> y <code>A2</code>. Así la fórmula no se rompe al copiarla hacia abajo.
+              Tanto en Excel como en la versión web de Google Sheets, mientras editas la fórmula puedes colocar el cursor sobre la referencia del rango y pulsar <strong>F4</strong> para fijarlo automáticamente con dólares (<code>$A$2:$C$500</code>). Púlsalo varias veces para alternar entre referencias absolutas y mixtas.
             </div>
           </div>
 
           <p>
-            Con BUSCARV dominada, cruzar listas deja de ser un problema. Si trabajas con Excel moderno, el siguiente paso natural es XLOOKUP, que verás en próximas guías.
+            Con BUSCARV dominada, cruzar listas deja de ser un problema. Si trabajas con hojas de cálculo actualizadas, el siguiente paso natural es dar el salto a BUSCARX / XLOOKUP.
           </p>
         </div>
 
