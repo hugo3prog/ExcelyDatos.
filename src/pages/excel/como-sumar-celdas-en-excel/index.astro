@@ -1,9 +1,8 @@
----
 import '@/styles/globals.css';
 import Layout from '../../../layouts/Layout.astro';
 
 const title = 'Cómo sumar celdas en Excel: Guía rápida para principiantes (y el truco del teclado)';
-const description = 'Aprende a sumar celdas en Excel usando la función SUMA, rangos continuos y discontinuos, y el atajo de teclado que te ahorra clics cada día.';
+const description = 'Aprende a sumar celdas en Excel y Google Sheets usando la función SUMA, rangos continuos y discontinuos, y los atajos de teclado que te ahorran clics cada día.';
 const publishDate = '2025-06-28';
 const updateDate = '2026-07-01';
 const readTime = '5 min';
@@ -74,7 +73,7 @@ const jsonLd = [
             {title}
           </h1>
           <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
-            Sumar celdas es lo primero que hace casi todo el mundo en Excel, y también lo primero en lo que muchos se complican sin necesidad. En esta guía vas a ver tres formas distintas de hacerlo —la manual, la correcta y la rápida— para que elijas la que mejor se adapte a tu situación.
+            Sumar celdas es lo primero que hace casi todo el mundo en Excel y Google Sheets, y también lo primero en lo que muchos se complican sin necesidad. En esta guía vas a ver tres formas distintas de hacerlo —la manual, la correcta y la rápida— para que elijas la que mejor se adapte a tu situación en ambas herramientas.
           </p>
         </header>
 
@@ -102,6 +101,9 @@ const jsonLd = [
             Cuando alguien empieza en Excel, lo más instintivo es hacer algo así: <code>=A1+A2+A3</code>. Técnicamente funciona, pero tiene un problema grande: si mañana añades una fila nueva entre A1 y A3, Excel no la incluirá en la suma automáticamente. Tendrás que editar la fórmula a mano.
           </p>
           <p>
+            En <strong>Google Sheets</strong> este método manual funciona de manera exactamente idéntica.
+          </p>
+          <p>
             Este método tiene sentido cuando sumas dos o tres celdas que no van a cambiar. Para cualquier otro caso, lo que necesitas es la función <code>SUMA</code>.
           </p>
 
@@ -111,10 +113,10 @@ const jsonLd = [
           </p>
           <pre><code>=SUMA(A1:A10)</code></pre>
           <p>
-            Eso suma todas las celdas desde A1 hasta A10, incluyendo cualquier valor que añadas en ese rango después. Si insertas una fila nueva en la mitad, Excel la incluye solo.
+            Eso suma todas las celdas desde A1 hasta A10, incluyendo cualquier valor que añadas en ese rango después. Si insertas una fila nueva en la mitad, Excel la incluye solo. En <strong>Google Sheets</strong> se utiliza exactamente la misma función <code>=SUMA(A1:A10)</code> (o <code>=SUM(A1:A10)</code> si utilizas la interfaz configurada en inglés).
           </p>
           <p>
-            El rango <code>A1:A10</code> significa "desde A1 hasta A10". Los dos puntos (<code>:</code>) son el separador de rango en Excel. Esto es básico pero conviene dejarlo claro.
+            El rango <code>A1:A10</code> significa "desde A1 hasta A10". Los dos puntos (<code>:</code>) son el separador de rango tanto en Excel como en Google Sheets. Esto es básico pero conviene dejarlo claro.
           </p>
 
           <h3>Sumar celdas que no son contiguas</h3>
@@ -127,7 +129,7 @@ const jsonLd = [
           </p>
           <pre><code>=SUMA(A1:A5;C1:C5;E10)</code></pre>
           <p>
-            La función acepta hasta 255 argumentos, así que tienes margen de sobra para combinarlos como necesites.
+            La función acepta hasta 255 argumentos en Excel y cantidades similares en Google Sheets, así que tienes margen de sobra para combinarlos como necesites. <em>(Nota: En Google Sheets, dependiendo de la configuración regional de tu cuenta, el separador de argumentos puede ser punto y coma <code>;</code> o coma <code>,</code>)</em>.
           </p>
 
           <h2>El truco del teclado que nadie te cuenta (pero todos usan)</h2>
@@ -137,11 +139,14 @@ const jsonLd = [
           <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 my-6 flex items-center gap-4">
             <div class="text-3xl font-mono font-bold text-emerald-700 dark:text-emerald-400">Alt + =</div>
             <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-              Excel detecta automáticamente el rango de números más cercano y escribe la función SUMA por ti. Solo tienes que pulsar Enter para confirmar.
+              En Excel detecta automáticamente el rango de números más cercano y escribe la función SUMA por ti. Solo tienes que pulsar Enter para confirmar.
             </div>
           </div>
           <p>
-            Si estás en Mac, el atajo equivalente es <code>Cmd + Shift + T</code>. También puedes encontrar el botón en la pestaña <strong>Inicio</strong>, dentro del grupo <strong>Edición</strong>, con el símbolo Σ (sigma).
+            Si estás en Mac usando Excel, el atajo equivalente es <code>Cmd + Shift + T</code>. También puedes encontrar el botón en la pestaña <strong>Inicio</strong>, dentro del grupo <strong>Edición</strong>, con el símbolo Σ (sigma).
+          </p>
+          <p>
+            En <strong>Google Sheets</strong>, el atajo equivalente de Autosuma es <code>Alt + Shift + =</code> en Windows/ChromeOS (o <code>Option + Shift + =</code> en Mac). De forma alternativa, en Google Sheets también puedes hacer clic en el botón de funciones con el símbolo <strong>Σ</strong> situado a la derecha de la barra de herramientas principal y seleccionar <strong>SUMA</strong>.
           </p>
 
           <h3>Truco extra: suma de una columna completa</h3>
@@ -152,6 +157,9 @@ const jsonLd = [
           <p>
             Esto suma todos los números de la columna A, sin importar cuántas filas tengas. Eso sí, asegúrate de no tener la celda de resultado dentro de esa misma columna, o crearás una referencia circular.
           </p>
+          <p>
+            En <strong>Google Sheets</strong> esta técnica no solo funciona igual de bien, sino que además admite rangos abiertos muy prácticos como <code>=SUMA(A2:A)</code>. Esto le indica a Google Sheets que sume desde la celda A2 hasta el final absoluto de la columna A, ignorando automáticamente el encabezado de la fila 1.
+          </p>
 
           <h2>Sumar con condiciones: SUMAR.SI</h2>
           <p>
@@ -159,19 +167,19 @@ const jsonLd = [
           </p>
           <pre><code>=SUMAR.SI(B2:B20;"Madrid";C2:C20)</code></pre>
           <p>
-            Esta fórmula suma los valores del rango C2:C20, pero solo para las filas donde B2:B20 contiene la palabra "Madrid". Muy útil para informes por zona, categoría o cualquier otro criterio.
+            Esta fórmula suma los valores del rango C2:C20, pero solo para las filas donde B2:B20 contiene la palabra "Madrid". Muy útil para informes por zona, categoría o cualquier otro criterio. En <strong>Google Sheets</strong> la función se escribe e interpreta del mismo modo (o <code>SUMIF</code> si está en inglés).
           </p>
 
-          <h2>Errores comunes al sumar en Excel</h2>
+          <h2>Errores comunes al sumar en Excel y Google Sheets</h2>
           <ul>
-            <li><strong>Celdas con formato de texto:</strong> si un número está guardado como texto, Excel lo ignora en la suma. Verás un pequeño triángulo verde en la esquina de la celda. Solución: selecciona esas celdas, haz clic en el aviso amarillo y elige "Convertir a número".</li>
-            <li><strong>Espacios invisibles:</strong> a veces los datos importados de otros sistemas traen espacios antes o después del número. Usa <code>VALOR(RECORTAR(A1))</code> para limpiarlos antes de sumar.</li>
+            <li><strong>Celdas con formato de texto:</strong> si un número está guardado como texto, Excel y Google Sheets lo ignoran en la suma. En Excel verás un pequeño triángulo verde en la esquina de la celda (solución: selecciona esas celdas, haz clic en el aviso amarillo y elige "Convertir a número"). En Google Sheets, los números alineados a la izquierda suelen indicar que están guardados como texto; puedes solucionarlo seleccionando las celdas y cambiando el formato a <em>Número > Número</em> en el menú superior.</li>
+            <li><strong>Espacios invisibles:</strong> a veces los datos importados de otros sistemas traen espacios antes o después del número. Usa <code>VALOR(RECORTAR(A1))</code> en Excel o <code>VALOR(ESPACIOS(A1))</code> / <code>VALUE(TRIM(A1))</code> en Google Sheets para limpiarlos antes de sumar.</li>
             <li><strong>Celdas combinadas:</strong> las celdas fusionadas pueden dar resultados inesperados en los rangos. Lo mejor es evitarlas en zonas de datos y usarlas solo para presentación.</li>
           </ul>
 
           <h2>Resumen rápido</h2>
           <p>
-            Para sumar en Excel tienes varias opciones según la situación:
+            Para sumar en Excel o Google Sheets tienes varias opciones según la situación:
           </p>
           <table>
             <thead>
@@ -191,7 +199,7 @@ const jsonLd = [
               </tr>
               <tr>
                 <td>Sumar rápido con teclado</td>
-                <td><code>Alt + =</code></td>
+                <td><code>Alt + =</code> (Excel) / <code>Alt + Shift + =</code> (Google Sheets)</td>
               </tr>
               <tr>
                 <td>Sumar con condición</td>
@@ -199,7 +207,7 @@ const jsonLd = [
               </tr>
               <tr>
                 <td>Sumar toda una columna</td>
-                <td><code>=SUMA(A:A)</code></td>
+                <td><code>=SUMA(A:A)</code> o <code>=SUMA(A2:A)</code> en Sheets</td>
               </tr>
             </tbody>
           </table>
