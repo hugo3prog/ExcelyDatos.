@@ -71,7 +71,7 @@ const jsonLd = [
 
         <!-- Cover image -->
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
-          <img src="/[CAPTURA-PANTALLA-DASHBOARD-POWER-BI-CON-MULTIPLES-GRAFICOS-INTERACTIVOS-COLORIDOS].png" alt="Dashboard de Power BI con gráficos de ventas y análisis" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+          <img src="/powerbi-dashboard.png" alt="Dashboard de Power BI con gráficos de ventas y análisis" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
 
         <div class="float-right ml-6 mb-6 hidden lg:block">
@@ -93,8 +93,8 @@ const jsonLd = [
             <li><strong>Operaciones:</strong> ¿Cuántos proyectos tenemos en proceso? ¿Cuáles están retrasados? Power BI te lo muestra en segundos.</li>
             <li><strong>Marketing:</strong> ¿Cuál de nuestras campañas está funcionando? ¿Dónde metemos el dinero? Los gráficos te lo dicen claro.</li>
             <li><strong>RH:</strong> Rotación de personal, ausencias, horas trabajadas. Todo centralizado y visible.</li>
+            <li>En realidad, Power BI es para cualquier departamento que tenga datos y quiera <strong>entenderlos sin dolor de cabeza</strong>.</li>
           </ul>
-          <p>En realidad, Power BI es para cualquier departamento que tenga datos y quiera <strong>entenderlos sin dolor de cabeza</strong>.</p>
 
           <h2>Cómo funciona (sin tecnicismos)</h2>
           <p>El proceso es simple y se resume en 3 pasos:</p>
@@ -132,7 +132,6 @@ const jsonLd = [
               <li><strong>❌ No compartir correctamente:</strong> Crear un dashboard en Desktop es fácil, pero tiene que estar en Service para que otros lo vean. No lo olvides.</li>
             </ul>
           </div>
-
         </div>
 
         <!-- Share buttons -->
@@ -185,20 +184,20 @@ const jsonLd = [
     </div>
     <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
   </div>
-</Layout>
 
-<script is:inline>
-  function shareArticle(platform) {
-    const url = 'https://excelydatos.com/powerbi/que-es-power-bi-para-que-sirve/';
-    const title = '¿Qué es Power BI y para qué sirve?';
-    
-    if (platform === 'twitter') {
-      window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
-    } else if (platform === 'linkedin') {
-      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
-    } else if (platform === 'copy') {
-      navigator.clipboard.writeText(url);
-      alert('Enlace copiado');
+  <script is:inline>
+    function shareArticle(platform) {
+      const url = 'https://excelydatos.com/powerbi/que-es-power-bi-para-que-sirve/';
+      const title = '¿Qué es Power BI y para qué sirve?';
+      
+      if (platform === 'twitter') {
+        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+      } else if (platform === 'linkedin') {
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+      } else if (platform === 'copy') {
+        navigator.clipboard.writeText(url);
+        alert('Enlace copiado');
+      }
     }
-  }
-</script>
+  </script>
+</Layout>
