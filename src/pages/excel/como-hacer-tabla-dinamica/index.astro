@@ -3,7 +3,7 @@ import '@/styles/globals.css';
 import Layout from '../../../layouts/Layout.astro';
 
 const title = 'Cómo hacer una tabla dinámica en Excel desde cero en menos de 5 minutos';
-const description = 'Crea tu primera tabla dinámica en Excel paso a paso: prepara los datos, inserta la tabla, arrastra campos y filtra resultados. Incluye el atajo de teclado definitivo.';
+const description = 'Crea tu primera tabla dinámica en Excel y Google Sheets paso a paso: prepara los datos, inserta la tabla, arrastra campos y filtra resultados. Incluye el atajo de teclado definitivo.';
 const publishDate = '2025-07-07';
 const updateDate = '2026-07-07';
 const readTime = '6 min';
@@ -74,7 +74,7 @@ const jsonLd = [
             {title}
           </h1>
           <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
-            Tu jefe te manda un Excel con 5.000 filas de ventas y quiere un resumen por región y producto para esta tarde. Podrías pelear con filtros, SUBTOTALES y un café, o puedes tirar una tabla dinámica y tenerlo listo en cinco minutos. Vamos al lío.
+            Tu jefe te manda una hoja de cálculo con 5.000 filas de ventas y quiere un resumen por región y producto para esta tarde. Podrías pelear con filtros, SUBTOTALES y un café, o puedes tirar una tabla dinámica en Excel o Google Sheets y tenerlo listo en cinco minutos. Vamos al lío.
           </p>
         </header>
 
@@ -104,14 +104,14 @@ const jsonLd = [
 
           <h2>Paso 1: prepara los datos</h2>
           <p>
-            Antes de insertar nada, los datos tienen que cumplir dos reglas:
+            Antes de insertar nada, los datos tienen que cumplir dos reglas básicas tanto en Excel como en Google Sheets:
           </p>
           <ul>
             <li><strong>Encabezados en la primera fila:</strong> cada columna necesita un título único. Sin encabezados no hay tabla dinámica.</li>
             <li><strong>Sin filas vacías ni totales intermedios:</strong> quita las filas en blanco y los subtotales que alguien haya puesto a mano. La tabla dinámica calcula los totales por ti.</li>
           </ul>
           <p>
-            Selecciona cualquier celda con datos. Lo más rápido es convertir el rango en tabla oficial: ve a <strong>Insertar</strong> &gt; <strong>Tabla</strong> (o pulsa <code>Ctrl + T</code>). Confirmar que "La tabla tiene encabezados" está marcado. A partir de aquí, si añades filas nuevas, la tabla dinámica las incluirá al refrescar.
+            Selecciona cualquier celda con datos. En Excel, lo más rápido es convertir el rango en tabla oficial: ve a <strong>Insertar</strong> &gt; <strong>Tabla</strong> (o pulsa <code>Ctrl + T</code>) y confirma que "La tabla tiene encabezados" está marcado. En Google Sheets el proceso es similar: la primera fila debe contener los títulos y puedes usar la opción de formato de tabla si lo prefieres. A partir de aquí, si añades filas nuevas, la tabla dinámica las incluirá al actualizar.
           </p>
 
           <img
@@ -126,16 +126,16 @@ const jsonLd = [
             Con cualquier celda de tu tabla seleccionada, ve a <strong>Insertar</strong> &gt; <strong>Tabla dinámica</strong>. Excel detecta automáticamente todo el rango. En el diálogo que aparece:
           </p>
           <ul>
-            <li><strong>Rango:</strong> confirma que abarca toda la tabla (si la convertiste en tabla, dirá algo como <code>Ventas[#Todos]</code>).</li>
+            <li><strong>Rango:</strong> confirma que abarca toda la tabla (si la convertiste en tabla en Excel, dirá algo como <code>Ventas[#Todos]</code>).</li>
             <li><strong>Ubicación:</strong> elige "Nueva hoja de cálculo" si es tu primera. Más adelante puedes colocarla en la misma hoja.</li>
           </ul>
           <p>
-            Pulsa <strong>Aceptar</strong> y se abrirás el panel de campos a la derecha.
+            Pulsa <strong>Aceptar</strong> y se abrirá el panel de campos a la derecha. Si estás trabajando en Google Sheets, la ruta es exactamente la misma: ve al menú superior y selecciona <strong>Insertar</strong> &gt; <strong>Tabla dinámica</strong>.
           </p>
 
           <h2>Paso 3: arrastra los campos</h2>
           <p>
-            El panel muestra cuatro áreas: <strong>Filtros</strong>, <strong>Columnas</strong>, <strong>Filas</strong> y <strong>Valores</strong>. Para responder a "qué producto vende más en cada región", haz así:
+            El panel muestra cuatro áreas: <strong>Filtros</strong>, <strong>Columnas</strong>, <strong>Filas</strong> y <strong>Valores</strong> (en Google Sheets verás un editor lateral muy similar con estas mismas cuatro secciones). Para responder a "qué producto vende más en cada región", haz así:
           </p>
           <ul>
             <li>Arrastra <code>Región</code> al área de <strong>Filas</strong>.</li>
@@ -143,7 +143,7 @@ const jsonLd = [
             <li>Arrastra <code>Importe</code> al área de <strong>Valores</strong>.</li>
           </ul>
           <p>
-            Excel construye la tabla al instante: cada fila es una región, cada columna un producto, y las celdas muestran la suma de importes. Si en lugar de la suma quieres ver el promedio, haz clic en la celda de valores del panel, elige <strong>Configuración del campo</strong> y cambia "Suma" por "Promedio" (o "Cuenta", "Máximo", etc.).
+            Tanto Excel como Google Sheets construyen la tabla al instante: cada fila es una región, cada columna un producto, y las celdas muestran la suma de importes. Si en lugar de la suma quieres ver el promedio, haz clic en la celda de valores del panel, elige <strong>Configuración del campo</strong> (o cambia el resumen de valores en Sheets) y sustituye "Suma" por "Promedio" (o "Cuenta", "Máximo", etc.).
           </p>
 
           <pre><code>Valores: Suma de Importe
@@ -159,29 +159,32 @@ Columnas: Producto</code></pre>
 
           <h2>Paso 4: filtra y refina</h2>
           <p>
-            Arrastra <code>Vendedor</code> al área de <strong>Filtros</strong> y aparecerá un selector encima de la tabla. Úsalo para ver solo las ventas de un vendedor concreto sin tocar el resto. También puedes hacer clic en la flecha de cualquier fila o columna para marcar/desmarcar elementos concretos.
+            Arrastra <code>Vendedor</code> al área de <strong>Filtros</strong> y aparecerá un selector encima de la tabla. Úsalo para ver solo las ventas de un vendedor concreto sin tocar el resto. También puedes hacer clic en la flecha de cualquier fila o columna para marcar o desmarcar elementos específicos.
           </p>
           <p>
-            Para ordenar de mayor a menor, haz clic en la flecha de la fila de totales y elige <strong>Ordenar de mayor a menor</strong>. Así ves de un vistazo qué región lidera.
+            Para ordenar de mayor a menor, haz clic en la flecha de la fila de totales (o en las opciones de ordenación del panel lateral en Google Sheets) y elige <strong>Ordenar de mayor a menor</strong>. Así ves de un vistazo qué región lidera.
           </p>
 
           <h2>Paso 5: refresca cuando cambien los datos</h2>
           <p>
-            Si añades ventas nuevas a la tabla original, la tabla dinámica no se actualiza sola. Haz clic derecho en cualquier celda de la tabla dinámica y elige <strong>Actualizar</strong> (o <strong>Actualizar todo</strong> en la pestaña <strong>Análisis de tabla dinámica</strong>).
+            Aquí hay una pequeña diferencia entre programas: en Google Sheets las tablas dinámicas se actualizan automáticamente en cuanto editas o añades datos en la fuente. En Excel, en cambio, si añades ventas nuevas a la tabla original, la tabla dinámica no se actualiza sola.
+          </p>
+          <p>
+            Para actualizarla en Excel, haz clic derecho en cualquier celda de la tabla dinámica y elige <strong>Actualizar</strong> (o <strong>Actualizar todo</strong> en la pestaña <strong>Análisis de tabla dinámica</strong>).
           </p>
 
           <h2>Errores comunes</h2>
           <ul>
             <li><strong>"No se puede agrupar esa selección":</strong> suele pasar cuando hay celdas vacías o texto mezclado con fechas en una columna de fechas. Limpia los datos y refresca.</li>
-            <li><strong>Los totales no cuadran:</strong> comprueba que no haya filas con importe en blanco; Excel las ignora y el total parece menor.</li>
-            <li><strong>La tabla no se actualiza:</strong> recuerda que hay que refrescar a mano. No es un error, es cómo funciona.</li>
+            <li><strong>Los totales no cuadran:</strong> comprueba que no haya filas con importe en blanco; las herramientas suelen ignorarlas o dar comportamientos inesperados.</li>
+            <li><strong>La tabla de Excel no se actualiza:</strong> recuerda que en Excel hay que refrescar a mano haciendo clic derecho o pulsando el atajo correspondiente.</li>
           </ul>
 
           <h2>Pro Tip</h2>
           <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 my-6 flex items-center gap-4">
             <div class="text-3xl font-mono font-bold text-emerald-700 dark:text-emerald-400">Alt + N + V</div>
             <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-              Con cualquier celda de tu tabla seleccionada, pulsa <strong>Alt</strong>, luego <strong>N</strong> y luego <strong>V</strong> para abrir directamente el diálogo de tabla dinámica sin tocar el ratón. Y si quieres refrescarla sin menús: <strong>Alt + F5</strong>.
+              En Excel, con cualquier celda de tu tabla seleccionada, pulsa <strong>Alt</strong>, luego <strong>N</strong> y luego <strong>V</strong> para abrir directamente el diálogo de tabla dinámica sin tocar el ratón. Y si quieres refrescarla sin menús: <strong>Alt + F5</strong> (en Google Sheets se sincroniza en tiempo real sin necesidad de atajos).
             </div>
           </div>
 
