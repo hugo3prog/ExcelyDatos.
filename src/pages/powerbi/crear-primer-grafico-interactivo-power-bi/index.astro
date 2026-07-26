@@ -1,0 +1,239 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo crear tu primer gráfico interactivo en Power BI en 3 pasos (sin morir en el intento)';
+const description = 'Guía paso a paso para crear tu primer gráfico interactivo en Power BI. Desde conectar datos hasta un dashboard funcional en menos de 30 minutos.';
+const publishDate = '2025-08-22';
+const updateDate = '2026-08-22';
+const readTime = '8 min';
+const url = 'https://excelydatos.com/powerbi/crear-primer-grafico-interactivo-power-bi/';
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": updateDate,
+    "author": {
+      "@type": "Organization",
+      "name": "ExcelyDatos",
+      "url": "https://excelydatos.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ExcelyDatos",
+      "url": "https://excelydatos.com"
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": url }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Power BI", "item": "https://excelydatos.com/powerbi/" },
+      { "@type": "ListItem", "position": 3, "name": "Crear primer gráfico", "item": url }
+    ]
+  }
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a>
+          <span>/</span>
+          <a href="/powerbi/" class="hover:text-amber-700 dark:hover:text-amber-400 transition-colors">Power BI</a>
+          <span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">Crear primer gráfico</span>
+        </nav>
+
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-powerbi">Power BI</span>
+            <span class="text-slate-400 text-sm">{readTime} de lectura</span>
+            <span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado agosto 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-amber-500 pl-4">
+            Ya descargaste Power BI Desktop y te encuentras con una pantalla en blanco sin tener ni idea de qué hacer. Esta guía te lleva de la mano desde cero hasta tener tu primer gráfico interactivo en 30 minutos. Sin tecnicismos. Solo clicks y resultados.
+          </p>
+        </header>
+
+        <!-- Cover image -->
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <!-- IMAGEN PENDIENTE: captura paso a paso de Power BI Desktop conectando Excel y creando un gráfico -->
+          <img src="/[CAPTURA-PANTALLA-PASO-A-PASO-POWER-BI-DESKTOP-CONECTANDO-EXCEL-Y-CREANDO-GRAFICO].png" alt="Tutorial paso a paso creando primer gráfico Power BI" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+
+        <div class="float-right ml-6 mb-6 hidden lg:block">
+          <div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div>
+        </div>
+
+        <div class="article-body">
+          <h2>Paso 0: Prepara tu Excel (lo más importante y nadie lo hace)</h2>
+          <p>Antes de tocar Power BI, necesitas un Excel con datos ordenados. Aquí va el truco: <strong>Power BI no entiende datos desordenados</strong>. Si tu Excel tiene títulos raros, números mezclados con texto, o filas vacías en medio, Power BI se confundirá.</p>
+          <p>Tu Excel ideal:</p>
+          <ul class="list-disc list-inside text-slate-700 dark:text-slate-300 space-y-2 mb-6">
+            <li>Primera fila: encabezados claros (Fecha, Ventas, Cliente, Producto, etc.).</li>
+            <li>Sin filas ni columnas vacías en el medio.</li>
+            <li>Fechas en formato de fecha (no texto).</li>
+            <li>Números sin símbolo de divisa ni puntos de mil (Power BI los interpreta mal).</li>
+          </ul>
+          <p>Si tienes un Excel que cumple esto, genial. Si no, abre Excel, limpia rápido y continúa. No es ciencia de cohetes.</p>
+
+          <h2>Paso 1: Descargar Power BI Desktop y conectar tu Excel</h2>
+          <p>Aquí va todo:</p>
+          <ol class="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-3 mb-6">
+            <li>Ve a <code>powerbi.microsoft.com/downloads</code> y descarga <strong>Power BI Desktop</strong> (es gratis, siempre).</li>
+            <li>Instala y abre. Verás una pantalla casi vacía.</li>
+            <li>En la cinta superior busca <strong>"Obtener datos"</strong> (está en la pestaña "Inicio"). Click.</li>
+            <li>Se abre una ventana. Elige <strong>"Excel"</strong> (arriba en la lista).</li>
+            <li>Busca tu archivo Excel y ábrelo. Power BI te mostrará las tablas que contiene.</li>
+            <li>Selecciona la tabla donde están tus datos (probablemente se llame "Hoja1" o algo así) y haz click en <strong>"Cargar"</strong>.</li>
+          </ol>
+          <p>Si todo va bien, Power BI ha cargado tus datos. Verás a la derecha un panel llamado <strong>"Campos"</strong> con todos tus encabezados. <strong>Bien, has llegado. Respira.</strong></p>
+
+          <div class="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-700 rounded-lg p-4 my-6">
+            <p class="text-sm text-amber-900 dark:text-amber-100"><strong>⚠️ Error común:</strong> Si el archivo Excel está abierto en tu ordenador, Power BI dice "no puedo cargar". Cierra el Excel primero. Power BI es así, un poco drama queen.</p>
+          </div>
+
+          <h2>Paso 2: Elegir el tipo de gráfico y arrastrar campos</h2>
+          <p>Aquí es donde pasa la magia y es absurdamente fácil. Mira a la izquierda: ves un panel con muchos iconos de gráficos (barras, líneas, pasteles, etc.). Eso son los tipos de gráfico disponibles.</p>
+          <p>Para tu primer gráfico, elige algo simple. Vamos a hacer un <strong>gráfico de barras que muestre ventas por mes</strong>. Así:</p>
+          <ol class="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-3 mb-6">
+            <li>En la zona de gráficos (panel izquierdo), busca el icono de <strong>gráfico de barras</strong> (es un rectángulo con barras horizontales). Haz click.</li>
+            <li>En el panel derecho (Campos), busca tu campo de <strong>fecha</strong> (ej: "Fecha", "Mes", "Año"). Arrástralo hasta la caja que dice <strong>"Eje"</strong> en el panel de visualización.</li>
+            <li>Ahora busca tu campo de <strong>números</strong> que quieres sumar (ej: "Ventas", "Ingresos"). Arrástralo hasta la caja que dice <strong>"Valor"</strong>.</li>
+          </ol>
+          <p>Si lo hiciste bien, verás un gráfico de barras bonito aparecer en el centro. <strong>Felicidades, acabas de crear tu primer gráfico en Power BI.</strong></p>
+
+          <!-- IMAGEN PENDIENTE: captura del panel Campos arrastrando fecha y ventas al gráfico -->
+          <img src="/[CAPTURA-PANTALLA-PANEL-CAMPOS-POWER-BI-CON-ARRASTRAR-FECHA-Y-VENTAS-AL-GRAFICO].png" alt="Captura de pantalla mostrando cómo arrastrar campos en Power BI" class="w-full rounded-lg my-6 border border-slate-200 dark:border-slate-700" loading="lazy" width="1000" height="500" />
+
+          <h2>Paso 3: Hacerlo interactivo (segmentadores y filtros)</h2>
+          <p>Un gráfico estático es bonito, pero un gráfico interactivo es donde brilla Power BI. Vamos a añadir un filtro para que cualquiera pueda elegir qué datos ver.</p>
+          <p>Imagina que quieres que tu jefe pueda elegir "mostrarme solo las ventas de Barcelona" o "mostrarme solo septiembre". Aquí va cómo:</p>
+          <ol class="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-3 mb-6">
+            <li>En la cinta superior, tienes un botón que dice <strong>"Segmentador"</strong> (en la pestaña "Insertar"). Haz click.</li>
+            <li>Se abre una nueva visualización en blanco. Ahora arrastra un campo que quieras que sea filtrable (ej: "Ciudad", "Producto", "Región") al área de la visualización.</li>
+            <li>Verás una lista con todos los valores de ese campo. Haz click en cualquiera para <strong>filtrar el gráfico anterior automáticamente</strong>.</li>
+          </ol>
+          <p>Ahí tienes. Tu primer dashboard interactivo. Los datos del gráfico cambian cuando tocas el segmentador. Así es cómo funciona Power BI: todo está conectado.</p>
+
+          <div class="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-5 my-6">
+            <h3 class="font-bold text-amber-900 dark:text-amber-100 mb-2">Pro Tip: atajos que van a salvarte la vida</h3>
+            <ul class="space-y-2 text-amber-900 dark:text-amber-100 text-sm">
+              <li><strong>Ctrl + S:</strong> Guarda tu trabajo CONSTANTEMENTE. Power BI puede cerrarse de golpe.</li>
+              <li><strong>Click derecho en un gráfico → Editar interacciones:</strong> Controla qué gráficos se afectan entre sí cuando filtras.</li>
+              <li><strong>Botón "Tema" en Inicio:</strong> Cambia el color de todo tu dashboard en un click. Impresiona a tu jefe sin hacer nada.</li>
+              <li><strong>Ctrl + Alt + A:</strong> Obtén un resumen rápido de los datos de cualquier visualización.</li>
+            </ul>
+          </div>
+
+          <h2>El paso bonus: compartir tu dashboard (que es para lo que sirve, ¿eh?)</h2>
+          <p>Cuando tengas tu dashboard bonito, querrás que otros lo vean. Aquí va el truco: <strong>Power BI Desktop es solo para crear. Para compartir necesitas Power BI Service (que es online y es gratis en versión básica)</strong>.</p>
+          <p>El proceso:</p>
+          <ol class="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-3 mb-6">
+            <li>En Power BI Desktop, arriba a la derecha ves un botón <strong>"Publicar"</strong>. Haz click.</li>
+            <li>Te pide que inicies sesión en tu cuenta Microsoft (es gratis, haz una si no tienes).</li>
+            <li>Elige una carpeta donde guardar el dashboard y publica.</li>
+            <li>Power BI te abre en el navegador tu dashboard online. Comparte el enlace con quien quieras.</li>
+          </ol>
+          <p>Punto. Ya tu equipo puede verlo, interactuar con él y descubrir cosas sin volver a pedirte informes por correo.</p>
+
+          <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 my-8">
+            <h3 class="font-bold text-[#1E293B] dark:text-slate-100 mb-4">Errores que vas a cometer (todos los cometemos)</h3>
+            <ul class="space-y-3 text-slate-700 dark:text-slate-300 text-sm">
+              <li><strong>❌ El gráfico muestra números sin agrupar:</strong> Esto pasa cuando arrastras una fecha al eje sin agruparla por mes/año. Solución: haz click en el campo en la visualización y cambia la agrupación a "Mes" o lo que necesites.</li>
+              <li><strong>❌ "No tengo permiso para publicar":</strong> Necesitas estar logeado en tu cuenta Microsoft con un email corporativo. Si tu empresa usa Microsoft 365, usa ese. Si no, una cuenta personal sirve.</li>
+              <li><strong>❌ Los datos no se actualizan:</strong> Cuando cambias el Excel, Power BI Desktop no lo detecta solo. Debes actualizar manualmente. Usa Ctrl + R o el botón "Actualizar" en Inicio.</li>
+              <li><strong>❌ El gráfico está horrible y deformado:</strong> Probablemente es porque el área es muy pequeña. Amplía la zona del gráfico o redimensiónalo. A veces Power BI se va un poco loco con el tamaño automático.</li>
+              <li><strong>❌ No sé qué tipo de gráfico usar:</strong> Regla de oro: números a lo largo del tiempo = línea. Comparar categorías = barras. Partes de un total = pastel. 95% de dashboards usan estos tres.</li>
+            </ul>
+          </div>
+
+          <h2>¿Qué sigue?</h2>
+          <p>Acabas de crear tu primer gráfico. Respecto a Power BI, el mundo es enorme: Power Query para limpiar datos, medidas complejas con DAX, dashboards multi-página, seguridad con roles... Pero ese primer gráfico es <strong>el fundamento</strong>. Una vez dominas arrastar y soltar, todo lo demás es practicar.</p>
+          <p>La próxima vez que tu jefe te pida "un reporte de X", sabes exactamente qué hacer: mete los datos en Excel, conéctalos a Power BI, crea los gráficos, y publica. En 1 hora tienes algo que con Excel tardabas un día.</p>
+        </div>
+
+        <!-- Share buttons -->
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg>
+              WhatsApp
+            </button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter / X
+            </button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </button>
+          </div>
+        </div>
+
+        <!-- Author block -->
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center flex-shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p>
+          </div>
+        </div>
+
+        <!-- Related -->
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/powerbi/que-es-power-bi-para-que-sirve/" class="block bg-white dark:bg-slate-800 border border-amber-100 dark:border-amber-900/50 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-powerbi mb-2 inline-block">Power BI</span>
+              <p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">¿Qué es Power BI y para qué sirve?</p>
+            </a>
+            <a href="/powerbi/como-conectar-excel-con-power-bi/" class="block bg-white dark:bg-slate-800 border border-amber-100 dark:border-amber-900/50 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-powerbi mb-2 inline-block">Power BI</span>
+              <p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo conectar Excel con Power BI paso a paso</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6">
+        <div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div>
+      </aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+
+<script is:inline>
+  function shareArticle(platform) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(document.title);
+    if (platform === 'whatsapp') {
+      window.open(`https://api.whatsapp.com/send?text=${title}%20${url}`, '_blank');
+    } else if (platform === 'twitter') {
+      window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank');
+    } else if (platform === 'linkedin') {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+    }
+  }
+</script>

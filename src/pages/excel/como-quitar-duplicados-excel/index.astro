@@ -1,0 +1,180 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo quitar duplicados en Excel con un solo clic (sin romper tu tabla)';
+const description = 'Elimina filas repetidas en Excel y Google Sheets de forma segura. Aprende a limpiar tus bases de datos sin desordenar la información y evita el error de borrar lo que no debes.';
+const publishDate = '2025-10-14';
+const updateDate = '2026-02-05';
+const readTime = '6 min';
+const url = 'https://excelydatos.com/excel/como-quitar-duplicados-excel/';
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "datePublished": publishDate,
+    "dateModified": updateDate,
+    "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" },
+    "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": url }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Excel & Sheets", "item": "https://excelydatos.com/excel/" },
+      { "@type": "ListItem", "position": 3, "name": "Quitar duplicados sin romper tablas", "item": url }
+    ]
+  }
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a>
+          <span>/</span>
+          <a href="/excel/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Excel & Sheets</a>
+          <span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">Quitar duplicados</span>
+        </nav>
+
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-excel">Excel</span>
+            <span class="text-slate-400 text-sm">{readTime} de lectura</span>
+            <span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado febrero 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
+            Lunes por la mañana. Te descargas un reporte del CRM o del ERP del trabajo, lo abres y hay cientos de clientes repetidos. Limpiar esto a mano borrando fila por fila no es una opción. Vamos a ver cómo eliminar duplicados en segundos de la forma correcta, para que los datos de tus filas no se mezclen.
+          </p>
+        </header>
+
+        <!-- Cover image -->
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <!-- IMAGEN PENDIENTE: botón Quitar duplicados destacado en la cinta de Excel -->
+          <img src="/[IMAGEN_PORTADA_EXCEL_BOTON_QUITAR_DUPLICADOS_DESTACADO_CON_FLECHA].png" alt="Botón de quitar duplicados en la cinta de opciones de Excel" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+
+        <div class="float-right ml-6 mb-6 hidden lg:block">
+          <div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div>
+        </div>
+
+        <div class="article-body">
+          <h2>El problema: desalinear los datos por hacerlo mal</h2>
+          <p>La tragedia clásica de oficina ocurre cuando seleccionas solo la columna A (por ejemplo, los DNI de los clientes) y le das a borrar duplicados. Excel elimina los DNIs repetidos y sube las celdas, pero los nombres y correos de las columnas de al lado se quedan donde estaban. Acabas de asignar el DNI de una persona al nombre de otra. Acabas de romper la base de datos.</p>
+          <p>Para hacer esto de forma segura, el secreto está en cómo seleccionamos la información antes de tocar ningún botón.</p>
+
+          <h2>La solución paso a paso en Excel</h2>
+          <p>Sigue estos tres pasos y tendrás tu tabla limpia en menos de lo que tardas en tomar un café:</p>
+          <ol class="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-3 mb-6">
+            <li>Haz clic en <strong>cualquier celda dentro de tu tabla</strong> (solo una). Pulsa <code>Ctrl + E</code> para seleccionar absolutamente todos los datos conectados.</li>
+            <li>Ve a la pestaña <strong>Datos</strong> en la cinta de opciones superior y busca el botón <strong>Quitar duplicados</strong> (es un icono pequeño con celdas azules y blancas tachadas con una X roja).</li>
+            <li>Aparecerá una ventana con todas las columnas de tu tabla. Deja marcadas <strong>solo las columnas que definen un duplicado</strong>. Por ejemplo, si un cliente está repetido si coincide su DNI, deja marcado solo "DNI". Dale a Aceptar.</li>
+          </ol>
+
+          <div class="my-8 rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700">
+            <!-- IMAGEN PENDIENTE: ventana emergente Quitar duplicados con checkboxes -->
+            <img src="/[CAPTURA_PANTALLA_VENTANA_EMERGENTE_QUITAR_DUPLICADOS_EXCEL_CON_CHECKBOXES].png" alt="Ventana de quitar duplicados en Excel seleccionando columnas" class="w-full h-auto object-contain" loading="lazy" />
+          </div>
+
+          <h2>Cómo se hace en Google Sheets</h2>
+          <p>Si tu equipo utiliza Google Sheets, el proceso es prácticamente idéntico, solo cambia la ruta del menú. Primero, selecciona toda tu tabla igual que antes (<code>Ctrl + A</code> si estás en el navegador). Luego, ve al menú superior <strong>Datos</strong>, baja hasta <strong>Limpieza de datos</strong> y haz clic en <strong>Quitar duplicados</strong>. Te saldrá una ventana muy similar a la de Microsoft donde puedes elegir qué columnas determinan la repetición. Marcas, aceptas y listo.</p>
+
+          <h2>Errores comunes que te pueden dar un buen susto</h2>
+          <p>Hay dos cosas típicas que suelen fallar en este proceso:</p>
+          <ul class="list-disc list-inside text-slate-700 dark:text-slate-300 space-y-2 mb-6">
+            <li><strong>Olvidarte de la cabecera:</strong> En la ventanita que aparece para elegir columnas, fíjate arriba a la derecha. Hay una casilla que dice <em>"Mis datos tienen encabezados"</em>. Si no la marcas, Excel tratará el título de tu columna como un dato más y podría borrarlo. En Google Sheets esta casilla se llama <em>"Los datos incluyen una fila de encabezado"</em>.</li>
+            <li><strong>Ignorar la advertencia de Excel:</strong> Si por error seleccionas solo una columna y le das al botón, Excel es majo y te lanza un aviso gigante: <em>"¿Desea ampliar la selección?"</em>. Dile siempre que sí. Si le dices "Continuar con la selección actual", romperás las filas.</li>
+          </ul>
+
+          <h2>El Pro Tip para ir sobre seguro</h2>
+          <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 my-6 flex items-center gap-4">
+            <div class="text-3xl font-mono font-bold text-emerald-700 dark:text-emerald-400">💡</div>
+            <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+              Si te da miedo borrar algo importante, antes de usar "Quitar duplicados", selecciona tu columna clave (ej. Email), ve a Inicio &gt; Formato condicional &gt; Reglas para resaltar celdas &gt; <strong>Valores duplicados</strong>. Las celdas repetidas se pintarán de rojo. Así ves a ojo cuánta basura hay antes de eliminarla definitivamente.
+            </div>
+          </div>
+        </div>
+
+        <!-- Share buttons -->
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg>
+              WhatsApp
+            </button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter / X
+            </button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </button>
+          </div>
+        </div>
+
+        <!-- Author block -->
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p>
+          </div>
+        </div>
+
+        <!-- Related -->
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/excel/como-hacer-tabla-dinamica/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-excel mb-2 inline-block">Excel</span>
+              <p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo hacer una tabla dinámica desde cero</p>
+            </a>
+            <a href="/excel/guia-buscarv-paso-a-paso/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <span class="badge-excel mb-2 inline-block">Excel</span>
+              <p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Guía básica de la función BUSCARV paso a paso</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6">
+        <div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div>
+      </aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+
+<script is:inline>
+  function shareArticle(platform) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(document.title);
+    if (platform === 'whatsapp') {
+      window.open(`https://api.whatsapp.com/send?text=${title}%20${url}`, '_blank');
+    } else if (platform === 'twitter') {
+      window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank');
+    } else if (platform === 'linkedin') {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+    }
+  }
+</script>
