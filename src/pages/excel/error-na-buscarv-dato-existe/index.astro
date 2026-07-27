@@ -63,8 +63,8 @@ const jsonLd = [
 
         <!-- Cover image -->
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
-          <!-- IMAGEN PENDIENTE: pantalla dividida con BUSCARV #N/A y el dato real visible -->
-          <img src="/[IMAGEN_PORTADA_EXCEL_PANTALLA_DIVIDIDA_BUSCARV_NA_Y_DATO_REAL_VISIBLE].png" alt="Celda mostrando error N/A en Excel al lado del dato que sí existe" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+          <!-- IMAGEN: pantalla dividida con BUSCARV #N/A y el dato real visible -->
+          <img src="/error na en buscarv.png" alt="Celda mostrando error N/A en Excel al lado del dato que sí existe" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
 
         <div class="float-right ml-6 mb-6 hidden lg:block">
@@ -79,11 +79,6 @@ const jsonLd = [
           <p>Si has exportado los datos de un ERP tipo SAP o Salesforce, casi seguro traen espacios al final. Para arreglarlo, no vayas borrando celda por celda. Crea una columna temporal al lado de tus datos y usa esta función:</p>
           <pre><code>=ESPACIOS(A2)</code></pre>
           <p>Arrastra hacia abajo, copia esa nueva columna limpia, y pégala sobre la original usando <strong>Pegado especial &gt; Valores</strong>. Ya puedes borrar la temporal. Tu BUSCARV revivirá instantáneamente. En Google Sheets, puedes hacer exactamente lo mismo usando la misma función <code>=ESPACIOS(A2)</code>, o <code>=TRIM(A2)</code> si lo tienes en inglés.</p>
-
-          <div class="my-8 rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700">
-            <!-- IMAGEN PENDIENTE: fórmula ESPACIOS limpiando texto en Excel -->
-            <img src="/[CAPTURA_PANTALLA_FORMULA_ESPACIOS_EXCEL_LIMPIANDO_TEXTO].png" alt="Uso de la función ESPACIOS en Excel para limpiar textos con espacios en blanco" class="w-full h-auto object-contain" loading="lazy" />
-          </div>
 
           <h2>Solución 2: El maldito formato Texto vs Número</h2>
           <p>A veces, el código que estás buscando es un número (ej: 450), pero en la tabla origen está guardado como texto. Lo notarás porque la celda tiene un pequeño triángulo verde en la esquina superior izquierda. Un número no es igual a un texto, por lo que da error.</p>
