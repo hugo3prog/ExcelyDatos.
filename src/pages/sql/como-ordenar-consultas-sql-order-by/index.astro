@@ -63,8 +63,8 @@ const jsonLd = [
 
         <!-- Cover image -->
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
-          <!-- IMAGEN PENDIENTE: editor SQL con consulta ORDER BY sobre tabla de ventas -->
-          <img src="/[CAPTURA-DE-PANTALLA-DE-UN-EDITOR-SQL-CON-UNA-CONSULTA-ORDER-BY-SOBRE-UNA-TABLA-DE-VENTAS].png" alt="Consulta SQL con ORDER BY ordenando una tabla de ventas por importe y fecha" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+          <!-- IMAGEN: editor SQL con consulta ORDER BY sobre tabla de ventas -->
+          <img src="/consulta order by.png" alt="Consulta SQL con ORDER BY ordenando una tabla de ventas por importe y fecha" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
 
         <div class="float-right ml-6 mb-6 hidden lg:block">
@@ -114,11 +114,6 @@ ORDER BY departamento ASC, importe DESC;</code></pre>
           <pre><code>SELECT id_factura, cliente, fecha_factura, importe_total
 FROM facturas
 ORDER BY fecha_factura DESC, importe_total DESC;</code></pre>
-
-          <div class="my-8 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
-            <!-- IMAGEN PENDIENTE: consulta ORDER BY con dos columnas sobre facturas -->
-            <img src="/[CAPTURA-DE-PANTALLA-DE-UNA-CONSULTA-SQL-CON-ORDER-BY-EN-DOS-COLUMNAS].png" alt="Consulta SQL con ORDER BY en dos columnas para ordenar facturas por fecha e importe" class="w-full h-auto object-contain" loading="lazy" width="1200" height="675" />
-          </div>
 
           <h2>Errores comunes que te pueden fastidiar el resultado</h2>
           <p>
