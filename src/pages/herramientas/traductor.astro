@@ -1,0 +1,210 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../layouts/Layout.astro';
+
+const title = 'Traductor de Fórmulas Excel ↔ Google Sheets — ExcelyDatos';
+const description = 'Convierte tus fórmulas entre Excel en español y Google Sheets en inglés con un clic. Traduce nombres de funciones y separadores de argumentos automáticamente. Gratis y online.';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Traductor de Fórmulas Excel ↔ Sheets",
+  "description": description,
+  "url": "https://excelydatos.com/herramientas/traductor/",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+};
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+
+    <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a>
+      <span>/</span>
+      <a href="/herramientas/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Herramientas</a>
+      <span>/</span>
+      <span class="text-slate-600 dark:text-slate-300 truncate">Traductor de Fórmulas</span>
+    </nav>
+
+    <header class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="badge-excel">Excel & Sheets</span>
+        <span class="text-slate-400 text-sm">Herramienta online</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-4">Traductor de Fórmulas Excel ↔ Google Sheets</h1>
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
+        Pega tu fórmula y conviértela entre Excel en español y Google Sheets en inglés con un clic. Se traducen los nombres de funciones más comunes y los separadores de argumentos (coma ↔ punto y coma).
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div>
+        <label for="input-formula" class="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+          Fórmula de origen
+        </label>
+        <textarea
+          id="input-formula"
+          rows="8"
+          class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3 text-sm font-mono text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow resize-y"
+          placeholder="=SUMA(A1:A10; B1:B10)"
+        ></textarea>
+      </div>
+      <div>
+        <label for="output-formula" class="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+          Resultado traducido
+        </label>
+        <textarea
+          id="output-formula"
+          rows="8"
+          readonly
+          class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 px-4 py-3 text-sm font-mono text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow resize-y"
+          placeholder="El resultado aparecerá aquí..."
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3 mb-8">
+      <button
+        id="btn-to-excel"
+        class="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Traducir a Excel (ES)
+      </button>
+      <button
+        id="btn-to-sheets"
+        class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Traducir a Sheets (EN)
+      </button>
+      <button
+        id="btn-copy"
+        class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-sm font-semibold rounded-lg transition-colors"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+        Copiar resultado
+      </button>
+      <button
+        id="btn-clear"
+        class="inline-flex items-center gap-2 px-5 py-2.5 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-sm font-semibold rounded-lg transition-colors"
+      >
+        Limpiar
+      </button>
+    </div>
+
+    <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+      <h2 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-3">¿Cómo funciona?</h2>
+      <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">1.</span> Pega tu fórmula en el recuadro izquierdo.</li>
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">2.</span> Pulsa "Traducir a Excel" si tu fórmula está en inglés, o "Traducir a Sheets" si está en español.</li>
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">3.</span> La herramienta cambia los separadores (, ↔ ;) y traduce los nombres de funciones más comunes.</li>
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">4.</span> Copia el resultado con el botón "Copiar resultado".</li>
+      </ul>
+      <p class="text-xs text-slate-400 mt-4">Nota: Esta herramienta cubre las funciones más frecuentes. Si tu fórmula usa funciones muy específicas, revisa el resultado manualmente.</p>
+    </div>
+
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+
+<script is:inline>
+  (function() {
+    var funcMap = {
+      toES: {
+        'SUM': 'SUMA', 'AVERAGE': 'PROMEDIO', 'VLOOKUP': 'BUSCARV', 'HLOOKUP': 'BUSCARH',
+        'IF': 'SI', 'AND': 'Y', 'OR': 'O', 'NOT': 'NO', 'COUNT': 'CONTAR',
+        'COUNTA': 'CONTARA', 'COUNTIF': 'CONTAR.SI', 'COUNTIFS': 'CONTAR.SI.CONJUNTO',
+        'SUMIF': 'SUMAR.SI', 'SUMIFS': 'SUMAR.SI.CONJUNTO', 'MAX': 'MAX',
+        'MIN': 'MIN', 'ROUND': 'REDONDEAR', 'ROUNDUP': 'REDONDEAR.MAS',
+        'ROUNDDOWN': 'REDONDEAR.MENOS', 'LEFT': 'IZQUIERDA', 'RIGHT': 'DERECHA',
+        'MID': 'EXTRAE', 'LEN': 'LARGO', 'TRIM': 'ESPACIOS', 'CONCATENATE': 'CONCATENAR',
+        'TODAY': 'HOY', 'NOW': 'AHORA', 'YEAR': 'AÑO', 'MONTH': 'MES', 'DAY': 'DIA',
+        'WEEKDAY': 'DIASEM', 'IFERROR': 'SI.ERROR', 'ISBLANK': 'ESBLANCO',
+        'ISERROR': 'ESERROR', 'ISNUMBER': 'ESNUMERO', 'ISTEXT': 'ESTEXTO',
+        'MATCH': 'COINCIDIR', 'INDEX': 'INDICE', 'OFFSET': 'DESREF',
+        'INDIRECT': 'INDIRECTO', 'CHOOSE': 'ELEGIR', 'COLUMN': 'COLUMNA',
+        'ROW': 'FILA', 'COLUMNS': 'COLUMNAS', 'ROWS': 'FILAS',
+        'SUBSTITUTE': 'SUSTITUIR', 'REPLACE': 'REEMPLAZAR', 'FIND': 'ENCONTRAR',
+        'SEARCH': 'HALLAR', 'UPPER': 'MAYUSC', 'LOWER': 'MINUSC', 'PROPER': 'NOMPROPIO',
+        'TEXT': 'TEXTO', 'VALUE': 'VALOR', 'DATE': 'FECHA', 'DATEDIF': 'SIFECHA',
+        'AVERAGEIF': 'PROMEDIO.SI', 'AVERAGEIFS': 'PROMEDIO.SI.CONJUNTO',
+        'MAXIFS': 'MAX.SI.CONJUNTO', 'MINIFS': 'MIN.SI.CONJUNTO',
+        'SUMPRODUCT': 'SUMAPRODUCTO', 'AGGREGATE': 'AGREGAR',
+        'TRANSPOSE': 'TRANSPONER', 'UNIQUE': 'UNICOS', 'FILTER': 'FILTRAR',
+        'SORT': 'ORDENAR', 'SEQUENCE': 'SECUENCIA', 'XLOOKUP': 'BUSCARX',
+        'IFS': 'SI.CONJUNTO', 'SWITCH': 'CAMBIAR', 'TEXTJOIN': 'UNIRCADENAS',
+        'CONCAT': 'CONCAT'
+      },
+      toEN: {}
+    };
+
+    for (var k in funcMap.toES) { funcMap.toEN[funcMap.toES[k]] = k; }
+
+    function translateFunctions(formula, map) {
+      var result = formula;
+      var keys = Object.keys(map).sort(function(a, b) { return b.length - a.length; });
+      keys.forEach(function(enName) {
+        var esName = map[enName];
+        var regex = new RegExp('\\b' + enName.replace(/\./g, '\\.') + '\\b', 'g');
+        result = result.replace(regex, esName);
+      });
+      return result;
+    }
+
+    function toExcel(formula) {
+      var result = formula.replace(/,/g, ';');
+      result = translateFunctions(result, funcMap.toES);
+      return result;
+    }
+
+    function toSheets(formula) {
+      var result = formula.replace(/;/g, ',');
+      result = translateFunctions(result, funcMap.toEN);
+      return result;
+    }
+
+    var input = document.getElementById('input-formula');
+    var output = document.getElementById('output-formula');
+    var btnExcel = document.getElementById('btn-to-excel');
+    var btnSheets = document.getElementById('btn-to-sheets');
+    var btnCopy = document.getElementById('btn-copy');
+    var btnClear = document.getElementById('btn-clear');
+
+    if (btnExcel) btnExcel.addEventListener('click', function() {
+      if (!input.value.trim()) { output.value = ''; return; }
+      output.value = toExcel(input.value.trim());
+    });
+
+    if (btnSheets) btnSheets.addEventListener('click', function() {
+      if (!input.value.trim()) { output.value = ''; return; }
+      output.value = toSheets(input.value.trim());
+    });
+
+    if (btnCopy) btnCopy.addEventListener('click', function() {
+      if (!output.value.trim()) return;
+      var copyIcon = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copiar resultado';
+      var checkIcon = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Copiado!';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(output.value).then(function() {
+          btnCopy.innerHTML = checkIcon;
+          setTimeout(function() { btnCopy.innerHTML = copyIcon; }, 2000);
+        });
+      } else {
+        output.select();
+        document.execCommand('copy');
+        btnCopy.innerHTML = checkIcon;
+        setTimeout(function() { btnCopy.innerHTML = copyIcon; }, 2000);
+      }
+    });
+
+    if (btnClear) btnClear.addEventListener('click', function() {
+      input.value = '';
+      output.value = '';
+      input.focus();
+    });
+  })();
+</script>

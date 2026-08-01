@@ -1,0 +1,127 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../layouts/Layout.astro';
+
+const title = 'Galería de Plantillas Excel Gratis — ExcelyDatos';
+const description = 'Descarga plantillas de Excel pre-diseñadas y listas para usar: Dashboard de Gastos, Control de Horario, CRM Básico. Totalmente gratuitas.';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Galería de Plantillas Excel",
+  "description": description,
+  "url": "https://excelydatos.com/herramientas/plantillas/"
+};
+
+const templates = [
+  {
+    title: 'Dashboard de Gastos',
+    description: 'Controla tus ingresos y gastos mensuales con un panel visual. Incluye gráficos automáticos, categorías preconfiguradas y resumen anual.',
+    tags: ['Finanzas', 'Personal', 'Fórmulas'],
+    previewBg: 'from-emerald-400 via-emerald-500 to-teal-600',
+    previewIcon: '<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
+    downloads: '2.840'
+  },
+  {
+    title: 'Control de Horario',
+    description: 'Registra entradas y salidas de tus empleados. Calcula horas trabajadas, horas extras y genera un resumen semanal automáticamente.',
+    tags: ['RRHH', 'Empresa', 'Fórmulas'],
+    previewBg: 'from-sky-400 via-sky-500 to-blue-600',
+    previewIcon: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    downloads: '1.560'
+  },
+  {
+    title: 'CRM Básico',
+    description: 'Gestiona tus clientes y oportunidades de venta. Controla el estado de cada trato, próximos contactos y un pipeline visual por etapas.',
+    tags: ['Ventas', 'Empresa', 'Sin macros'],
+    previewBg: 'from-amber-400 via-amber-500 to-orange-600',
+    previewIcon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    downloads: '3.120'
+  }
+];
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+
+    <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a>
+      <span>/</span>
+      <a href="/herramientas/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Herramientas</a>
+      <span>/</span>
+      <span class="text-slate-600 dark:text-slate-300 truncate">Plantillas</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="badge-excel">Excel</span>
+        <span class="text-slate-400 text-sm">Descargas gratuitas</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-4">Galería de Plantillas Excel</h1>
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4 max-w-2xl">
+        Plantillas pre-diseñadas y listas para usar. Sin macros, sin complicaciones. Descárgalas gratis y empieza a trabajar desde ya.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {templates.map((tpl) => (
+        <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+          <div class={`h-44 bg-gradient-to-br ${tpl.previewBg} flex items-center justify-center relative overflow-hidden`}>
+            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 20px 20px;"></div>
+            <svg class="w-16 h-16 text-white/90 relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={tpl.previewIcon} />
+          </div>
+
+          <div class="p-6 flex flex-col flex-grow">
+            <h2 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-2">{tpl.title}</h2>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 flex-grow">{tpl.description}</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              {tpl.tags.map((tag) => (
+                <span class="badge-excel text-xs">{tag}</span>
+              ))}
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                {tpl.downloads} descargas
+              </span>
+              <button
+                class="tpl-download inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
+                data-title={tpl.title}
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Descargar Gratis
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+      <h2 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-3">¿Cómo usar estas plantillas?</h2>
+      <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">1.</span> Haz clic en "Descargar Gratis" en la plantilla que quieras.</li>
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">2.</span> Abre el archivo en Excel o Google Sheets.</li>
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">3.</span> Sustituye los datos de ejemplo por los tuyos y empieza a trabajar.</li>
+      </ul>
+      <p class="text-xs text-slate-400 mt-4">Todas las plantillas funcionan sin macros y son compatibles con Excel 2016 o superior y Google Sheets.</p>
+    </div>
+
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+
+<script is:inline>
+  (function() {
+    var buttons = document.querySelectorAll('.tpl-download');
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var title = btn.getAttribute('data-title') || 'La plantilla';
+        alert('La descarga de "' + title + '" comenzará en breve.');
+      });
+    });
+  })();
+</script>

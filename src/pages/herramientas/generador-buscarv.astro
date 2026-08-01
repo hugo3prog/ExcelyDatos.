@@ -1,0 +1,164 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../layouts/Layout.astro';
+
+const title = 'Generador Visual de BUSCARV — Crea tu fórmula paso a paso — ExcelyDatos';
+const description = 'Genera una fórmula BUSCARV sin saber Excel. Responde 4 preguntas y la herramienta crea la fórmula perfecta lista para copiar y pegar. Gratis y online.';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Generador de BUSCARV",
+  "description": description,
+  "url": "https://excelydatos.com/herramientas/generador-buscarv/",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+};
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+
+    <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a>
+      <span>/</span>
+      <a href="/herramientas/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Herramientas</a>
+      <span>/</span>
+      <span class="text-slate-600 dark:text-slate-300 truncate">Generador de BUSCARV</span>
+    </nav>
+
+    <header class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="badge-excel">Excel & Sheets</span>
+        <span class="text-slate-400 text-sm">Herramienta online</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-4">Generador Visual de BUSCARV</h1>
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
+        ¿No sabes cómo escribir un BUSCARV? Responde estas 4 preguntas y la herramienta genera la fórmula por ti, lista para copiar y pegar en tu hoja de cálculo.
+      </p>
+    </header>
+
+    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 mb-8 shadow-sm">
+      <div class="space-y-6">
+        <div>
+          <label for="gv-valor" class="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold">1</span>
+            ¿Qué valor buscas?
+          </label>
+          <input id="gv-valor" type="text" value="A2" placeholder="Ej: A2"
+            class="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-4 py-2.5 text-sm text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow" />
+          <p class="text-xs text-slate-400 mt-1">La celda que contiene el dato que quieres buscar en la tabla.</p>
+        </div>
+
+        <div>
+          <label for="gv-rango" class="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold">2</span>
+            ¿En qué rango de celdas está la tabla?
+          </label>
+          <input id="gv-rango" type="text" value="Hoja2!A:D" placeholder="Ej: Hoja2!A:D"
+            class="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-4 py-2.5 text-sm text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow" />
+          <p class="text-xs text-slate-400 mt-1">El rango donde están tus datos, incluyendo la columna de búsqueda y la de resultado.</p>
+        </div>
+
+        <div>
+          <label for="gv-columna" class="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold">3</span>
+            ¿En qué número de columna está el dato a devolver?
+          </label>
+          <input id="gv-columna" type="number" min="1" value="3" placeholder="Ej: 3"
+            class="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-4 py-2.5 text-sm text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow" />
+          <p class="text-xs text-slate-400 mt-1">Cuenta las columnas de izquierda a derecha dentro del rango que elegiste.</p>
+        </div>
+
+        <div>
+          <label for="gv-coincidencia" class="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold">4</span>
+            ¿Coincidencia exacta o aproximada?
+          </label>
+          <select id="gv-coincidencia"
+            class="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-4 py-2.5 text-sm text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow">
+            <option value="FALSO">Exacta (FALSO) — el más usado</option>
+            <option value="VERDADERO">Aproximada (VERDADERO)</option>
+          </select>
+          <p class="text-xs text-slate-400 mt-1">Casi siempre necesitas coincidencia exacta. Usa aproximada solo para rangos numéricos ordenados.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-700 dark:border-slate-600">
+      <div class="bg-slate-800 dark:bg-slate-900 px-4 py-2.5 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-red-400"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+          <span class="w-3 h-3 rounded-full bg-green-400"></span>
+          <span class="text-xs text-slate-400 ml-2 font-mono">fórmula-generada.txt</span>
+        </div>
+        <button id="gv-copy" class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          Copiar
+        </button>
+      </div>
+      <div class="bg-slate-900 dark:bg-black px-5 py-6">
+        <code id="gv-output" class="text-base sm:text-lg font-mono text-emerald-400 break-all whitespace-pre-wrap">=BUSCARV(A2; Hoja2!A:D; 3; FALSO)</code>
+      </div>
+    </div>
+
+    <p class="text-center text-sm text-slate-400 mt-4">
+      La fórmula se actualiza automáticamente mientras escribes. Cópiala y pégala en tu hoja de cálculo.
+    </p>
+
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+
+<script is:inline>
+  (function() {
+    var valor = document.getElementById('gv-valor');
+    var rango = document.getElementById('gv-rango');
+    var columna = document.getElementById('gv-columna');
+    var coinc = document.getElementById('gv-coincidencia');
+    var output = document.getElementById('gv-output');
+    var copyBtn = document.getElementById('gv-copy');
+
+    function update() {
+      var v = (valor.value || '').trim();
+      var r = (rango.value || '').trim();
+      var c = (columna.value || '').trim();
+      var ci = coinc.value || 'FALSO';
+      if (!v) v = 'valor_buscado';
+      if (!r) r = 'rango';
+      if (!c) c = 'num_columna';
+      output.textContent = '=BUSCARV(' + v + '; ' + r + '; ' + c + '; ' + ci + ')';
+    }
+
+    [valor, rango, columna, coinc].forEach(function(el) {
+      if (el) el.addEventListener('input', update);
+      if (el) el.addEventListener('change', update);
+    });
+
+    if (copyBtn) copyBtn.addEventListener('click', function() {
+      var text = output.textContent;
+      var copyIcon = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copiar';
+      var checkIcon = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Copiado!';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          copyBtn.innerHTML = checkIcon;
+          setTimeout(function() { copyBtn.innerHTML = copyIcon; }, 2000);
+        });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        copyBtn.innerHTML = checkIcon;
+        setTimeout(function() { copyBtn.innerHTML = copyIcon; }, 2000);
+      }
+    });
+
+    update();
+  })();
+</script>
