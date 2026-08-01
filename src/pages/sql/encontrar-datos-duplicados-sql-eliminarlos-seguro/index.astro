@@ -36,8 +36,8 @@ const jsonLd = [
           </p>
         </header>
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
-          <!-- IMAGEN PENDIENTE: tabla SQL con registros duplicados de clientes antes de limpiar -->
-          <img src="/[CAPTURA-DE-PANTALLA-DE-TABLA-SQL-CON-REGISTROS-DUPLICADOS-DE-CLIENTES-ANTES-DE-LIMPIAR-DATOS].png" alt="Tabla SQL con registros duplicados de clientes antes de limpiar datos" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+          <!-- IMAGEN: tabla SQL con registros duplicados de clientes antes de limpiar -->
+          <img src="/sql duplicados.png" alt="Tabla SQL con registros duplicados de clientes antes de limpiar datos" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
         <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
         <div class="article-body">
@@ -74,10 +74,6 @@ WHERE email IN (
   HAVING COUNT(*) > 1
 );</code></pre>
           <p>Ahora tienes todos los registros implicados y puedes decidir cuál conservar.</p>
-          <div class="my-8 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
-            <!-- IMAGEN PENDIENTE: resultado SQL mostrando filas duplicadas con sus IDs -->
-            <img src="/[CAPTURA-DE-PANTALLA-DE-RESULTADO-SQL-MOSTRANDO-VARIAS-FILAS-DUPLICADAS-Y-SUS-ID].png" alt="Resultado SQL mostrando filas duplicadas con sus identificadores" class="w-full h-auto object-contain" loading="lazy" width="1200" height="675" />
-          </div>
           <h2>Eliminar duplicados de forma segura</h2>
           <p>Aquí viene la parte delicada. No existe un botón mágico que diga "borra duplicados correctos". Normalmente necesitas identificar cuál es la fila que quieres mantener.</p>
           <p>Una práctica habitual es conservar el registro con el identificador más antiguo y eliminar los demás.</p>
