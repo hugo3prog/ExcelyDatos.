@@ -36,8 +36,8 @@ const jsonLd = [
           </p>
         </header>
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
-          <!-- IMAGEN PENDIENTE: dos tablas SQL de clientes y pedidos antes de un JOIN -->
-          <img src="/[CAPTURA-DE-PANTALLA-DE-DOS-TABLAS-SQL-CLIENTES-Y-PEDIDOS-ANTES-DE-HACER-UN-JOIN].png" alt="Tablas SQL de clientes y pedidos preparadas para realizar un JOIN" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+          <!-- IMAGEN: dos tablas SQL de clientes y pedidos antes de un JOIN -->
+          <img src="/SQL JOIN.png" alt="Tablas SQL de clientes y pedidos preparadas para realizar un JOIN" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
         <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
         <div class="article-body">
@@ -87,10 +87,6 @@ INNER JOIN pedidos p
 ON c.id_cliente = p.id_cliente
 WHERE p.estado = 'Completado';</code></pre>
           <p>Primero unimos las tablas, después filtramos los pedidos completados. Esta estructura es la que normalmente verás en consultas profesionales.</p>
-          <div class="my-8 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
-            <!-- IMAGEN PENDIENTE: consulta INNER JOIN con resultados de clientes y pedidos unidos -->
-            <img src="/[CAPTURA-DE-PANTALLA-DE-CONSULTA-SQL-CON-INNER-JOIN-MOSTRANDO-RESULTADOS-DE-CLIENTES-Y-PEDIDOS-UNIDOS].png" alt="Consulta SQL con INNER JOIN uniendo clientes y pedidos" class="w-full h-auto object-contain" loading="lazy" width="1200" height="675" />
-          </div>
           <h2>Errores comunes usando JOINs</h2>
           <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
             <li>Hacer un JOIN sin indicar correctamente la relación con <code>ON</code>. Esto puede generar miles de filas duplicadas.</li>
