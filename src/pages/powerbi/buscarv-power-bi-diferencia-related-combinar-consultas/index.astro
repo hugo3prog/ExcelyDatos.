@@ -36,8 +36,8 @@ const jsonLd = [
           </p>
         </header>
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
-          <!-- IMAGEN PENDIENTE: vista de modelo de Power BI con relaciones entre tablas -->
-          <img src="/[CAPTURA-PANTALLA-POWER-BI-MOSTRANDO-RELACION-ENTRE-TABLAS-EN-VISTA-MODELO].png" alt="Vista de modelo de Power BI con relaciones entre tablas visibles" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+          <!-- IMAGEN: vista de modelo de Power BI con relaciones entre tablas -->
+          <img src="/Power BI con relaciones entre tablas visibles.png" alt="Vista de modelo de Power BI con relaciones entre tablas visibles" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
         <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
         <div class="article-body">
@@ -52,9 +52,6 @@ const jsonLd = [
 Nombre Cliente = RELATED('Clientes'[Nombre])</code></pre>
           <p>Eso es. Power BI ya sabe que Ventas y Clientes están relacionadas por <code>ClienteID</code>, así que usa esa relación automáticamente. RELATED es <strong>casi gratis en términos de rendimiento</strong>.</p>
           <div class="my-8 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
-            <!-- IMAGEN PENDIENTE: columna calculada con RELATED en Power BI -->
-            <img src="/[CAPTURA-SCREENSHOT-POWER-BI-COLUMNA-CALCULADA-RELATED-EN-TABLA].png" alt="Pantalla de Power BI mostrando una columna calculada con RELATED que trae el nombre del cliente" class="w-full h-auto object-contain" loading="lazy" width="900" height="300" />
-          </div>
           <h2>Opción 2: LOOKUPVALUE (para cuando RELATED no sirve)</h2>
           <p>A veces, la relación no existe o no va en la dirección que necesitas. Ahí entra <code>LOOKUPVALUE</code>.</p>
           <p>LOOKUPVALUE busca un valor en otra tabla, pero <strong>es más eficiente que el BUSCARV</strong> porque Power BI lo optimiza internamente.</p>
