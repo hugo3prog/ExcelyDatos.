@@ -18,13 +18,15 @@ const jsonLd = [
 <Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+    
     <div class="flex gap-10">
-      <div class="min-w-0 flex-1">
+      <div class="w-full lg:flex-1 min-w-0">
         <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
           <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a><span>/</span>
           <a href="/powerbi/" class="hover:text-amber-700 dark:hover:text-amber-400 transition-colors">Power BI</a><span>/</span>
           <span class="text-slate-600 dark:text-slate-300 truncate">BUSCARV en Power BI</span>
         </nav>
+        
         <header class="mb-8">
           <div class="flex items-center gap-2 mb-4">
             <span class="badge-powerbi">Power BI</span><span class="text-slate-400 text-sm">{readTime} de lectura</span><span class="text-slate-300">·</span>
@@ -35,23 +37,29 @@ const jsonLd = [
             Si comes del BUSCARV en Power BI, vas mal. La buena noticia: Power BI tiene tres formas mucho mejores de hacer lo que el BUSCARV hacía en Excel, y todas son más rápidas. Aquí te explicamos la diferencia entre RELATED, LOOKUPVALUE y Combinar Consultas en Power Query.
           </p>
         </header>
+        
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
           <!-- IMAGEN: vista de modelo de Power BI con relaciones entre tablas -->
-          <img src="/Power BI con relaciones entre tablas visibles.png" alt="Vista de modelo de Power BI con relaciones entre tablas visibles" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+          <img src="/Power BI con relaciones entre tablas visibles.png" alt="Vista de modelo de Power BI con relaciones entre tablas visibles" class="w-full h-72 md:h-80 object-cover object-top" loading="eager" width="1200" height="400" />
         </div>
-        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
-        <div class="article-body">
+        
+        <div class="float-right ml-6 mb-6 hidden lg:block">
+          <div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div>
+        </div>
+        
+        <div class="article-body w-full">
           <h2>Por qué el BUSCARV está muerto</h2>
           <p>El BUSCARV tiene un problema fundamental: hace una búsqueda en cada fila, cada vez. Si tienes 10 millones de filas, hace 10 millones de búsquedas. Eso es ineficiente.</p>
           <p>Power BI resolvió esto de una forma diferente. En lugar de hacer búsquedas fila a fila, Power BI <strong>relaciona las tablas una sola vez</strong>, en el modelo, y luego las usa como quiera.</p>
           <p>Es como la diferencia entre preguntar por cada persona por separado en la ciudad vs. tener un directorio telefónico preindexado que consultas en 0.001 segundos.</p>
+          
           <h2>Opción 1: RELATED (la más fácil y rápida)</h2>
           <p>Si ya tienes una relación definida entre tus tablas, <code>RELATED</code> es tu herramienta. Punto final.</p>
           <p>Escenario: tienes una tabla de Ventas con una columna <code>ClienteID</code>, y una tabla de Clientes con sus datos. Quieres traer el nombre del cliente a la tabla de Ventas.</p>
           <pre><code>-- Columna calculada en la tabla Ventas
 Nombre Cliente = RELATED('Clientes'[Nombre])</code></pre>
           <p>Eso es. Power BI ya sabe que Ventas y Clientes están relacionadas por <code>ClienteID</code>, así que usa esa relación automáticamente. RELATED es <strong>casi gratis en términos de rendimiento</strong>.</p>
-          <div class="my-8 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+          
           <h2>Opción 2: LOOKUPVALUE (para cuando RELATED no sirve)</h2>
           <p>A veces, la relación no existe o no va en la dirección que necesitas. Ahí entra <code>LOOKUPVALUE</code>.</p>
           <p>LOOKUPVALUE busca un valor en otra tabla, pero <strong>es más eficiente que el BUSCARV</strong> porque Power BI lo optimiza internamente.</p>
@@ -63,9 +71,11 @@ LOOKUPVALUE(
 )</code></pre>
           <p>Esto busca la Categoría en la tabla Productos donde el ProductoID coincida. Es básicamente BUSCARV, pero optimizado.</p>
           <p>¿Por qué no usar siempre LOOKUPVALUE? Porque RELATED es 10 veces más rápido. Solo usa LOOKUPVALUE cuando realmente no tengas otra opción.</p>
+          
           <h2>Opción 3: Combinar Consultas (la más poderosa)</h2>
           <p>Aquí está donde sucede la verdadera magia. En lugar de hacer búsquedas en el modelo, puedes <strong>combinar las tablas en Power Query</strong> antes de que lleguen a Power BI.</p>
           <p>Esto es lo que hace un analista profesional. No es "traer datos a Power BI y luego hacer RELATED". Es "combinar los datos correctamente ANTES de meterlos a Power BI".</p>
+          
           <h3>¿Cómo se hace Combinar Consultas?</h3>
           <p><strong>Paso 1:</strong> Abre Power Query (en Power BI: <code>Transformar datos</code>).</p>
           <p><strong>Paso 2:</strong> Selecciona tu tabla principal (Ventas). En la cinta, haz clic en <code>Combinar</code> → <code>Combinar consultas (Merge)</code>.</p>
@@ -81,6 +91,7 @@ Tabla de Ventas = Table.NestedJoin(
   "Clientes"
 )</code></pre>
           <p>Después de esto, ya tienes todo en una sola tabla. No necesitas RELATED ni LOOKUPVALUE. Los datos ya están ahí.</p>
+          
           <h2>Comparativa rápida: cuándo usar cada una</h2>
           <table class="w-full border-collapse my-6 text-sm">
             <thead>
@@ -97,6 +108,7 @@ Tabla de Ventas = Table.NestedJoin(
               <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>BUSCARV (Excel)</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">🐢 (lento)</td><td class="border border-slate-300 dark:border-slate-600 p-3">No uses esto en Power BI. Nunca. En serio.</td></tr>
             </tbody>
           </table>
+          
           <h2>Errores comunes (y cómo no caer en ellos)</h2>
           <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
             <li><strong>RELATED sin relación:</strong> Si no tienes relación definida entre tablas y usas RELATED, te dará error. Primero: define la relación. O usa LOOKUPVALUE.</li>
@@ -105,11 +117,13 @@ Tabla de Ventas = Table.NestedJoin(
             <li><strong>Olvidar expandir las columnas:</strong> Después de combinar, Power Query te deja las nuevas columnas como "tablas anidadas". Tienes que hacer clic en el icono de flecha para expandirlas. Si no lo haces, los datos no aparecerán.</li>
             <li><strong>LOOKUPVALUE con múltiples coincidencias:</strong> Si hay varias filas que cumplen el criterio, LOOKUPVALUE da error. Solución: usa Combinar Consultas en Power Query en su lugar.</li>
           </ul>
+          
           <h2>Ejemplo del mundo real</h2>
           <p>Tu empresa tiene dos archivos Excel:</p>
           <p>1. <strong>Ventas:</strong> VentaID, ClienteID, Producto, Cantidad, Fecha</p>
           <p>2. <strong>Clientes:</strong> ClienteID, Nombre, Región, Segmento</p>
           <p><strong>Objetivo:</strong> Ver ventas por cliente con su región y segmento.</p>
+          
           <h3>Solución profesional:</h3>
           <p><strong>Paso 1:</strong> Carga ambas tablas en Power BI.</p>
           <p><strong>Paso 2:</strong> Define una relación entre Ventas[ClienteID] y Clientes[ClienteID].</p>
@@ -117,22 +131,25 @@ Tabla de Ventas = Table.NestedJoin(
           <p><strong>Paso 4:</strong> Si luego necesitas traer Segmento a una medida, simplemente:</p>
           <pre><code>Segmento Cliente = RELATED('Clientes'[Segmento])</code></pre>
           <p>Eso es todo. Tres pasos, una relación, una columna calculada. Cero BUSCARV.</p>
+          
           <h2>Pro Tip: Visualiza tu modelo</h2>
           <div class="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-5 my-6">
             <h3 class="font-bold text-amber-900 dark:text-amber-100 mb-2">Vista de Modelo</h3>
             <p class="text-amber-900 dark:text-amber-100 text-sm leading-relaxed">En Power BI, ve a la pestaña <strong>Modelo</strong> (en la izquierda). Ahí verás un diagrama de todas tus tablas y sus relaciones. Si no ves líneas conectando las tablas, no tienes relaciones bien definidas. Arréglalo antes de intentar RELATED. Atajo: <code>Ctrl + Alt + M</code> abre la vista de modelo directamente.</p>
           </div>
+          
           <h2>Conclusión</h2>
           <p>Si vienes de Excel:</p>
           <ul class="list-decimal pl-6 space-y-2 text-slate-700 dark:text-slate-300">
             <li>Olvídate del BUSCARV.</li>
-            <li>Aprende a definir relaciones en el modelo (toma 2 minutos).</li>
+            <li>Aprende a define relaciones en el modelo (toma 2 minutos).</li>
             <li>Usa RELATED para todo lo que puedas.</li>
             <li>Si no tienes relación, usa LOOKUPVALUE (pero raramente).</li>
             <li>Si necesitas combinar muchas tablas, usa Power Query (es donde viven los profesionales).</li>
           </ul>
           <p>Power BI está diseñado para trabajar con relaciones, no búsquedas. Cuando lo entiendas, todo es más rápido y más simple.</p>
         </div>
+        
         <div class="mt-10 mb-6">
           <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
           <div class="flex flex-wrap gap-3">
@@ -141,10 +158,12 @@ Tabla de Ventas = Table.NestedJoin(
             <button onclick="shareArticle('linkedin')" class="share-btn-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</button>
           </div>
         </div>
+        
         <div class="author-block mt-6 mb-4">
           <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center flex-shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div><p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p></div>
         </div>
+        
         <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
           <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -153,8 +172,10 @@ Tabla de Ventas = Table.NestedJoin(
           </div>
         </div>
       </div>
+      
       <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
     </div>
+    
     <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
   </div>
 </Layout>
