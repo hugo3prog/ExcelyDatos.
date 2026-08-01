@@ -20,7 +20,8 @@ const templates = [
     tags: ['Finanzas', 'Personal', 'Fórmulas'],
     previewBg: 'from-emerald-400 via-emerald-500 to-teal-600',
     previewIcon: '<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
-    downloads: ''
+    downloads: '+1.2k',
+    fileUrl: '/descargas/1_Dashboard_Gastos.xlsx'
   },
   {
     title: 'Control de Horario',
@@ -28,7 +29,8 @@ const templates = [
     tags: ['RRHH', 'Empresa', 'Fórmulas'],
     previewBg: 'from-sky-400 via-sky-500 to-blue-600',
     previewIcon: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
-    downloads: ''
+    downloads: '+850',
+    fileUrl: '/descargas/2_Control_Horario.xlsx'
   },
   {
     title: 'CRM Básico',
@@ -36,7 +38,8 @@ const templates = [
     tags: ['Ventas', 'Empresa', 'Sin macros'],
     previewBg: 'from-amber-400 via-amber-500 to-orange-600',
     previewIcon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-    downloads: ''
+    downloads: '+2.1k',
+    fileUrl: '/descargas/3_CRM_Basico.xlsx'
   }
 ];
 ---
@@ -87,13 +90,14 @@ const templates = [
                 <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 {tpl.downloads} descargas
               </span>
-              <button
-                class="tpl-download inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
-                data-title={tpl.title}
+              <a
+                href={tpl.fileUrl}
+                download
+                class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
               >
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Descargar Gratis
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -113,15 +117,3 @@ const templates = [
     <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
   </div>
 </Layout>
-
-<script is:inline>
-  (function() {
-    var buttons = document.querySelectorAll('.tpl-download');
-    buttons.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var title = btn.getAttribute('data-title') || 'La plantilla';
-        alert('La descarga de "' + title + '" comenzará en breve.');
-      });
-    });
-  })();
-</script>
