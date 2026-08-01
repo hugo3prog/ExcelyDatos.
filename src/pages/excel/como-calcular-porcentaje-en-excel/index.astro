@@ -1,0 +1,105 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo calcular porcentajes en Excel y Sheets sin liarte con la regla de tres';
+const description = 'Aprende a calcular porcentajes, márgenes de beneficio y descuentos en Excel y Google Sheets con fórmulas sencillas y ejemplos reales de oficina.';
+const publishDate = '2025-08-15';
+const updateDate = '2026-02-10';
+const readTime = '6 min';
+const url = 'https://excelydatos.com/excel/como-calcular-porcentaje-en-excel/';
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "Excel & Sheets", "item": "https://excelydatos.com/excel/" }, { "@type": "ListItem", "position": 3, "name": "Cómo calcular porcentajes", "item": url } ] }
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a><span>/</span>
+          <a href="/excel/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Excel & Sheets</a><span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">Calcular porcentajes</span>
+        </nav>
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-excel">Excel</span><span class="text-slate-400 text-sm">{readTime} de lectura</span><span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado febrero 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
+            Lunes por la mañana, tu jefe te pide que saques el margen de beneficio de las ventas del último trimestre y te quedas en blanco intentando recordar cómo era la regla de tres. Tranquilidad. Trabajar con porcentajes es mucho más fácil de lo que parece si entiendes cómo piensan las hojas de cálculo. Vamos al lío.
+          </p>
+        </header>
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <!-- IMAGEN PENDIENTE: tabla de Excel con ventas, porcentajes y margen -->
+          <img src="/[CAPTURA_PANTALLA_EXCEL_TABLA_VENTAS_PORCENTAJES_MARGEN].png" alt="Tabla de Excel mostrando el cálculo de márgenes de beneficio con formato de porcentaje" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="article-body">
+          <h2>El problema: multiplicar por 100 es cosa del pasado</h2>
+          <p>El error número uno que comete casi todo el mundo en la oficina es intentar hacer la fórmula matemática clásica: dividir un número entre otro y luego multiplicarlo por 100. Funciona, sí, pero te deja un número pelado sin el símbolo de porcentaje (%), y luego al intentar ponerle el formato, Excel se vuelve loco y te muestra un 1500% en lugar de un 15%.</p>
+          <p>Para Excel y Google Sheets, el 100% es igual a 1. El 50% es 0,5. Sabiendo esto, te ahorras el 90% de los problemas.</p>
+          <h2>Caso 1: Averiguar qué porcentaje representa una cantidad</h2>
+          <p>Imagina que tienes un objetivo de ventas de 50.000€ (celda B1) y has vendido 12.500€ (celda B2). ¿Qué porcentaje del objetivo has cumplido?</p>
+          <ol class="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-3 mb-6">
+            <li>Te colocas en la celda donde quieres el resultado.</li>
+            <li>Escribes la fórmula de división simple: <code>=B2/B1</code> (Parte dividida entre el Total).</li>
+            <li>Le das a Enter. Verás que te da 0,25.</li>
+            <li>Ahora, con esa celda seleccionada, vete al menú de Inicio y haz clic en el botón con el símbolo <strong>%</strong>. ¡Magia! Ese 0,25 se convierte en 25%.</li>
+          </ol>
+          <p>Si usas Google Sheets, el proceso es idéntico. Haces la división y en la barra de herramientas superior tienes el mismo botoncito de <strong>%</strong> (Formatear como porcentaje).</p>
+          <div class="my-8 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+            <!-- IMAGEN PENDIENTE: botón de porcentaje en la cinta de Excel -->
+            <img src="/[CAPTURA_MENU_INICIO_EXCEL_BOTON_PORCENTAJE_RESALTADO].png" alt="Botón de estilo porcentual en la cinta de opciones de Excel y Google Sheets" class="w-full h-auto object-contain" loading="lazy" width="800" height="400" />
+          </div>
+          <h2>Caso 2: Aplicar un descuento o un recargo (IVA)</h2>
+          <p>Otro clásico. Tienes un presupuesto de 1.000€ (celda A2) y necesitas sumarle el 21% de IVA.</p>
+          <p>En lugar de calcular el IVA por un lado y luego sumarlo, puedes hacerlo todo de golpe:</p>
+          <pre><code>=A2 * 1,21</code></pre>
+          <p>Al multiplicar por 1, estás cogiendo la cantidad original entera. Al añadirle el ,21, le estás sumando ese 21%. Sin volverte loco con columnas extra.</p>
+          <p>¿Y si quieres hacer un 15% de descuento? Pues en lugar de sumar, restas a 1. (1 - 0,15 = 0,85). Así que multiplicas el precio por 0,85:</p>
+          <pre><code>=A2 * 0,85</code></pre>
+          <h2>Errores comunes que te van a fastidiar el día</h2>
+          <ul class="list-disc list-inside text-slate-700 dark:text-slate-300 space-y-2 mb-6">
+            <li><strong>Sumar porcentajes directamente:</strong> Escribir <code>=A1+20%</code> no siempre hace lo que crees. Es mejor usar la multiplicación (<code>=A1*1,20</code>) para evitar sustos de cálculo.</li>
+            <li><strong>Poner el formato tarde:</strong> Si escribes un "15" en una celda y luego le das al botón de %, Excel lo convierte en 1500%. Si te pasa esto, borra, pon el formato % primero en la celda vacía y luego escribe el 15.</li>
+          </ul>
+          <h2>El Pro Tip para ahorrar tiempo</h2>
+          <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 my-6 flex items-center gap-4">
+            <div class="text-3xl font-mono font-bold text-emerald-700 dark:text-emerald-400">Ctrl + Shift + %</div>
+            <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Tanto en Excel como en Google Sheets, selecciona cualquier celda con decimales (ej. 0,45) y pulsa este atajo de teclado. Te aplicará el formato de porcentaje al instante sin tener que buscar el botón con el ratón.</div>
+          </div>
+        </div>
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg> WhatsApp</button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Twitter / X</button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</button>
+          </div>
+        </div>
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p></div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/excel/como-sumar-celdas-en-excel/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-excel mb-2 inline-block">Excel</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo sumar celdas en Excel: guía rápida</p></a>
+            <a href="/excel/como-hacer-tabla-dinamica/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-excel mb-2 inline-block">Excel</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo hacer una tabla dinámica desde cero</p></a>
+          </div>
+        </div>
+      </div>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+<script is:inline>
+  function shareArticle(p){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title);if(p==='whatsapp')window.open('https://api.whatsapp.com/send?text='+t+'%20'+u);else if(p==='twitter')window.open('https://twitter.com/intent/tweet?url='+u+'&text='+t);else if(p==='linkedin')window.open('https://www.linkedin.com/sharing/share-offsite/?url='+u);}
+</script>

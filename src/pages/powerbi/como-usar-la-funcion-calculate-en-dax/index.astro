@@ -1,0 +1,175 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo usar la función CALCULATE en DAX: Guía práctica del corazón de Power BI';
+const description = 'Domina CALCULATE en DAX, la función más poderosa de Power BI. Aprende paso a paso con ejemplos reales de oficina: filtros simples, contexto de fila, columnas y más.';
+const publishDate = '2025-12-03';
+const updateDate = '2026-12-03';
+const readTime = '8 min';
+const url = 'https://excelydatos.com/powerbi/como-usar-la-funcion-calculate-en-dax/';
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "Power BI", "item": "https://excelydatos.com/powerbi/" }, { "@type": "ListItem", "position": 3, "name": "CALCULATE en DAX", "item": url } ] }
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a><span>/</span>
+          <a href="/powerbi/" class="hover:text-amber-700 dark:hover:text-amber-400 transition-colors">Power BI</a><span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">CALCULATE en DAX</span>
+        </nav>
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-powerbi">Power BI</span><span class="text-slate-400 text-sm">{readTime} de lectura</span><span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado diciembre 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-amber-500 pl-4">
+            CALCULATE es el corazón de DAX. Es la función que necesitas entender si quieres dejar de hacer trucos raros en Power BI y empezar a construir informes que realmente funcionen. Sin volverte loco con la teoría, aquí te lo explicamos de verdad.
+          </p>
+        </header>
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <!-- IMAGEN PENDIENTE: editor DAX de Power BI con función CALCULATE destacada -->
+          <img src="/[CAPTURA-PANTALLA-EDITOR-DAX-POWER-BI-CON-FUNCION-CALCULATE-DESTACADA].png" alt="Editor DAX de Power BI mostrando función CALCULATE con parámetros" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="article-body">
+          <h2>¿Qué hace CALCULATE (sin tecnicismos)?</h2>
+          <p>CALCULATE es una función que calcula algo, pero <strong>cambiando los filtros que hay activos</strong>. Punto. Eso es todo.</p>
+          <p>Normalmente, en un visual, los filtros vienen del contexto (lo que ha seleccionado el usuario en los segmentadores). CALCULATE te permite ignorar esos filtros, añadir otros nuevos, o mezclar los dos. Es como decirle a Power BI: "Calcula esto, pero pretende que estos filtros existen".</p>
+          <pre><code>CALCULATE(expresión, filtro1, filtro2, filtro3...)</code></pre>
+          <p>Eso es literalmente la estructura. Ahora veamos cómo funciona.</p>
+          <h2>Paso 1: El caso más simple (CALCULATE con un filtro)</h2>
+          <p>Imagina que tienes una tabla de ventas. Tu jefe te pide: <strong>"Quiero ver las ventas totales, pero también quiero ver cuáles fueron solo en el año 2023"</strong>.</p>
+          <p>Sin CALCULATE, tendrías que crear otro gráfico o un segmentador. Con CALCULATE, haces esto:</p>
+          <pre><code>Ventas 2023 = 
+CALCULATE(
+  SUM([Ventas]),
+  YEAR('Calendario'[Fecha]) = 2023
+)</code></pre>
+          <p>Lo que dice: "Suma todas las ventas, pero solo cuenta las que ocurrieron en 2023, sin importar qué año haya seleccionado el usuario".</p>
+          <p>Si el usuario ha filtrado por 2024 en el segmentador, esta medida ignorará ese filtro y te dará 2023. Así es de potente.</p>
+          <h2>Paso 2: Múltiples filtros (el caso realista)</h2>
+          <p>Ahora tu jefe quiere más: <strong>"Ventas en 2023, solo para la región de Madrid, y solo productos de la categoría 'Electrónica'"</strong>.</p>
+          <p>Tranquilo. Añades más filtros:</p>
+          <pre><code>Ventas Electrónica Madrid 2023 = 
+CALCULATE(
+  SUM([Ventas]),
+  YEAR('Calendario'[Fecha]) = 2023,
+  'Geografía'[Región] = "Madrid",
+  'Productos'[Categoría] = "Electrónica"
+)</code></pre>
+          <p>CALCULATE solo suma ventas que cumplan <strong>todos</strong> estos filtros a la vez. Si una venta no es de 2023, no entra. Si no es de Madrid, no entra. Si no es Electrónica, no entra.</p>
+          <div class="my-8 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+            <!-- IMAGEN PENDIENTE: tabla en Power BI mostrando ventas filtradas por año, región y categoría -->
+            <img src="/[CAPTURA-SCREENSHOT-TABLA-DINAMICA-CON-FILTROS-VISUALES-POWER-BI].png" alt="Tabla en Power BI mostrando ventas filtradas por año, región y categoría" class="w-full h-auto object-contain" loading="lazy" width="900" height="300" />
+          </div>
+          <h2>Paso 3: Comparaciones (el truco del porcentaje)</h2>
+          <p>Aquí es donde CALCULATE empieza a brillar de verdad. Quieres ver: <strong>"¿Cuál es el porcentaje de ventas de 2023 respecto al total de todos los años?"</strong></p>
+          <p>Necesitas dos medidas:</p>
+          <pre><code>Ventas 2023 = 
+CALCULATE(
+  SUM([Ventas]),
+  YEAR('Calendario'[Fecha]) = 2023
+)
+
+Porcentaje 2023 = 
+DIVIDE(
+  [Ventas 2023],
+  CALCULATE(SUM([Ventas]), ALL('Calendario'))
+) * 100</code></pre>
+          <p>¿Ves qué pasó? La segunda medida usa CALCULATE para calcular el total sin aplicar ningún filtro de año. <code>ALL('Calendario')</code> es como decirle: "olvídate de cualquier filtro de fecha, suma TODO".</p>
+          <p>Resultado: tienes en una medida las ventas de 2023, y en otra el porcentaje que representan del total. Sin hacer nada en Excel.</p>
+          <h2>Paso 4: El contexto de fila (cuando CALCULATE se vuelve mágico)</h2>
+          <p>Hasta ahora hemos usado CALCULATE en medidas. Pero también funciona en columnas calculadas. La diferencia es que en una columna, CALCULATE conoce qué fila está evaluando.</p>
+          <p>Imagina una tabla con clientes y sus compras. Quieres una columna que diga: <strong>"¿Cuántas veces ha comprado este cliente en el último año?"</strong></p>
+          <pre><code>Compras Último Año = 
+CALCULATE(
+  COUNTA([ID Compra]),
+  'Calendario'[Año] = MAX('Calendario'[Año]),
+  RELATED('Clientes'[ID]) = [ClienteID]
+)</code></pre>
+          <p>Power BI evaluará esta columna para <strong>cada fila</strong>. Cuando esté en la fila del cliente A, filtrará solo sus compras. Cuando esté en la del cliente B, filtrará solo las suyas. Así de inteligente.</p>
+          <h2>Errores comunes que te rompen todo</h2>
+          <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li><strong>Olvidar los filtros:</strong> Si escribes <code>CALCULATE(SUM([Ventas]))</code> sin filtros, estás sumando todo, siempre. CALCULATE sin filtros es inútil (casi).</li>
+            <li><strong>Mezclar el contexto:</strong> Si usas una columna calculada con CALCULATE en un visual que ya está filtrado, ambos filtros se aplican. Esto a veces es lo que quieres, a veces no. Ten cuidado.</li>
+            <li><strong>Usar texto en lugar de columnas:</strong> Si escribes <code>CALCULATE(..., 'Tabla'[Columna] = "Texto")</code> y esa columna tiene espacios raros o mayúsculas, no va a funcionar. Usa variables o asegúrate de que el texto es idéntico.</li>
+            <li><strong>Olvidar que ALL elimina TODOS los filtros:</strong> <code>ALL('Tabla')</code> limpia absolutamente todos los filtros de esa tabla. A veces solo quieres limpiar uno. Usa <code>REMOVEFILTERS('Tabla'[Columna])</code> en su lugar.</li>
+            <li><strong>CALCULATE anidado innecesariamente:</strong> Si tienes <code>CALCULATE(CALCULATE(...), ...)</code>, algo está mal. Simplifica con variables.</li>
+          </ul>
+          <h2>Un ejemplo que realmente funciona en la oficina</h2>
+          <p>Tú estás en tu escritorio y tu jefe dice: "Necesito ver las ventas por producto, pero quiero una columna extra que diga qué porcentaje es cada producto sobre el total de la tienda, y otra que diga qué porcentaje es sobre el total de su región".</p>
+          <p>Sin CALCULATE, esto sería pesadilla. Con CALCULATE:</p>
+          <pre><code>Ventas = SUM([Ventas])
+
+% del Total Tienda = 
+DIVIDE(
+  [Ventas],
+  CALCULATE([Ventas], ALL('Productos'), ALL('Geografía'))
+)
+
+% de su Región = 
+DIVIDE(
+  [Ventas],
+  CALCULATE([Ventas], ALL('Productos'))
+)</code></pre>
+          <p>Primera medida: suma vendido por producto (normal).</p>
+          <p>Segunda medida: suma vendido por producto, pero divide por el total de TODOS los productos de TODAS las regiones.</p>
+          <p>Tercera medida: suma vendido por producto, pero divide por el total de todos los productos <strong>de esa región</strong>.</p>
+          <p>Tres medidas. Tres líneas de lógica. En Excel esto tomaría 30 minutos y terminarías con referencias raras. En DAX, son 30 segundos.</p>
+          <h2>Pro Tip: Usa SELECTEDVALUE para valores dinámicos</h2>
+          <div class="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-5 my-6">
+            <h3 class="font-bold text-amber-900 dark:text-amber-100 mb-2">SELECTEDVALUE</h3>
+            <p class="text-amber-900 dark:text-amber-100 text-sm leading-relaxed">En lugar de escribir valores fijos como <code>YEAR(...) = 2023</code>, usa <code>SELECTEDVALUE</code>: <pre><code>Ventas Año Seleccionado = 
+CALCULATE(
+  SUM([Ventas]),
+  YEAR('Calendario'[Fecha]) = SELECTEDVALUE('Parámetros'[Año])
+)</code></pre> Así, si el usuario cambia el año en un segmentador, la medida se adapta automáticamente. Es como darle control total a tu usuario sin que tenga que tocar DAX.</p>
+          </div>
+          <h2>Resumiendo</h2>
+          <p>CALCULATE es simplemente una función que permite recalcular algo bajo diferentes filtros. Eso es.</p>
+          <ol class="list-decimal pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+            <li>Aprende la sintaxis básica: <code>CALCULATE(expresión, filtro1, filtro2)</code></li>
+            <li>Entiende que cada filtro es una condición que <strong>debe cumplirse</strong> (AND lógico).</li>
+            <li>Usa <code>ALL()</code> cuando quieras ignorar filtros completamente.</li>
+            <li>Combina CALCULATE con DIVIDE para porcentajes y proporciones.</li>
+            <li>Practica con datos reales: año, región, categoría. Eso es todo.</li>
+          </ol>
+          <p>Una vez que CALCULATE te entre en la cabeza, no vuelves atrás. Es como aprender el condicional en un idioma: de repente puedes decir cosas 10 veces más complejas y más precisas.</p>
+        </div>
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg> WhatsApp</button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Twitter / X</button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</button>
+          </div>
+        </div>
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center flex-shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p></div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/powerbi/por-que-tu-informe-power-bi-va-lento-trucos-dax/" class="block bg-white dark:bg-slate-800 border border-amber-100 dark:border-amber-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-powerbi mb-2 inline-block">Power BI</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Por qué tu informe de Power BI va lento</p></a>
+            <a href="/powerbi/buscarv-power-bi-diferencia-related-combinar-consultas/" class="block bg-white dark:bg-slate-800 border border-amber-100 dark:border-amber-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-powerbi mb-2 inline-block">Power BI</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">BUSCARV en Power BI: RELATED vs Combinar Consultas</p></a>
+          </div>
+        </div>
+      </div>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+<script is:inline>
+  function shareArticle(p){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title);if(p==='whatsapp')window.open('https://api.whatsapp.com/send?text='+t+'%20'+u);else if(p==='twitter')window.open('https://twitter.com/intent/tweet?url='+u+'&text='+t);else if(p==='linkedin')window.open('https://www.linkedin.com/sharing/share-offsite/?url='+u);}
+</script>

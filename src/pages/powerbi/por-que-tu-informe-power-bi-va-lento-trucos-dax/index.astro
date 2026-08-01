@@ -1,0 +1,143 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Por qué tu informe de Power BI va lento: 3 trucos con DAX para acelerar el rendimiento';
+const description = 'Descubre por qué tu informe de Power BI es lento y aprende 3 trucos prácticos con DAX para optimizar el rendimiento: medidas en lugar de columnas calculadas, uso correcto de CALCULATE y variables. Paso a paso.';
+const publishDate = '2025-11-15';
+const updateDate = '2026-11-15';
+const readTime = '7 min';
+const url = 'https://excelydatos.com/powerbi/por-que-tu-informe-power-bi-va-lento-trucos-dax/';
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "Power BI", "item": "https://excelydatos.com/powerbi/" }, { "@type": "ListItem", "position": 3, "name": "Por qué tu informe va lento", "item": url } ] }
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a><span>/</span>
+          <a href="/powerbi/" class="hover:text-amber-700 dark:hover:text-amber-400 transition-colors">Power BI</a><span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">Por qué tu informe va lento</span>
+        </nav>
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-powerbi">Power BI</span><span class="text-slate-400 text-sm">{readTime} de lectura</span><span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado noviembre 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-amber-500 pl-4">
+            Has estado esperando 10 segundos a que un gráfico se actualice en tu informe de Power BI y eso es tiempo que no tienes. El problema: probablemente tu DAX está gritando pidiendo auxilio. Aquí te cuento por qué pasa y, lo más importante, 3 trucos que van a cambiar el juego.
+          </p>
+        </header>
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <!-- IMAGEN PENDIENTE: Power BI con indicador de rendimiento lento en barra de estado -->
+          <img src="/[CAPTURA-PANTALLA-POWER-BI-CON-INDICADOR-DE-RENDIMIENTO-LENTO-EN-BARRA-DE-ESTADO].png" alt="Power BI mostrando informe lento con tiempos de carga elevados" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="article-body">
+          <h2>El problema: Tu DAX está haciendo demasiado trabajo</h2>
+          <p>Power BI es rápido cuando le das instrucciones claras. Pero cuando le pides que calcule algo cada vez que alguien hace scroll en un gráfico, o cuando usas una columna calculada donde debería haber una medida, entonces sí: ahí empiezan los 10 segundos de espera.</p>
+          <p>La mayoría de las veces, el cuello de botella no es Power BI. Es tu DAX. Punto.</p>
+          <h2>Truco 1: Columnas calculadas vs. Medidas (y por qué importa)</h2>
+          <p>Aquí está la diferencia: una columna calculada se ejecuta <strong>para cada fila de la tabla</strong> cuando carga el modelo. Una medida se calcula <strong>solo cuando la necesitas</strong> en un visual.</p>
+          <p>Si tienes 10 millones de filas y escribes una columna calculada para multiplicar dos campos, Power BI va a sudar. Porque está haciendo esa multiplicación 10 millones de veces. Ahora.</p>
+          <p>La solución: convierte esa columna en una medida DAX. Así solo se calcula cuando un visual la pide.</p>
+          <pre><code>-- ❌ LENTO: Columna calculada
+Total Ventas = [Cantidad] * [Precio]
+
+-- ✅ RÁPIDO: Medida
+Total Ventas = SUMPRODUCT([Cantidad], [Precio])</code></pre>
+          <p>La diferencia en un proyecto mediano es de segundos. En uno grande, es de minutos.</p>
+          <h2>Truco 2: CALCULATE sin filtros extra = rendimiento exponencial</h2>
+          <p>CALCULATE es tu mejor amigo, pero también tu peor enemigo si la usas mal. Cada filtro que añades a CALCULATE hace que Power BI tenga que evaluar combinaciones más complejas.</p>
+          <p>Evita esto:</p>
+          <pre><code>-- ❌ LENTO: Muchos filtros en CALCULATE
+Ventas Este Año = CALCULATE(
+  SUM([Ventas]),
+  FILTER(ALL('Calendario'), YEAR([Fecha]) = YEAR(TODAY())),
+  FILTER(ALL('Productos'), [Categoría] = "Electrónica"),
+  FILTER(ALL('Clientes'), [País] = "España")
+)</code></pre>
+          <p>En su lugar, usa variables o deja que el contexto del visual haga el trabajo:</p>
+          <pre><code>-- ✅ RÁPIDO: Variables y contexto limpio
+Ventas Este Año = 
+VAR YearActual = YEAR(TODAY())
+RETURN
+  CALCULATE(
+    SUM([Ventas]),
+    YEAR('Calendario'[Fecha]) = YearActual
+  )</code></pre>
+          <p>Las variables cachean los valores, así que Power BI no tiene que recalcularlos mil veces.</p>
+          <div class="my-8 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+            <!-- IMAGEN PENDIENTE: fórmula DAX con variables en editor de Power BI -->
+            <img src="/[CAPTURA-PANTALLA-FORMULA-DAX-CON-VARIABLES-EN-EDITOR-POWER-BI].png" alt="Editor DAX mostrando fórmula con variables bien estructurada" class="w-full h-auto object-contain" loading="lazy" width="900" height="300" />
+          </div>
+          <h2>Truco 3: Dimensionalidad implícita vs. explícita</h2>
+          <p>Power BI tiene relaciones entre tablas. Úsalas. No hagas LOOKUPS manuales o FILTERs complejos cuando una relación puede hacer el trabajo por ti.</p>
+          <p>Si tienes una tabla de Ventas relacionada con una tabla de Clientes, y necesitas el país de cada cliente, no hagas esto:</p>
+          <pre><code>-- ❌ LENTO: Búsqueda manual
+País Cliente = 
+LOOKUPVALUE(
+  'Clientes'[País],
+  'Clientes'[ID], [ClienteID]
+)</code></pre>
+          <p>Usa RELATED, que ya entiende la relación:</p>
+          <pre><code>-- ✅ RÁPIDO: RELATED respeta relaciones
+País Cliente = RELATED('Clientes'[País])</code></pre>
+          <p>RELATED es literalmente 10 veces más rápido porque Power BI ya tiene la relación cacheada.</p>
+          <h2>Errores comunes que ralentizan todo</h2>
+          <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li><strong>No usar Table/List de variables:</strong> Si necesitas iterar un conjunto de datos muchas veces, guárdalo en una variable tabla. Power BI lo mantendrá en memoria.</li>
+            <li><strong>CALCULATE anidado:</strong> Si tienes CALCULATE dentro de CALCULATE dentro de CALCULATE, algo está yendo mal. Simplifica con variables.</li>
+            <li><strong>Filtros en el modelo vs. en las medidas:</strong> Los filtros en el modelo se aplican a todas las medidas. Si solo necesitas uno en una medida específica, úsalo ahí.</li>
+            <li><strong>Evitar ALL() sin razón:</strong> ALL() elimina todos los filtros. Si solo necesitas eliminar uno, usa REMOVEFILTERS().</li>
+          </ul>
+          <h2>Pro Tip: Usa DAX Studio para encontrar el culpable</h2>
+          <div class="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-5 my-6">
+            <h3 class="font-bold text-amber-900 dark:text-amber-100 mb-2">DAX Studio</h3>
+            <p class="text-amber-900 dark:text-amber-100 text-sm leading-relaxed">Descarga <strong>DAX Studio</strong> (gratis). Conecta a tu archivo y ejecuta cada medida con el Studio abierto. Verás exactamente cuánto tarda cada una y cuál es la que te está matando el rendimiento. Atajo: <code>Alt + X</code> en Power BI abre el servidor local. DAX Studio se conecta automáticamente.</p>
+          </div>
+          <h2>Resumiendo (porque la vida es corta)</h2>
+          <p>Si tu informe va lento:</p>
+          <ol class="list-decimal pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+            <li>Convierte columnas calculadas innecesarias en medidas.</li>
+            <li>Limpia tus CALCULATE: usa variables y menos filtros.</li>
+            <li>Usa RELATED en lugar de LOOKUPVALUE cuando haya relaciones.</li>
+            <li>Abre DAX Studio y ve qué medida está tardando más de lo que debería.</li>
+          </ol>
+          <p>Aplicando estos tres trucos, la mayoría de informes pasan de "algo lento" a "rápido" en cuestión de minutos. El tiempo que ahorres consultando datos en lugar de esperarlos lo vas a agradecer.</p>
+        </div>
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg> WhatsApp</button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Twitter / X</button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</button>
+          </div>
+        </div>
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center flex-shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p></div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/powerbi/como-usar-la-funcion-calculate-en-dax/" class="block bg-white dark:bg-slate-800 border border-amber-100 dark:border-amber-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-powerbi mb-2 inline-block">Power BI</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo usar la función CALCULATE en DAX</p></a>
+            <a href="/powerbi/buscarv-power-bi-diferencia-related-combinar-consultas/" class="block bg-white dark:bg-slate-800 border border-amber-100 dark:border-amber-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-powerbi mb-2 inline-block">Power BI</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">BUSCARV en Power BI: RELATED vs Combinar Consultas</p></a>
+          </div>
+        </div>
+      </div>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+<script is:inline>
+  function shareArticle(p){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title);if(p==='whatsapp')window.open('https://api.whatsapp.com/send?text='+t+'%20'+u);else if(p==='twitter')window.open('https://twitter.com/intent/tweet?url='+u+'&text='+t);else if(p==='linkedin')window.open('https://www.linkedin.com/sharing/share-offsite/?url='+u);}
+</script>

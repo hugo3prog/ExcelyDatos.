@@ -1,0 +1,150 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo encontrar datos duplicados en SQL y eliminarlos de forma segura';
+const description = 'Aprende a detectar registros duplicados en SQL usando GROUP BY y HAVING, y cómo eliminarlos sin borrar datos importantes de una tabla completa.';
+const publishDate = '2025-10-02';
+const updateDate = '2026-07-24';
+const readTime = '9 min';
+const url = 'https://excelydatos.com/sql/encontrar-datos-duplicados-sql-eliminarlos-seguro/';
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "SQL", "item": "https://excelydatos.com/sql/" }, { "@type": "ListItem", "position": 3, "name": "Eliminar duplicados en SQL", "item": url } ] }
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a><span>/</span>
+          <a href="/sql/" class="hover:text-sky-700 dark:hover:text-sky-400 transition-colors">SQL</a><span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">Duplicados en SQL</span>
+        </nav>
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-sql">SQL</span><span class="text-slate-400 text-sm">{readTime} de lectura</span><span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado julio 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-sky-500 pl-4">
+            Alguien ha importado datos dos veces, un cliente aparece repetido o una carga automática ha creado registros duplicados en la base de datos. Antes de borrar nada hay que saber exactamente qué está pasando. En SQL detectar duplicados es sencillo, pero eliminarlos sin cuidado puede convertirse en un desastre.
+          </p>
+        </header>
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <!-- IMAGEN PENDIENTE: tabla SQL con registros duplicados de clientes antes de limpiar -->
+          <img src="/[CAPTURA-DE-PANTALLA-DE-TABLA-SQL-CON-REGISTROS-DUPLICADOS-DE-CLIENTES-ANTES-DE-LIMPIAR-DATOS].png" alt="Tabla SQL con registros duplicados de clientes antes de limpiar datos" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="article-body">
+          <h2>Primero: no borres nada hasta saber qué está duplicado</h2>
+          <p>Uno de los errores más habituales trabajando con bases de datos es ver filas repetidas y lanzar un <code>DELETE</code> directamente. Parece lógico, pero es justo lo que no debes hacer.</p>
+          <p>Un registro duplicado puede ser un error, pero también puede ser información válida. Por ejemplo, un cliente puede tener varios pedidos, varias facturas o varios contactos asociados.</p>
+          <p>Antes de tocar la tabla necesitas responder a una pregunta: ¿qué significa exactamente que algo esté duplicado?</p>
+          <h2>Encontrar duplicados con GROUP BY</h2>
+          <p>La herramienta principal para detectar duplicados es combinar <code>GROUP BY</code> con <code>COUNT()</code>.</p>
+          <pre><code>SELECT email,
+COUNT(*) AS cantidad
+FROM clientes
+GROUP BY email
+HAVING COUNT(*) > 1;</code></pre>
+          <p>Esta consulta agrupa todos los clientes por email y muestra aquellos que aparecen más de una vez.</p>
+          <p>Por ejemplo, si el email <code>cliente@email.com</code> aparece tres veces, SQL devolverá ese registro indicando que existe una repetición.</p>
+          <h2>Buscar duplicados con varias columnas</h2>
+          <p>Muchas veces un duplicado no depende de una única columna. Puede ser la combinación de nombre y fecha, producto y proveedor o código y categoría.</p>
+          <pre><code>SELECT nombre_producto,
+proveedor,
+COUNT(*) AS total
+FROM productos
+GROUP BY nombre_producto, proveedor
+HAVING COUNT(*) > 1;</code></pre>
+          <p>Aquí SQL busca filas donde coincidan ambas columnas. Esto es mucho más fiable que mirar solo un campo.</p>
+          <h2>Ver las filas completas antes de eliminar</h2>
+          <p>Una vez detectados los duplicados, el siguiente paso es ver exactamente qué filas son.</p>
+          <pre><code>SELECT *
+FROM clientes
+WHERE email IN (
+  SELECT email
+  FROM clientes
+  GROUP BY email
+  HAVING COUNT(*) > 1
+);</code></pre>
+          <p>Ahora tienes todos los registros implicados y puedes decidir cuál conservar.</p>
+          <div class="my-8 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+            <!-- IMAGEN PENDIENTE: resultado SQL mostrando filas duplicadas con sus IDs -->
+            <img src="/[CAPTURA-DE-PANTALLA-DE-RESULTADO-SQL-MOSTRANDO-VARIAS-FILAS-DUPLICADAS-Y-SUS-ID].png" alt="Resultado SQL mostrando filas duplicadas con sus identificadores" class="w-full h-auto object-contain" loading="lazy" width="1200" height="675" />
+          </div>
+          <h2>Eliminar duplicados de forma segura</h2>
+          <p>Aquí viene la parte delicada. No existe un botón mágico que diga "borra duplicados correctos". Normalmente necesitas identificar cuál es la fila que quieres mantener.</p>
+          <p>Una práctica habitual es conservar el registro con el identificador más antiguo y eliminar los demás.</p>
+          <pre><code>DELETE FROM clientes
+WHERE id_cliente NOT IN (
+  SELECT MIN(id_cliente)
+  FROM clientes
+  GROUP BY email
+);</code></pre>
+          <p>La idea es sencilla: para cada email conserva el ID más pequeño y elimina el resto.</p>
+          <p>Pero cuidado: esta consulta depende mucho de la estructura de tu tabla. Antes de ejecutarla en producción, pruébala siempre con un <code>SELECT</code>.</p>
+          <h2>La técnica profesional: comprobar primero con SELECT</h2>
+          <p>Cambia temporalmente el DELETE por un SELECT:</p>
+          <pre><code>SELECT *
+FROM clientes
+WHERE id_cliente NOT IN (
+  SELECT MIN(id_cliente)
+  FROM clientes
+  GROUP BY email
+);</code></pre>
+          <p>Si los resultados son exactamente los que esperas, entonces puedes transformar esa lógica en un DELETE.</p>
+          <h2>Errores comunes al eliminar duplicados</h2>
+          <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li>Borrar directamente sin hacer una copia o sin revisar primero los registros afectados.</li>
+            <li>Pensar que dos filas iguales visualmente siempre son duplicados. Puede haber diferencias ocultas en otros campos.</li>
+            <li>Eliminar usando una columna incorrecta. Un nombre repetido no significa necesariamente un cliente repetido.</li>
+            <li>No tener en cuenta claves relacionadas. Borrar un cliente puede romper pedidos o facturas asociadas.</li>
+            <li>Probar consultas DELETE directamente en producción sin validar antes.</li>
+          </ul>
+          <h2>Una forma más segura de trabajar</h2>
+          <p>Cuando limpies datos importantes, trabaja siempre en tres pasos:</p>
+          <ol class="list-decimal pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li>Detecta duplicados con GROUP BY y HAVING.</li>
+            <li>Revisa manualmente los registros encontrados.</li>
+            <li>Ejecuta el borrado dentro de una transacción si tu base de datos lo permite.</li>
+          </ol>
+          <p>Así, si algo sale mal, puedes deshacer los cambios antes de dejarlos definitivos.</p>
+          <div class="my-8 rounded-2xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/30 p-5">
+            <p class="text-sky-800 dark:text-sky-200 font-semibold mb-2">Pro Tip</p>
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed">Antes de ejecutar cualquier DELETE importante, ejecuta un <code>SELECT COUNT(*)</code> con la misma condición para saber cuántas filas vas a afectar. Otro truco útil es guardar la consulta original en un archivo antes de modificarla. En muchos editores SQL puedes usar <code>Ctrl + Z</code> para recuperar cambios mientras estás probando.</p>
+          </div>
+        </div>
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg> WhatsApp</button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Twitter / X</button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</button>
+          </div>
+        </div>
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-sky-600 flex items-center justify-center flex-shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p></div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/sql/como-filtrar-datos-sql-where/" class="block bg-white dark:bg-slate-800 border border-sky-100 dark:border-sky-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-sql mb-2 inline-block">SQL</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo filtrar datos con WHERE en SQL</p></a>
+            <a href="/sql/diferencia-where-having-sql/" class="block bg-white dark:bg-slate-800 border border-sky-100 dark:border-sky-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-sql mb-2 inline-block">SQL</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Diferencia entre WHERE y HAVING en SQL</p></a>
+          </div>
+        </div>
+      </div>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+<script is:inline>
+  function shareArticle(p){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title);if(p==='whatsapp')window.open('https://api.whatsapp.com/send?text='+t+'%20'+u);else if(p==='twitter')window.open('https://twitter.com/intent/tweet?url='+u+'&text='+t);else if(p==='linkedin')window.open('https://www.linkedin.com/sharing/share-offsite/?url='+u);}
+</script>
