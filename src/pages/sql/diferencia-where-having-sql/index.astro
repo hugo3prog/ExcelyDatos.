@@ -36,8 +36,8 @@ const jsonLd = [
           </p>
         </header>
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
-          <!-- IMAGEN PENDIENTE: consulta SQL con WHERE y HAVING sobre tabla de ventas por cliente -->
-          <img src="/[CAPTURA-DE-PANTALLA-DE-CONSULTA-SQL-CON-WHERE-Y-HAVING-SOBRE-TABLA-DE-VENTAS-POR-CLIENTE].png" alt="Consulta SQL usando WHERE y HAVING para filtrar datos agrupados" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+          <!-- IMAGEN: consulta SQL con WHERE y HAVING sobre tabla de ventas por cliente -->
+          <img src="/sql diferencia where y having.png" alt="Consulta SQL usando WHERE y HAVING para filtrar datos agrupados" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
         <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
         <div class="article-body">
@@ -88,10 +88,6 @@ HAVING SUM(importe) > 10000;</code></pre>
             <li>GROUP BY junta las ventas por cliente.</li>
             <li>HAVING elimina clientes que no llegan al objetivo.</li>
           </ul>
-          <div class="my-8 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
-            <!-- IMAGEN PENDIENTE: editor SQL mostrando WHERE filtrando fechas y HAVING filtrando sumas -->
-            <img src="/[CAPTURA-DE-PANTALLA-DE-EDITOR-SQL-MOSTRANDO-WHERE-FILTRANDO-FECHAS-Y-HAVING-FILTRANDO-SUMAS-POR-CLIENTE].png" alt="Ejemplo SQL combinando WHERE y HAVING para analizar ventas por cliente" class="w-full h-auto object-contain" loading="lazy" width="1200" height="675" />
-          </div>
           <h2>Por qué no puedes usar WHERE con SUM o COUNT</h2>
           <p>Este es uno de los errores más frecuentes:</p>
           <pre><code>SELECT cliente,
