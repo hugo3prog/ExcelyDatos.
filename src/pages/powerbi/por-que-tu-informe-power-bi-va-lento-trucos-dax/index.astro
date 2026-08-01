@@ -36,8 +36,8 @@ const jsonLd = [
           </p>
         </header>
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
-          <!-- IMAGEN PENDIENTE: Power BI con indicador de rendimiento lento en barra de estado -->
-          <img src="/[CAPTURA-PANTALLA-POWER-BI-CON-INDICADOR-DE-RENDIMIENTO-LENTO-EN-BARRA-DE-ESTADO].png" alt="Power BI mostrando informe lento con tiempos de carga elevados" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+          <!-- IMAGEN: Power BI con indicador de rendimiento lento en barra de estado -->
+          <img src="/power bi lento dax.png" alt="Power BI mostrando informe lento con tiempos de carga elevados" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
         <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
         <div class="article-body">
@@ -74,10 +74,6 @@ RETURN
     YEAR('Calendario'[Fecha]) = YearActual
   )</code></pre>
           <p>Las variables cachean los valores, así que Power BI no tiene que recalcularlos mil veces.</p>
-          <div class="my-8 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
-            <!-- IMAGEN PENDIENTE: fórmula DAX con variables en editor de Power BI -->
-            <img src="/[CAPTURA-PANTALLA-FORMULA-DAX-CON-VARIABLES-EN-EDITOR-POWER-BI].png" alt="Editor DAX mostrando fórmula con variables bien estructurada" class="w-full h-auto object-contain" loading="lazy" width="900" height="300" />
-          </div>
           <h2>Truco 3: Dimensionalidad implícita vs. explícita</h2>
           <p>Power BI tiene relaciones entre tablas. Úsalas. No hagas LOOKUPS manuales o FILTERs complejos cuando una relación puede hacer el trabajo por ti.</p>
           <p>Si tienes una tabla de Ventas relacionada con una tabla de Clientes, y necesitas el país de cada cliente, no hagas esto:</p>
