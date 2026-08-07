@@ -1,0 +1,255 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../layouts/Layout.astro';
+import DiscordBanner from '../../components/DiscordBanner.astro';
+
+const title = 'Conversor de Excel a SQL - ExcelyDatos';
+const description = 'Convierte datos de Excel o CSV a sentencias SQL INSERT automáticamente. Pega tus datos, genera el SQL y cópialo con un clic. Gratis y online.';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Conversor de Excel a SQL",
+  "description": description,
+  "url": "https://excelydatos.com/herramientas/excel-a-sql/",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+};
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+
+    <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a>
+      <span>/</span>
+      <a href="/herramientas/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Herramientas</a>
+      <span>/</span>
+      <span class="text-slate-600 dark:text-slate-300 truncate">Conversor de Excel a SQL</span>
+    </nav>
+
+    <header class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="badge-excel">Excel → SQL</span>
+        <span class="text-slate-400 text-sm">Herramienta online</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-4">Conversor de Excel a SQL</h1>
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
+        Pega los datos copiados de Excel (o un CSV) y genera sentencias <code class="text-sm font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">INSERT INTO</code> automáticamente. Detecta números y texto para poner comillas solo donde hace falta.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <!-- INPUT COLUMN -->
+      <div class="flex flex-col gap-4">
+        <div>
+          <label for="sql-table-name" class="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+            Nombre de la tabla
+          </label>
+          <input
+            id="sql-table-name"
+            type="text"
+            value="mi_tabla"
+            placeholder="mi_tabla"
+            class="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-2.5 text-sm text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow"
+          />
+        </div>
+
+        <div class="flex-grow">
+          <label for="sql-input-data" class="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+            Datos de Excel (pegar aquí)
+          </label>
+          <textarea
+            id="sql-input-data"
+            rows="14"
+            class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3 text-sm font-mono text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow resize-y"
+            placeholder="id	nombre	edad	ciudad
+1	Ana	28	Madrid
+2	Carlos	35	Barcelona
+3	Lucía	22	Valencia"></textarea>
+          <p class="text-xs text-slate-400 mt-1.5">Copia celdas directamente de Excel (se pegan separadas por tabulaciones) o pega un CSV separado por comas. La primera fila son los nombres de las columnas.</p>
+        </div>
+
+        <button
+          id="sql-generate-btn"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm w-full sm:w-auto"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Generar SQL
+        </button>
+      </div>
+
+      <!-- OUTPUT COLUMN -->
+      <div class="flex flex-col">
+        <div class="flex items-center justify-between mb-2">
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200">
+            Sentencias SQL generadas
+          </label>
+          <button
+            id="sql-copy-btn"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-lg transition-colors"
+          >
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copiar al portapapeles
+          </button>
+        </div>
+
+        <div class="flex-grow rounded-xl overflow-hidden border border-slate-700 dark:border-slate-600 shadow-lg">
+          <div class="bg-slate-800 dark:bg-slate-900 px-4 py-2.5 flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-400"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+            <span class="w-3 h-3 rounded-full bg-green-400"></span>
+            <span class="text-xs text-slate-400 ml-2 font-mono">output.sql</span>
+          </div>
+          <pre class="bg-slate-900 dark:bg-black px-4 py-4 h-full min-h-[400px] overflow-auto"><code id="sql-output" class="text-sm font-mono text-emerald-400 whitespace-pre-wrap break-all">-- Las sentencias SQL aparecerán aquí...</code></pre>
+        </div>
+
+        <div id="sql-stats" class="hidden mt-3 text-xs text-slate-400 flex items-center gap-4">
+          <span id="sql-stat-rows" class="flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            <span>0 filas</span>
+          </span>
+          <span id="sql-stat-cols" class="flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v18M18 3v18M3 6h18M3 12h18M3 18h18"/></svg>
+            <span>0 columnas</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 border border-slate-200 dark:border-slate-700 mb-4">
+      <h2 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-3">¿Cómo usar esta herramienta?</h2>
+      <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">1.</span> Abre tu archivo Excel y selecciona las celdas que quieres convertir (incluye la fila con los nombres de las columnas).</li>
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">2.</span> Copia las celdas (Ctrl+C / Cmd+C) y pégalas en el recuadro izquierdo (Ctrl+V / Cmd+V).</li>
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">3.</span> Escribe el nombre de la tabla destino y pulsa "Generar SQL".</li>
+        <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">4.</span> Copia el resultado con el botón "Copiar al portapapeles" y pégalo en tu editor SQL.</li>
+      </ul>
+      <p class="text-xs text-slate-400 mt-4">La herramienta detecta automáticamente si un valor es numérico (sin comillas) o texto (con comillas simples). Los valores vacíos se convierten en NULL.</p>
+    </div>
+
+    <DiscordBanner />
+
+    <div class="adsense-slot adsense-slot--leaderboard mt-8" aria-hidden="true"></div>
+  </div>
+</Layout>
+
+<script is:inline>
+  (function() {
+    var input = document.getElementById('sql-input-data');
+    var tableName = document.getElementById('sql-table-name');
+    var output = document.getElementById('sql-output');
+    var generateBtn = document.getElementById('sql-generate-btn');
+    var copyBtn = document.getElementById('sql-copy-btn');
+    var stats = document.getElementById('sql-stats');
+    var statRows = document.getElementById('sql-stat-rows');
+    var statCols = document.getElementById('sql-stat-cols');
+
+    function escapeSqlString(val) {
+      return val.replace(/'/g, "''");
+    }
+
+    function isNumeric(val) {
+      if (val === null || val === undefined || val === '') return false;
+      var cleaned = String(val).trim().replace(/,/g, '.');
+      return cleaned !== '' && !isNaN(Number(cleaned)) && isFinite(Number(cleaned));
+    }
+
+    function parseLine(line) {
+      var cells;
+      if (line.indexOf('\t') !== -1) {
+        cells = line.split('\t');
+      } else if (line.indexOf(',') !== -1) {
+        cells = line.split(',');
+      } else {
+        cells = [line];
+      }
+      return cells.map(function(c) { return c.trim(); });
+    }
+
+    function formatValue(val) {
+      var trimmed = val.trim();
+      if (trimmed === '') return 'NULL';
+      if (isNumeric(trimmed)) {
+        return String(trimmed).replace(/,/g, '.');
+      }
+      return "'" + escapeSqlString(trimmed) + "'";
+    }
+
+    function sanitizeColumnName(col) {
+      var trimmed = col.trim();
+      if (trimmed === '') return 'columna_sin_nombre';
+      return trimmed.replace(/[^a-zA-Z0-9_]/g, '_').replace(/^[0-9]/, '_$&');
+    }
+
+    function generateSQL() {
+      var raw = input.value;
+      if (!raw.trim()) {
+        output.textContent = '-- Pega tus datos en el recuadro izquierdo y pulsa "Generar SQL".';
+        if (stats) stats.classList.add('hidden');
+        return;
+      }
+
+      var lines = raw.split('\n').filter(function(l) { return l.trim() !== ''; });
+      if (lines.length < 2) {
+        output.textContent = '-- Se necesitan al menos 2 filas: una de cabecera y una de datos.';
+        if (stats) stats.classList.add('hidden');
+        return;
+      }
+
+      var table = (tableName.value || 'mi_tabla').trim().replace(/[^a-zA-Z0-9_]/g, '_');
+      var headers = parseLine(lines[0]).map(sanitizeColumnName);
+      var dataLines = lines.slice(1);
+      var sqlStatements = [];
+
+      sqlStatements.push('-- Tabla: ' + table);
+      sqlStatements.push('-- ' + headers.length + ' columnas, ' + dataLines.length + ' filas');
+      sqlStatements.push('');
+
+      for (var i = 0; i < dataLines.length; i++) {
+        var values = parseLine(dataLines[i]);
+        var formattedValues = [];
+        for (var j = 0; j < headers.length; j++) {
+          var val = values[j] !== undefined ? values[j] : '';
+          formattedValues.push(formatValue(val));
+        }
+        var stmt = 'INSERT INTO ' + table + ' (' + headers.join(', ') + ') VALUES (' + formattedValues.join(', ') + ');';
+        sqlStatements.push(stmt);
+      }
+
+      output.textContent = sqlStatements.join('\n');
+
+      if (stats) {
+        stats.classList.remove('hidden');
+        if (statRows) statRows.querySelector('span').textContent = dataLines.length + ' filas';
+        if (statCols) statCols.querySelector('span').textContent = headers.length + ' columnas';
+      }
+    }
+
+    if (generateBtn) generateBtn.addEventListener('click', generateSQL);
+
+    if (copyBtn) copyBtn.addEventListener('click', function() {
+      var text = output.textContent;
+      if (!text || text.indexOf('--') === 0 && text.indexOf('INSERT') === -1) return;
+      var copyIcon = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copiar al portapapeles';
+      var checkIcon = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> ¡Copiado!';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          copyBtn.innerHTML = checkIcon;
+          setTimeout(function() { copyBtn.innerHTML = copyIcon; }, 2000);
+        });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        copyBtn.innerHTML = checkIcon;
+        setTimeout(function() { copyBtn.innerHTML = copyIcon; }, 2000);
+      }
+    });
+  })();
+</script>
