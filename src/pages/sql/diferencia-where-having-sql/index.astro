@@ -11,7 +11,12 @@ const url = 'https://excelydatos.com/sql/diferencia-where-having-sql/';
 
 const jsonLd = [
   { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
-  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "SQL", "item": "https://excelydatos.com/sql/" }, { "@type": "ListItem", "position": 3, "name": "WHERE vs HAVING en SQL", "item": url } ] }
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "SQL", "item": "https://excelydatos.com/sql/" }, { "@type": "ListItem", "position": 3, "name": "WHERE vs HAVING en SQL", "item": url } ] },
+  { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    { "@type": "Question", "name": "¿Cuál es la diferencia entre WHERE y HAVING en SQL?", "acceptedAnswer": { "@type": "Answer", "text": "WHERE filtra las filas individuales antes de agrupar, mientras que HAVING filtra los resultados después de aplicar GROUP BY. No puedes usar WHERE con funciones agregadas como SUM() o COUNT(); para eso necesitas HAVING." } },
+    { "@type": "Question", "name": "¿Puedo usar WHERE y HAVING en la misma consulta SQL?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Es habitual combinar ambos: WHERE filtra las filas originales (por ejemplo, fechas o estados) y HAVING filtra los grupos ya calculados (por ejemplo, clientes con más de 5.000 € en compras). El orden correcto es: WHERE primero, GROUP BY después y HAVING al final." } },
+    { "@type": "Question", "name": "¿Por qué me da error al usar WHERE con COUNT o SUM?", "acceptedAnswer": { "@type": "Answer", "text": "Porque WHERE se evalúa antes de que se creen los grupos, por lo que las funciones agregadas todavía no existen en ese momento. Para filtrar por el resultado de COUNT() o SUM(), debes usar HAVING después de GROUP BY." } }
+  ]}
 ];
 ---
 

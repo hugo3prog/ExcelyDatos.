@@ -41,6 +41,15 @@ const jsonLd = [
       { "@type": "ListItem", "position": 2, "name": "Excel & Sheets", "item": "https://excelydatos.com/excel/" },
       { "@type": "ListItem", "position": 3, "name": "Guía de BUSCARV", "item": url }
     ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿Qué es BUSCARV en Excel y para qué sirve?", "acceptedAnswer": { "@type": "Answer", "text": "BUSCARV es una función que busca un valor en la primera columna de una tabla y devuelve el dato de otra columna en la misma fila. Sirve para cruzar datos entre dos listas, como traer el precio de un producto desde un catálogo a una hoja de pedidos." } },
+      { "@type": "Question", "name": "¿Por qué mi BUSCARV devuelve #N/A aunque el dato existe?", "acceptedAnswer": { "@type": "Answer", "text": "Lo más habitual es que haya espacios ocultos, diferencias de mayúsculas o ceros a la izquierda. Limpia los espacios con la función RECORTAR (TRIM en inglés) y asegúrate de que el formato del valor buscado coincide con el de la columna de búsqueda." } },
+      { "@type": "Question", "name": "¿Qué diferencia hay entre BUSCARV y BUSCARX (XLOOKUP)?", "acceptedAnswer": { "@type": "Answer", "text": "BUSCARV solo busca hacia la derecha: el valor buscado debe estar en la primera columna del rango. BUSCARX puede buscar en cualquier dirección, no necesita el argumento FALSO para coincidencias exactas y permite indicar qué devolver si no encuentra el dato." } }
+    ]
   }
 ];
 ---
