@@ -32,7 +32,7 @@ const jsonLd = [
           </div>
           <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
           <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-sky-500 pl-4">
-            Tienes una tabla de clientes por un lado y otra de pedidos por otro, pero necesitas juntarlas para sacar un informe. Aquí es donde mucha gente empieza a liarse con SQL. Los JOINs parecen complicados al principio, pero realmente solo sirven para decirle a la base de datos qué información quieres unir.
+            Tienes una tabla de clientes por un lado y otra de pedidos por otro, pero necesitas juntarlas para sacar un informe. Aquí es donde mucha gente empieza a liarse con SQL. Los JOINs parecen complicados al principio, pero realmente solo sirven para decirle a la base de datos qué información quieres unir. El tipo más utilizado es el <strong>inner join</strong>, que devuelve únicamente las filas con coincidencia en ambas tablas, y entender cómo funciona un inner join es la base para dominar el resto.
           </p>
         </header>
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
@@ -45,8 +45,8 @@ const jsonLd = [
           <p>Imagina una empresa que tiene una tabla llamada <code>clientes</code> con nombres, emails y ciudades. Luego tiene otra tabla llamada <code>pedidos</code> con fechas, importes y estados.</p>
           <p>El problema es que ninguna tabla tiene toda la información. Si quieres saber cuánto ha comprado cada cliente necesitas unir ambas. Ahí aparece el JOIN.</p>
           <p>La idea básica es sencilla: SQL busca una columna común entre dos tablas y utiliza ese dato para relacionarlas. Normalmente suele ser un identificador como <code>id_cliente</code>.</p>
-          <h2>INNER JOIN: cuando solo quieres coincidencias</h2>
-          <p>El <code>INNER JOIN</code> es el más utilizado. Devuelve únicamente los registros que existen en ambas tablas.</p>
+          <h2>INNER JOIN: el inner join que solo devuelve coincidencias</h2>
+          <p>El <code>INNER JOIN</code> es el más utilizado. Devuelve únicamente los registros que existen en ambas tablas. En la práctica, cuando alguien habla de un inner join, se refiere a esta consulta que cruza dos tablas y se queda solo con las filas que emparejan.</p>
           <pre><code>SELECT clientes.nombre,
 pedidos.fecha,
 pedidos.importe
