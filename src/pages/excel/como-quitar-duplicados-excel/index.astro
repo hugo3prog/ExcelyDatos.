@@ -57,7 +57,7 @@ const jsonLd = [
           </div>
           <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
           <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
-            Lunes por la mañana. Te descargas un reporte del CRM o del ERP del trabajo, lo abres y hay cientos de clientes repetidos. Limpiar esto a mano borrando fila por fila no es una opción. Vamos a ver cómo eliminar duplicados en segundos de la forma correcta, para que los datos de tus filas no se mezclen.
+            Lunes por la mañana. Te descargas un reporte del CRM o del ERP del trabajo, lo abres y hay cientos de clientes repetidos. Limpiar esto a mano borrando fila por fila no es una opción. Saber como eliminar duplicados en excel es una de esas habilidades que más tiempo ahorran en la oficina, así que vamos a ver cómo eliminar duplicados en segundos de la forma correcta, para que los datos de tus filas no se mezclen.
           </p>
         </header>
 
@@ -76,8 +76,8 @@ const jsonLd = [
           <p>La tragedia clásica de oficina ocurre cuando seleccionas solo la columna A (por ejemplo, los DNI de los clientes) y le das a borrar duplicados. Excel elimina los DNIs repetidos y sube las celdas, pero los nombres y correos de las columnas de al lado se quedan donde estaban. Acabas de asignar el DNI de una persona al nombre de otra. Acabas de romper la base de datos.</p>
           <p>Para hacer esto de forma segura, el secreto está en cómo seleccionamos la información antes de tocar ningún botón.</p>
 
-          <h2>La solución paso a paso en Excel</h2>
-          <p>Sigue estos tres pasos y tendrás tu tabla limpia en menos de lo que tardas en tomar un café:</p>
+          <h2>La solución paso a paso: quitar duplicados en Excel</h2>
+          <p>Sigue estos tres pasos y tendrás tu tabla limpia en menos de lo que tardas en tomar un café. La función de excel quitar duplicados está pensada precisamente para esto:</p>
           <ol class="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-3 mb-6">
             <li>Haz clic en <strong>cualquier celda dentro de tu tabla</strong> (solo una). Pulsa <code>Ctrl + E</code> para seleccionar absolutamente todos los datos conectados.</li>
             <li>Ve a la pestaña <strong>Datos</strong> en la cinta de opciones superior y busca el botón <strong>Quitar duplicados</strong> (es un icono pequeño con celdas azules y blancas tachadas con una X roja).</li>
@@ -85,10 +85,10 @@ const jsonLd = [
           </ol>
 
           <h2>Cómo se hace en Google Sheets</h2>
-          <p>Si tu equipo utiliza Google Sheets, el proceso es prácticamente idéntico, solo cambia la ruta del menú. Primero, selecciona toda tu tabla igual que antes (<code>Ctrl + A</code> si estás en el navegador). Luego, ve al menú superior <strong>Datos</strong>, baja hasta <strong>Limpieza de datos</strong> y haz clic en <strong>Quitar duplicados</strong>. Te saldrá una ventana muy similar a la de Microsoft donde puedes elegir qué columnas determinan la repetición. Marcas, aceptas y listo.</p>
+          <p>Si tu equipo utiliza Google Sheets, el proceso es prácticamente idéntico, solo cambia la ruta del menú. Primero, selecciona toda tu tabla igual que antes (<code>Ctrl + A</code> si estás en el navegador). Luego, ve al menú superior <strong>Datos</strong>, baja hasta <strong>Limpieza de datos</strong> y haz clic en <strong>Quitar duplicados</strong>. Te saldrá una ventana muy similar a la de Microsoft donde puedes elegir qué columnas determinan la repetición. Marcas, aceptas y listo. Si lo que necesitas es eliminar repetidos excel de forma rápida sin abrir el menú, también puedes usar la función <code>=UNICOS(rango)</code> para generar una lista sin duplicados en una columna nueva.</p>
 
           <h2>Errores comunes que te pueden dar un buen susto</h2>
-          <p>Hay dos cosas típicas que suelen fallar en este proceso:</p>
+          <p>Cuando usas la opción de excel borrar duplicados, hay dos cosas típicas que suelen fallar en este proceso:</p>
           <ul class="list-disc list-inside text-slate-700 dark:text-slate-300 space-y-2 mb-6">
             <li><strong>Olvidarte de la cabecera:</strong> En la ventanita que aparece para elegir columnas, fíjate arriba a la derecha. Hay una casilla que dice <em>"Mis datos tienen encabezados"</em>. Si no la marcas, Excel tratará el título de tu columna como un dato más y podría borrarlo. En Google Sheets esta casilla se llama <em>"Los datos incluyen una fila de encabezado"</em>.</li>
             <li><strong>Ignorar la advertencia de Excel:</strong> Si por error seleccionas solo una columna y le das al botón, Excel es majo y te lanza un aviso gigante: <em>"¿Desea ampliar la selección?"</em>. Dile siempre que sí. Si le dices "Continuar con la selección actual", romperás las filas.</li>

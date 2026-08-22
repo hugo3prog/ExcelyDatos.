@@ -51,7 +51,7 @@ const jsonLd = [
           <p>El problema es que ninguna tabla tiene toda la información. Si quieres saber cuánto ha comprado cada cliente necesitas unir ambas. Ahí aparece el JOIN.</p>
           <p>La idea básica es sencilla: SQL busca una columna común entre dos tablas y utiliza ese dato para relacionarlas. Normalmente suele ser un identificador como <code>id_cliente</code>.</p>
           <h2>INNER JOIN: el inner join que solo devuelve coincidencias</h2>
-          <p>El <code>INNER JOIN</code> es el más utilizado. Devuelve únicamente los registros que existen en ambas tablas. En la práctica, cuando alguien habla de un inner join, se refiere a esta consulta que cruza dos tablas y se queda solo con las filas que emparejan.</p>
+          <p>El <code>INNER JOIN</code> es el más utilizado. Devuelve únicamente los registros que existen en ambas tablas. En la práctica, cuando alguien habla de un inner join, se refiere a esta consulta que cruza dos tablas y se queda solo con las filas que emparejan. Es decir, un sql inner join solo te devuelve las filas donde encuentra coincidencia en ambas partes.</p>
           <pre><code>SELECT clientes.nombre,
 pedidos.fecha,
 pedidos.importe
@@ -59,9 +59,9 @@ FROM clientes
 INNER JOIN pedidos
 ON clientes.id_cliente = pedidos.id_cliente;</code></pre>
           <p>En este ejemplo, si un cliente existe pero nunca ha comprado nada, no aparecerá en el resultado. SQL se queda únicamente con aquellos registros donde encuentra coincidencia.</p>
-          <p>Es perfecto para informes como "ventas realizadas", "clientes con pedidos" o "productos vendidos".</p>
+          <p>Es perfecto para informes como "ventas realizadas", "clientes con pedidos" o "productos vendidos". Un inner join en sql es, sin duda, la primera consulta de cruce que deberías dominar.</p>
           <h2>LEFT JOIN: el favorito para detectar información que falta</h2>
-          <p>Aquí cambia la película. El <code>LEFT JOIN</code> mantiene todos los registros de la tabla izquierda aunque no tengan coincidencia en la derecha.</p>
+          <p>Aquí cambia la película. El <code>LEFT JOIN</code> mantiene todos los registros de la tabla izquierda aunque no tengan coincidencia en la derecha. El left join sql es el que más se utiliza en informes de oficina donde necesitas ver también los registros que no tienen pareja.</p>
           <pre><code>SELECT clientes.nombre,
 pedidos.importe
 FROM clientes
@@ -91,7 +91,7 @@ FROM clientes c
 INNER JOIN pedidos p
 ON c.id_cliente = p.id_cliente
 WHERE p.estado = 'Completado';</code></pre>
-          <p>Primero unimos las tablas, después filtramos los pedidos completados. Esta estructura es la que normalmente verás en consultas profesionales.</p>
+          <p>Primero unimos las tablas, después filtramos los pedidos completados. Esta estructura, con un inner join sql como base, es la que normalmente verás en consultas profesionales.</p>
           <h2>Errores comunes usando JOINs</h2>
           <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
             <li>Hacer un JOIN sin indicar correctamente la relación con <code>ON</code>. Esto puede generar miles de filas duplicadas.</li>

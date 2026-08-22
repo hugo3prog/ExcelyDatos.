@@ -68,7 +68,7 @@ const jsonLd = [
           </div>
           <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
           <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
-            El problema: tienes un listado de 500 empleados. Algunos tienen puesto su número de teléfono, en otros pone "Pendiente" y otras celdas están en blanco. Necesitas saber cuántos contactos tienes en total y ponerte a contar fila por fila no es una opción si quieres salir a tu hora. Aquí es donde entran las funciones que hacen el trabajo sucio por ti.
+            El problema: tienes un listado de 500 empleados. Algunos tienen puesto su número de teléfono, en otros pone "Pendiente" y otras celdas están en blanco. Necesitas saber cuántos contactos tienes en total y ponerte a contar fila por fila no es una opción si quieres salir a tu hora. Si lo que necesitas es excel contar celdas con texto, aquí es donde entran las funciones que hacen el trabajo sucio por ti.
           </p>
         </header>
 
@@ -88,7 +88,7 @@ const jsonLd = [
           <p>En Google Sheets funciona exactamente igual. Ojo, si usas la interfaz en inglés en Sheets, la función se llama <code>=COUNT()</code>.</p>
 
           <h2>Función CONTARA: La que cuenta de todo</h2>
-          <p>Esta es la que vas a usar el 90% del tiempo en la oficina. <strong>CONTARA</strong> (la "A" del final viene de <em>All</em>, todo) cuenta cualquier celda que no esté completamente vacía. Le da igual si es un texto, un número, un error (como #N/A) o un guion.</p>
+          <p>Esta es la que vas a usar el 90% del tiempo en la oficina. <strong>CONTARA</strong> (la "A" del final viene de <em>All</em>, todo) cuenta cualquier celda que no esté completamente vacía. Le da igual si es un texto, un número, un error (como #N/A) o un guion. Si necesitas contar celdas con texto en excel de forma rápida, esta es la función que resuelve el problema en segundos.</p>
           <pre><code>=CONTARA(B2:B500)</code></pre>
           <p>¿Y en Google Sheets? Mismo proceso. Y si la tienes en inglés, búscala como <code>=COUNTA()</code>.</p>
 
