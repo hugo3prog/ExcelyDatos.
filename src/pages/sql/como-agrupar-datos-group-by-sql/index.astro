@@ -1,0 +1,194 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo agrupar datos en SQL con GROUP BY: Guía con funciones de agregación (COUNT, SUM, AVG)';
+const description = 'Pasa de consultar filas individuales a resumir información de negocio. Aprende a obtener totales, promedios y recuentos agrupados por categorías con GROUP BY en SQL.';
+const publishDate = '2026-11-11';
+const updateDate = '2026-11-11';
+const readTime = '8 min';
+const url = 'https://excelydatos.com/sql/como-agrupar-datos-group-by-sql/';
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "SQL", "item": "https://excelydatos.com/sql/" }, { "@type": "ListItem", "position": 3, "name": "GROUP BY en SQL", "item": url } ] },
+  { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    { "@type": "Question", "name": "¿Qué hace GROUP BY en SQL?", "acceptedAnswer": { "@type": "Answer", "text": "GROUP BY agrupa las filas que tienen el mismo valor en una o varias columnas y permite aplicar funciones de agregación como COUNT, SUM o AVG para resumir cada grupo en una sola fila." } },
+    { "@type": "Question", "name": "¿Por qué me da error al usar GROUP BY en SQL?", "acceptedAnswer": { "@type": "Answer", "text": "El error más común es incluir en SELECT una columna que no está en GROUP BY ni dentro de una función de agregación. La regla de oro es: toda columna en SELECT debe estar en GROUP BY o dentro de una función como COUNT, SUM o AVG." } },
+    { "@type": "Question", "name": "¿En qué orden se ejecuta GROUP BY respecto a WHERE y ORDER BY?", "acceptedAnswer": { "@type": "Answer", "text": "El orden lógico de ejecución es: FROM (de dónde sacar los datos), WHERE (filtrar filas), GROUP BY (agrupar), HAVING (filtrar grupos), SELECT (proyectar columnas) y ORDER BY (ordenar el resultado final) al final." } }
+  ]}
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a><span>/</span>
+          <a href="/sql/" class="hover:text-sky-700 dark:hover:text-sky-400 transition-colors">SQL</a><span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">GROUP BY en SQL</span>
+        </nav>
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-sql">SQL</span><span class="text-slate-400 text-sm">{readTime} de lectura</span><span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado noviembre 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-sky-500 pl-4">
+            Pasa de consultar filas individuales a resumir información de negocio. Aprende a obtener totales, promedios y recuentos agrupados por categorías.
+          </p>
+        </header>
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <img src="/sql duplicados.png" alt="Consulta SQL con GROUP BY y funciones de agregación sobre una tabla de ventas" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="article-body">
+          <h2>Concepto: ¿Qué hace exactamente GROUP BY con las filas repetidas?</h2>
+          <p>Imagina que tienes una tabla de ventas con mil filas. Cada fila es una venta individual: un cliente, un producto, una fecha y un importe. Si quieres saber cuánto ha comprado cada cliente en total, no quieres ver mil filas. Quieres ver una fila por cliente con el total a su lado. Eso es exactamente lo que hace GROUP BY.</p>
+          <p>GROUP BY toma todas las filas que comparten el mismo valor en una columna y las comprime en una sola. En lugar de tener veinte filas del cliente "Carlos Pérez", tienes una sola. Y junto a esa fila, puedes poner el resultado de una función de agregación: cuántas ventas hizo, cuánto gastó en total, cuál fue su ticket medio.</p>
+          <pre><code>SELECT cliente, SUM(importe) AS total
+FROM ventas
+GROUP BY cliente;</code></pre>
+          <p>El resultado es una tabla con una fila por cliente y su facturación total. De mil filas pasas a veinte. Ese es el poder de GROUP BY: resumir.</p>
+
+          <h2>La regla de oro en SQL con GROUP BY</h2>
+          <p>Antes de ver ejemplos, tienes que grabar a fuego esta regla porque es la causa del 90% de los errores con GROUP BY:</p>
+          <p><strong>Toda columna que aparece en SELECT debe estar en GROUP BY o dentro de una función de agregación.</strong></p>
+          <p>Es decir, si escribes <code>SELECT cliente, importe FROM ventas GROUP BY cliente</code>, SQL te dará error porque <code>importe</code> no está en GROUP BY ni dentro de una función como SUM o AVG. ¿Qué importe debería mostrar si hay veinte ventas del mismo cliente? SQL no sabe cuál elegir, por eso te obliga a agregarlo.</p>
+          <pre><code>-- Esto da error
+SELECT cliente, importe
+FROM ventas
+GROUP BY cliente;
+
+-- Esto funciona
+SELECT cliente, SUM(importe) AS total
+FROM ventas
+GROUP BY cliente;</code></pre>
+          <p>La versión correcta agrupa por cliente y suma todos los importes de cada grupo. La columna <code>cliente</code> está en GROUP BY y la columna <code>importe</code> está dentro de SUM. La regla se cumple.</p>
+
+          <h2>Ejemplo 1: COUNT() — Contar cuántos pedidos ha hecho cada cliente</h2>
+          <p>COUNT cuenta filas. Es la función de agregación más usada. Para saber cuántos pedidos ha realizado cada cliente:</p>
+          <pre><code>SELECT cliente,
+       COUNT(*) AS numero_pedidos
+FROM pedidos
+GROUP BY cliente
+ORDER BY numero_pedidos DESC;</code></pre>
+          <p>SQL agrupa todos los pedidos por cliente, cuenta cuántas filas hay en cada grupo y te devuelve una fila por cliente con el recuento. El <code>ORDER BY numero_pedidos DESC</code> al final ordena los resultados de mayor a menor para que veas primero a los clientes más activos.</p>
+          <p><code>COUNT(*)</code> cuenta todas las filas, incluidas las que tengan valores nulos. Si usas <code>COUNT(columna)</code>, solo cuenta las filas donde esa columna no es nula. La diferencia importa cuando tienes columnas opcionales.</p>
+
+          <h2>Ejemplo 2: SUM() — Sumar la facturación total por departamento</h2>
+          <p>SUM suma los valores numéricos de un grupo. Si quieres ver la facturación total de cada departamento:</p>
+          <pre><code>SELECT departamento,
+       SUM(importe) AS facturacion_total
+FROM ventas
+GROUP BY departamento
+ORDER BY facturacion_total DESC;</code></pre>
+          <p>SQL agrupa las ventas por departamento, suma los importes de cada grupo y te devuelve el total. Una sola consulta te da un informe completo que en Excel requeriría una tabla dinámica.</p>
+          <p>Si quieres filtrar antes de sumar, por ejemplo solo ventas de 2026, añade WHERE antes del GROUP BY:</p>
+          <pre><code>SELECT departamento,
+       SUM(importe) AS facturacion_2026
+FROM ventas
+WHERE fecha >= '2026-01-01'
+GROUP BY departamento
+ORDER BY facturacion_2026 DESC;</code></pre>
+          <p>WHERE filtra las filas individuales antes de agrupar. Así no sumas ventas de años anteriores que no te interesan.</p>
+
+          <h2>Ejemplo 3: AVG() — Calcular el ticket medio de compra por país</h2>
+          <p>AVG calcula el promedio. Si quieres saber cuánto gasta de media cada cliente en cada país:</p>
+          <pre><code>SELECT pais,
+       AVG(importe) AS ticket_medio
+FROM ventas
+GROUP BY pais
+ORDER BY ticket_medio DESC;</code></pre>
+          <p>SQL agrupa las ventas por país, calcula el promedio del importe en cada grupo y te lo devuelve ordenado de mayor a menor ticket medio.</p>
+          <p>Puedes agrupar por más de una columna. Si quieres el ticket medio por país y por categoría de producto:</p>
+          <pre><code>SELECT pais, categoria,
+       AVG(importe) AS ticket_medio
+FROM ventas
+GROUP BY pais, categoria
+ORDER BY pais, ticket_medio DESC;</code></pre>
+          <p>Ahora cada fila es una combinación única de país y categoría. La regla de oro se sigue cumpliendo: tanto <code>pais</code> como <code>categoria</code> están en GROUP BY, e <code>importe</code> está dentro de AVG.</p>
+
+          <h2>Orden de ejecución lógico: dónde se coloca GROUP BY</h2>
+          <p>Una de las cosas que más confunde a quienes empiezan con SQL es que el orden en que escribes la consulta no es el orden en que SQL la ejecuta. Este es el orden lógico real:</p>
+          <ol class="list-decimal pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li><strong>FROM</strong> — SQL identifica de qué tabla sacar los datos.</li>
+            <li><strong>WHERE</strong> — filtra las filas individuales que no cumplen la condición.</li>
+            <li><strong>GROUP BY</strong> — agrupa las filas que quedan por la columna indicada.</li>
+            <li><strong>HAVING</strong> — filtra los grupos que no cumplen la condición (por ejemplo, grupos con SUM mayor a 1000).</li>
+            <li><strong>SELECT</strong> — proyecta las columnas y calcula las funciones de agregación.</li>
+            <li><strong>ORDER BY</strong> — ordena el resultado final.</li>
+          </ol>
+          <p>Por eso WHERE no puede usar funciones de agregación pero HAVING sí. Cuando SQL llega a WHERE, todavía no ha agrupado nada. Cuando llega a HAVING, los grupos ya existen y puede filtrarlos por su SUM, COUNT o AVG.</p>
+          <pre><code>SELECT pais, SUM(importe) AS total
+FROM ventas
+WHERE importe > 0
+GROUP BY pais
+HAVING SUM(importe) > 10000
+ORDER BY total DESC;</code></pre>
+          <p>El flujo es: coge las ventas con importe positivo, agrúpalas por país, quédate solo con los países que suman más de 10000 y ordénalos de mayor a menor.</p>
+
+          <h2>Resumen visual del flujo de la consulta</h2>
+          <table class="w-full border-collapse my-6 text-sm">
+            <thead>
+              <tr class="bg-sky-50 dark:bg-sky-900/20">
+                <th class="border border-slate-300 dark:border-slate-600 p-3 text-left font-bold text-slate-900 dark:text-slate-100">Paso</th>
+                <th class="border border-slate-300 dark:border-slate-600 p-3 text-left font-bold text-slate-900 dark:text-slate-100">Cláusula</th>
+                <th class="border border-slate-300 dark:border-slate-600 p-3 text-left font-bold text-slate-900 dark:text-slate-100">Qué hace</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3">1</td><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>FROM</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Selecciona la tabla origen</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3">2</td><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>WHERE</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Filtra filas individuales</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3">3</td><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>GROUP BY</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Agrupa filas por columna</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3">4</td><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>HAVING</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Filtra grupos por agregación</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3">5</td><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>SELECT</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Proyecta columnas y calcula agregaciones</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3">6</td><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>ORDER BY</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Ordena el resultado final</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Conclusión</h2>
+          <p>GROUP BY es la cláusula que convierte SQL de un lenguaje para ver datos en un lenguaje para resumirlos. Sin GROUP BY solo puedes ver filas individuales. Con GROUP BY puedes responder preguntas de negocio: cuánto vende cada departamento, cuántos pedidos hace cada cliente, cuál es el ticket medio por país.</p>
+          <p>Si te quedas con tres ideas de este artículo, que sean estas:</p>
+          <ol class="list-decimal pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+            <li>Toda columna en SELECT debe estar en GROUP BY o dentro de una función de agregación.</li>
+            <li>WHERE filtra filas antes de agrupar; HAVING filtra grupos después de agrupar.</li>
+            <li>COUNT cuenta filas, SUM suma valores y AVG calcula promedios. Las tres son las funciones de agregación más usadas del día a día.</li>
+          </ol>
+          <p>Cuando domines GROUP BY, pasarás de consultar datos a generar informes. Es el salto que te convierte de alguien que ejecuta consultas en alguien que responde preguntas de negocio con datos.</p>
+
+          <div class="my-8 rounded-2xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/30 p-5">
+            <p class="text-sky-800 dark:text-sky-200 font-semibold mb-2">Pro Tip</p>
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed">Puedes agrupar por una fecha truncada al mes o al año sin escribir una columna extra. En PostgreSQL usa <code>DATE_TRUNC('month', fecha)</code>, en MySQL usa <code>DATE_FORMAT(fecha, '%Y-%m')</code>. Así conviertes una fecha con día y hora en un grupo mensual y obtienes ventas por mes en una sola consulta.</p>
+          </div>
+        </div>
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg> WhatsApp</button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Twitter / X</button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</button>
+          </div>
+        </div>
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-sky-600 flex items-center justify-center flex-shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p></div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/sql/diferencia-where-having-sql/" class="block bg-white dark:bg-slate-800 border border-sky-100 dark:border-sky-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-sql mb-2 inline-block">SQL</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Diferencia entre WHERE y HAVING en SQL</p></a>
+            <a href="/sql/encontrar-datos-duplicados-sql-eliminarlos-seguro/" class="block bg-white dark:bg-slate-800 border border-sky-100 dark:border-sky-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-sql mb-2 inline-block">SQL</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo encontrar datos duplicados en SQL</p></a>
+          </div>
+        </div>
+      </div>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+<script is:inline>
+  function shareArticle(p){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title);if(p==='whatsapp')window.open('https://api.whatsapp.com/send?text='+t+'%20'+u);else if(p==='twitter')window.open('https://twitter.com/intent/tweet?url='+u+'&text='+t);else if(p==='linkedin')window.open('https://www.linkedin.com/sharing/share-offsite/?url='+u);}
+</script>

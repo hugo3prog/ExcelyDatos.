@@ -1,0 +1,142 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo usar la función BUSCARX en Excel: La guía definitiva para olvidar BUSCARV para siempre';
+const description = 'BUSCARX (XLOOKUP) sustituye a BUSCARV: busca a la izquierda, devuelve cualquier columna y maneja errores sin SI.ERROR. Guía práctica con ejemplos de oficina.';
+const publishDate = '2026-11-11';
+const updateDate = '2026-11-11';
+const readTime = '7 min';
+const url = 'https://excelydatos.com/excel/como-usar-buscarx-en-excel/';
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "Excel & Sheets", "item": "https://excelydatos.com/excel/" }, { "@type": "ListItem", "position": 3, "name": "BUSCARX en Excel", "item": url } ] },
+  { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    { "@type": "Question", "name": "¿Qué hace la función BUSCARX en Excel?", "acceptedAnswer": { "@type": "Answer", "text": "BUSCARX busca un valor en un rango y devuelve el resultado correspondiente de otro rango. A diferencia de BUSCARV, puede buscar hacia la izquierda, no necesita un número de columna y maneja errores de forma nativa con su argumento 'Si no se encuentra'." } },
+    { "@type": "Question", "name": "¿BUSCARX está disponible en Google Sheets?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Google Sheets incluye BUSCARX desde finales de 2023. La sintaxis es la misma que en Excel: =BUSCARX(valor_buscado; rango_buscado; rango_resultado; si_no_se_encuentra)." } },
+    { "@type": "Question", "name": "¿Puedo seguir usando BUSCARV en mis hojas antiguas?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. BUSCARV sigue funcionando en Excel y no va a desaparecer. Sin embargo, para nuevas fórmulas conviene usar BUSCARX porque es más flexible, más legible y no obliga a contar columnas." } }
+  ]}
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a><span>/</span>
+          <a href="/excel/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Excel & Sheets</a><span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">BUSCARX en Excel</span>
+        </nav>
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-excel">Excel</span><span class="text-slate-400 text-sm">{readTime} de lectura</span><span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado noviembre 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
+            Olvídate del número de columna y de buscar solo hacia la derecha. BUSCARX simplifica tus fórmulas, maneja errores de forma nativa y hace todo lo que BUSCARV debería haber hecho desde el principio.
+          </p>
+        </header>
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <!-- IMAGEN: editor de Excel mostrando función BUSCARX con resultado -->
+          <img src="/excel-hero.jpg" alt="Hoja de Excel con la función BUSCARX escrita en la barra de fórmulas" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="article-body">
+          <h2>Por qué Microsoft creó BUSCARX</h2>
+          <p>BUSCARV lleva décadas siendo la función más usada de Excel, pero también la que más problemas da. Tienes que contar columnas para saber qué devolver, solo puede buscar hacia la derecha y si insertas una columna en medio, tu fórmula se rompe. Microsoft lo sabía y por eso lanzó BUSCARX (XLOOKUP) en 2019: una función moderna que hace lo mismo pero sin las limitaciones de su predecesora.</p>
+          <p>La idea es simple: buscas un valor en un rango y Excel te devuelve lo que haya en la misma posición de otro rango. Sin contar columnas, sin importar si el resultado está a la izquierda o a la derecha, y con un argumento integrado para los errores. Si todavía no la usas, después de este artículo no vas a querer volver a BUSCARV.</p>
+
+          <h2>La sintaxis explicada con un ejemplo de oficina</h2>
+          <p>La sintaxis de BUSCARX tiene tres argumentos obligatorios y tres opcionales. La estructura completa es esta:</p>
+          <pre><code>=BUSCARX(valor_buscado; rango_buscado; rango_resultado; [si_no_se_encuentra]; [modo_coincidencia]; [modo_búsqueda])</code></pre>
+          <p>Vamos con un ejemplo real. Tienes una tabla de empleados con dos columnas: ID en la columna A y Nombre en la columna B. Quieres escribir el ID en otra celda y que te devuelva el nombre automáticamente.</p>
+          <pre><code>=BUSCARX(F2; A2:A50; B2:B50)</code></pre>
+          <p>Así de simple. <code>F2</code> es el ID que escribes, <code>A2:A50</code> es dónde lo busca y <code>B2:B50</code> es de dónde saca el resultado. No hay número de columna que contar. No hay que acordarse de si la columna es la 2 o la 3. Le dices a Excel exactamente de qué rango quieres el resultado y punto.</p>
+          <p>Los tres argumentos opcionales son los que marcan la diferencia:</p>
+          <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li><strong>Si no se encuentra:</strong> el texto o valor que quieres mostrar cuando no hay coincidencia. Adiós a envolver todo con SI.ERROR.</li>
+            <li><strong>Modo coincidencia:</strong> 0 para exacta (por defecto), -1 para exacta o el siguiente menor, 1 para exacta o el siguiente mayor.</li>
+            <li><strong>Modo búsqueda:</strong> 1 para buscar de arriba abajo (por defecto), -1 para buscar de abajo arriba.</li>
+          </ul>
+
+          <h2>Ejemplo 1: Hacer una búsqueda hacia la izquierda</h2>
+          <p>Este es el caso que hace sufrir a todo el mundo con BUSCARV. Tu tabla tiene el Nombre en la columna A y el ID en la columna C. Alguien te da el Nombre y quiere que le devuelvas el ID. Con BUSCARV es imposible sin trucos porque BUSCARV solo busca a la derecha del valor buscado.</p>
+          <p>Con BUSCARX no hay problema. Le indicas el rango donde está el nombre y el rango donde está el ID, independientemente del orden de las columnas:</p>
+          <pre><code>=BUSCARX("Laura García"; A2:A50; C2:C50)</code></pre>
+          <p>Excel busca "Laura García" en la columna A y te devuelve lo que haya en la misma fila de la columna C. Estás buscando hacia la izquierda sin ningún truco. Una sola fórmula, sin columnas auxiliares, sin INDEX+MATCH.</p>
+
+          <h2>Ejemplo 2: Evitar el error #N/A con el argumento integrado</h2>
+          <p>Con BUSCARV, cuando el dato no existe te aparece un #N/A que queda muy feo en un informe. La solución clásica era envolver todo con SI.ERROR:</p>
+          <pre><code>=SI.ERROR(BUSCARV(F2; A:B; 2; 0); "No encontrado")</code></pre>
+          <p>Funciona, pero es engorroso. BUSCARX lo trae de serie como cuarto argumento:</p>
+          <pre><code>=BUSCARX(F2; A2:A50; B2:B50; "No encontrado")</code></pre>
+          <p>Si el ID no está en la lista, la celda mostrará "No encontrado" en lugar de #N/A. Una sola función, resultado limpio, lista para presentar.</p>
+
+          <h2>Tabla comparativa: BUSCARV vs BUSCARX vs INDICE+COINCIDIR</h2>
+          <table class="w-full border-collapse my-6 text-sm">
+            <thead>
+              <tr class="bg-emerald-50 dark:bg-emerald-900/20">
+                <th class="border border-slate-300 dark:border-slate-600 p-3 text-left font-bold text-slate-900 dark:text-slate-100">Característica</th>
+                <th class="border border-slate-300 dark:border-slate-600 p-3 text-left font-bold text-slate-900 dark:text-slate-100">BUSCARV</th>
+                <th class="border border-slate-300 dark:border-slate-600 p-3 text-left font-bold text-slate-900 dark:text-slate-100">BUSCARX</th>
+                <th class="border border-slate-300 dark:border-slate-600 p-3 text-left font-bold text-slate-900 dark:text-slate-100">INDICE+COINCIDIR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Busca hacia la izquierda</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">No</td><td class="border border-slate-300 dark:border-slate-600 p-3">Sí</td><td class="border border-slate-300 dark:border-slate-600 p-3">Sí</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Necesita número de columna</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Sí</td><td class="border border-slate-300 dark:border-slate-600 p-3">No</td><td class="border border-slate-300 dark:border-slate-600 p-3">No</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Maneja errores sin SI.ERROR</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">No</td><td class="border border-slate-300 dark:border-slate-600 p-3">Sí</td><td class="border border-slate-300 dark:border-slate-600 p-3">No</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Se rompe al insertar columnas</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Sí</td><td class="border border-slate-300 dark:border-slate-600 p-3">No</td><td class="border border-slate-300 dark:border-slate-600 p-3">No</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Dificultad</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Fácil</td><td class="border border-slate-300 dark:border-slate-600 p-3">Fácil</td><td class="border border-slate-300 dark:border-slate-600 p-3">Intermedia</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Disponible en</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Todas las versiones</td><td class="border border-slate-300 dark:border-slate-600 p-3">Excel 365 y Sheets</td><td class="border border-slate-300 dark:border-slate-600 p-3">Todas las versiones</td></tr>
+            </tbody>
+          </table>
+          <p>Como ves, BUSCARX gana en casi todo. La única pega es que solo está disponible en Excel 365 y en Google Sheets reciente. Si trabajas con una versión antigua de Excel, tendrás que seguir con BUSCARV o usar INDICE+COINCIDIR como alternativa.</p>
+
+          <h2>Conclusión y recomendación</h2>
+          <p>BUSCARX no es una moda. Es la forma correcta de hacer búsquedas en Excel moderno. Si tú y tu equipo usáis Excel 365 o Google Sheets, cambiad vuestros BUSCARV por BUSCARX en las nuevas fórmulas. Es más corto, más seguro y más legible.</p>
+          <p>Mi recomendación en tres puntos:</p>
+          <ol class="list-decimal pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+            <li>Usa BUSCARX para todo lo nuevo que escribas.</li>
+            <li>No reescribas los BUSCARV antiguos que ya funcionan: si no fallan, déjalos.</li>
+            <li>Si trabajas con Excel 2016 o anterior, usa INDICE+COINCIDIR como puente entre ambos mundos.</li>
+          </ol>
+          <p>Cuando te acostumbres a no contar columnas, no vas a querer volver atrás.</p>
+
+          <div class="my-8 rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/30 p-5">
+            <p class="text-emerald-800 dark:text-emerald-200 font-semibold mb-2">Pro Tip</p>
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed">BUSCARX devuelve un rango completo, no solo una celda. Si necesitas traer varias columnas a la vez (por ejemplo, nombre, apellido y email de un cliente), escribe <code>=BUSCARX(F2; A2:A50; B2:D50)</code> y Excel derramará los tres resultados automáticamente. Una sola fórmula, tres columnas rellenas.</p>
+          </div>
+        </div>
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg> WhatsApp</button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Twitter / X</button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</button>
+          </div>
+        </div>
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p></div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/excel/guia-buscarv-paso-a-paso/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-excel mb-2 inline-block">Excel</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Guía básica de la función BUSCARV paso a paso</p></a>
+            <a href="/excel/error-na-buscarv-dato-existe/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-excel mb-2 inline-block">Excel</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo arreglar el error #N/A en BUSCARV</p></a>
+          </div>
+        </div>
+      </div>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+<script is:inline>
+  function shareArticle(p){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title);if(p==='whatsapp')window.open('https://api.whatsapp.com/send?text='+t+'%20'+u);else if(p==='twitter')window.open('https://twitter.com/intent/tweet?url='+u+'&text='+t);else if(p==='linkedin')window.open('https://www.linkedin.com/sharing/share-offsite/?url='+u);}
+</script>

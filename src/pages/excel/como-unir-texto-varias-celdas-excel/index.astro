@@ -1,0 +1,130 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Cómo unir texto de varias celdas en Excel: CONCATENAR, UNIRCADENAS y el truco del &';
+const description = 'Aprende a juntar nombres y apellidos, crear códigos únicos o combinar direcciones en Excel y Google Sheets con el operador &, CONCATENAR y UNIRCADENAS sin perder espacios ni formatos.';
+const publishDate = '2026-11-11';
+const updateDate = '2026-11-11';
+const readTime = '6 min';
+const url = 'https://excelydatos.com/excel/como-unir-texto-varias-celdas-excel/';
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "Excel & Sheets", "item": "https://excelydatos.com/excel/" }, { "@type": "ListItem", "position": 3, "name": "Unir texto de varias celdas", "item": url } ] },
+  { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    { "@type": "Question", "name": "¿Cuál es la forma más rápida de unir texto en Excel?", "acceptedAnswer": { "@type": "Answer", "text": "El operador ampersand (&) es la forma más rápida para uniones de pocas celdas. Escribes =A2&\" \"&B2 y obtienes el resultado sin abrir paréntesis ni recordar nombres de funciones." } },
+    { "@type": "Question", "name": "¿UNIRCADENAS está disponible en Google Sheets?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Google Sheets incluye UNIRCADENAS con el nombre en inglés TEXTJOIN. Ambas tienen la misma sintaxis: =UNIRCADENAS(delimitador; ignorar_vacías; rango)." } },
+    { "@type": "Question", "name": "¿Cómo pongo un espacio entre palabras al unir celdas?", "acceptedAnswer": { "@type": "Answer", "text": "Tienes que añadir el espacio manualmente entre comillas. Con ampersand: =A2&\" \"&B2. Con UNIRCADENAS: =UNIRCADENAS(\" \"; VERDADERO; A2:B2). El espacio entre comillas es lo que separa cada valor." } }
+  ]}
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a><span>/</span>
+          <a href="/excel/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">Excel & Sheets</a><span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">Unir texto de varias celdas</span>
+        </nav>
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-excel">Excel</span><span class="text-slate-400 text-sm">{readTime} de lectura</span><span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado noviembre 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
+            Aprende a juntar nombres y apellidos, crear códigos únicos o combinar direcciones sin perder espacios ni formatos en Excel y Google Sheets.
+          </p>
+        </header>
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <img src="/tabla dinamica excel.png" alt="Hoja de Excel con nombres y apellidos en columnas separadas listos para unir" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="article-body">
+          <h2>El problema clásico de oficina: nombres y apellidos separados</h2>
+          <p>Es la tarea más recurrente que existe. Tu empresa tiene una base de datos exportada del ERP con los nombres en una columna y los apellidos en otra. Para enviar un correo personalizado, imprimir etiquetas o rellenar un formulario necesitas el nombre completo en una sola celda. Hacerlo a mano con cientos de filas es impensable.</p>
+          <p>Excel y Google Sheets ofrecen tres formas de unir texto. Cada una tiene su sitio y su momento. Vamos a verlas en orden de sencillez, desde la más rápida hasta la más potente.</p>
+
+          <h2>Método 1: El operador ampersand (&) para uniones rápidas</h2>
+          <p>El ampersand es la forma más directa de pegar dos textos. No necesitas ninguna función, solo el símbolo <code>&</code> entre las celdas que quieres unir:</p>
+          <pre><code>=A2&" "&B2</code></pre>
+          <p>Si en A2 tienes "Laura" y en B2 tienes "García", el resultado es "Laura García". El <code>" "</code> entre medias es un espacio entre comillas. Sin él, obtendrías "LauraGarcía" todo pegado.</p>
+          <p>Es ideal cuando solo unes dos o tres celdas y quieres algo rápido sin acordarte de nombres de funciones. Lo único malo es que cuando tienes muchas celdas, la fórmula se vuelve larga: <code>=A2&" "&B2&" "&C2&" "&D2</code>. Para esos casos, mejor usar UNIRCADENAS que veremos más abajo.</p>
+
+          <h2>Método 2: La función tradicional CONCATENAR</h2>
+          <p>CONCATENAR hace exactamente lo mismo que el ampersand pero con sintaxis de función. Le pasas los textos como argumentos separados por punto y coma:</p>
+          <pre><code>=CONCATENAR(A2; " "; B2)</code></pre>
+          <p>El resultado es idéntico: "Laura García". La diferencia es que algunas personas encuentran más legible una función que un montón de símbolos <code>&</code>, especialmente en fórmulas largas.</p>
+          <p>También existe <code>CONCAT</code>, que es la versión moderna de CONCATENAR. Acepta rangos completos además de celdas sueltas, pero no permite delimitadores. Su uso más típico es <code>=CONCAT(A2:C2)</code> para juntar tres celdas seguidas sin separador.</p>
+          <p>Mi consejo: si solo unes dos o tres celdas, usa el ampersand. Si la fórmula va a tener cuatro o más argumentos y quieres que sea más legible, CONCATENAR te lo pone más fácil.</p>
+
+          <h2>Método 3: La función moderna UNIRCADENAS (TEXTJOIN)</h2>
+          <p>Aquí es donde Excel da un salto. UNIRCADENAS te permite unir un rango entero de celdas indicando el separador una sola vez y decidiendo si quieres ignorar las celdas vacías:</p>
+          <pre><code>=UNIRCADENAS(" "; VERDADERO; A2:E2)</code></pre>
+          <p>Esto une todas las celdas de A2 a E2 poniendo un espacio entre cada una. Si alguna está vacía, la salta automáticamente porque el segundo argumento es VERDADERO. El resultado sería algo como "Laura García Pérez".</p>
+          <p>La sintaxis tiene tres partes:</p>
+          <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li><strong>Delimitador:</strong> el texto que va entre cada valor. Un espacio, una coma, un guion, lo que necesites.</li>
+            <li><strong>Ignorar vacías:</strong> VERDADERO para saltar celdas vacías, FALSO para dejar huecos vacíos entre los delimitadores.</li>
+            <li><strong>Rango:</strong> las celdas que quieres unir. Puede ser un rango continuo o varias celdas sueltas.</li>
+          </ul>
+          <p>Es la función que debes usar cuando trabajas con datos que vienen de un ERP y no sabes cuántas columnas tendrán contenido. Un ejemplo real: crear una dirección completa a partir de calle, número, piso, ciudad y código postal, donde el piso a veces está vacío:</p>
+          <pre><code>=UNIRCADENAS(", "; VERDADERO; A2:E2)</code></pre>
+          <p>Si el piso está vacío, no aparecerá una coma doble. La función lo gestiona sola. Con ampersand tendrías que escribir SI condicionales para cada caso.</p>
+
+          <h2>Truco avanzado: cómo añadir espacios para que no quede todo pegado</h2>
+          <p>El error número uno de quien empieza a unir texto es olvidar el separador y acabar con "LauraGarcíaCalleMayor5Madrid". La clave es entender que el espacio es texto y como tal va entre comillas.</p>
+          <p>Estas son las tres formas de poner un espacio según el método que uses:</p>
+          <pre><code>Ampersand:     =A2&" "&B2
+CONCATENAR:    =CONCATENAR(A2; " "; B2)
+UNIRCADENAS:   =UNIRCADENAS(" "; VERDADERO; A2:B2)</code></pre>
+          <p>Para otros separadores, simplemente cambia lo que hay entre comillas. Una coma con espacio: <code>", "</code>. Un guion: <code>"-"</code>. Un salto de línea dentro de la misma celda: <code>CHAR(10)</code> con ajuste de texto activado.</p>
+          <p>Otro truco útil: crear un código único combinando texto y número. Por ejemplo, para generar un identificador de cliente con la ciudad y un número de pedido:</p>
+          <pre><code>=A2&"-"&TEXTO(B2; "0000")</code></pre>
+          <p>Si A2 es "MAD" y B2 es 42, el resultado es "MAD-0042". La función TEXTO rellena con ceros para que el código siempre tenga el mismo formato.</p>
+
+          <h2>Resumen: qué método elegir según tu caso</h2>
+          <ol class="list-decimal pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li><strong>Ampersand (&)</strong> para uniones de 2-3 celdas puntuales. Rápido, sin funciones, sin paréntesis.</li>
+            <li><strong>UNIRCADENAS</strong> para rangos completos con delimitadores y celdas vacías que puedas saltar. Es la opción más potente y la que debes usar en Excel 365 o Google Sheets.</li>
+            <li><strong>CONCATENAR</strong> solo si trabajas con una versión de Excel anterior a 2019 y necesitas más legibilidad que el ampersand en fórmulas largas.</li>
+          </ol>
+          <p>En la mayoría de casos del día a día, el ampersand te basta. Cuando empiezas a manejar datos importados con columnas que pueden estar vacías, UNIRCADENAS te ahorra minutos de trabajo y fórmulas imposibles de leer.</p>
+
+          <div class="my-8 rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/30 p-5">
+            <p class="text-emerald-800 dark:text-emerald-200 font-semibold mb-2">Pro Tip</p>
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed">Si necesitas separar el nombre completo en celdas distintas al revés (de "Laura García" a nombre y apellido en columnas separadas), usa <code>=TEXTOANTES(A2; " ")</code> para el nombre y <code>=TEXTODESPUES(A2; " ")</code> para el apellido. Estas funciones están en Excel 365 y Google Sheets y son la pareja natural de UNIRCADENAS.</p>
+          </div>
+        </div>
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg> WhatsApp</button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Twitter / X</button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</button>
+          </div>
+        </div>
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p></div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/excel/como-sumar-celdas-en-excel/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-excel mb-2 inline-block">Excel</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo sumar celdas en Excel: guía rápida</p></a>
+            <a href="/excel/como-calcular-porcentaje-en-excel/" class="block bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-excel mb-2 inline-block">Excel</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo calcular porcentajes en Excel</p></a>
+          </div>
+        </div>
+      </div>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+<script is:inline>
+  function shareArticle(p){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title);if(p==='whatsapp')window.open('https://api.whatsapp.com/send?text='+t+'%20'+u);else if(p==='twitter')window.open('https://twitter.com/intent/tweet?url='+u+'&text='+t);else if(p==='linkedin')window.open('https://www.linkedin.com/sharing/share-offsite/?url='+u);}
+</script>

@@ -1,0 +1,134 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../../layouts/Layout.astro';
+
+const title = 'Power BI vs Tableau: ¿Cuál deberías aprender primero para trabajar en análisis de datos?';
+const description = 'Analizamos las dos herramientas de Business Intelligence más potentes del mercado: curva de aprendizaje, coste, integración con Excel y salidas laborales de Power BI y Tableau.';
+const publishDate = '2026-11-11';
+const updateDate = '2026-11-11';
+const readTime = '7 min';
+const url = 'https://excelydatos.com/powerbi/power-bi-vs-tableau-cual-aprender-primero/';
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "Power BI & Tableau", "item": "https://excelydatos.com/powerbi/" }, { "@type": "ListItem", "position": 3, "name": "Power BI vs Tableau", "item": url } ] },
+  { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    { "@type": "Question", "name": "¿Es Power BI o Tableau mejor para empezar en análisis de datos?", "acceptedAnswer": { "@type": "Answer", "text": "Depende de tu contexto. Si trabajas en un entorno Microsoft y usas Excel a diario, Power BI es más fácil de aprender y su versión Desktop es gratuita. Si buscas trabajo en empresas grandes con cultura de datos avanzada, Tableau puede abrir más puertas aunque su curva de aprendizaje sea mayor." } },
+    { "@type": "Question", "name": "¿Cuál es más caro, Power BI o Tableau?", "acceptedAnswer": { "@type": "Answer", "text": "Power BI Desktop es gratis y la versión Pro cuesta unos 10 dólares al mes. Tableau Desktop parte de unos 70 dólares al mes para un creador y no tiene versión gratuita equivalente. Para empezar sin coste, Power BI es claramente más accesible." } },
+    { "@type": "Question", "name": "¿Puedo usar Power BI y Tableau con Excel?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, ambos se conectan a archivos de Excel como origen de datos. Power BI al formar parte del ecosistema Microsoft ofrece una integración más fluida, pero Tableau también acepta libros de Excel sin complicaciones." } }
+  ]}
+];
+---
+
+<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
+    <div class="flex gap-10">
+      <div class="min-w-0 flex-1">
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Inicio</a><span>/</span>
+          <a href="/powerbi/" class="hover:text-amber-700 dark:hover:text-amber-400 transition-colors">Power BI & Tableau</a><span>/</span>
+          <span class="text-slate-600 dark:text-slate-300 truncate">Power BI vs Tableau</span>
+        </nav>
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-powerbi">Power BI & Tableau</span><span class="text-slate-400 text-sm">{readTime} de lectura</span><span class="text-slate-300">·</span>
+            <time class="text-slate-400 text-sm" datetime={updateDate}>Actualizado noviembre 2026</time>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-amber-500 pl-4">
+            Analizamos las dos herramientas de Business Intelligence más potentes del mercado: curva de aprendizaje, coste, integración con Excel y salidas laborales.
+          </p>
+        </header>
+        <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
+          <img src="/powerbi-silo (49).png" alt="Comparativa entre los dashboards de Power BI y Tableau" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
+        </div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="article-body">
+          <h2>Introducción: el auge del Business Intelligence en las empresas</h2>
+          <p>Hace diez años, un analista de datos era alguien que sabía Excel muy bien. Hoy, las empresas no quieren tablas estáticas en un correo. Quieren dashboards interactivos que se actualicen solos y que cualquiera del equipo pueda consultar. Ahí es donde entran las herramientas de Business Intelligence: transforman datos crudos en visualizaciones que cuentan historias y ayudan a tomar decisiones.</p>
+          <p>De todas las opciones que existen en el mercado, dos dominan con claridad: Power BI, de Microsoft, y Tableau, propiedad de Salesforce. Ambas hacen lo mismo en esencia: conectarse a datos, transformarlos y crear visualizaciones interactivas. Pero la forma de trabajar, el precio y el público objetivo son muy distintos. Si estás planteándote cuál aprender primero, este artículo te lo aclara sin tecnicismos.</p>
+
+          <h2>Power BI: puntos fuertes</h2>
+          <p>Power BI ha crecido de forma meteórica porque se apoya en algo que ya tiene casi cualquier oficina: el ecosistema Microsoft. Si tu empresa usa Office 365, Power BI encaja como una pieza más del puzle. Se integra con Excel, SharePoint, Teams y Outlook de forma casi transparente.</p>
+          <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li><strong>Ecosistema Microsoft:</strong> si ya sabes Excel, la curva de aprendizaje de Power BI es suave. La interfaz, los menús y la lógica de Power Query te resultarán familiares desde el primer día.</li>
+            <li><strong>DAX y Power Query:</strong> el motor de cálculo de Power BI es potente. DAX te permite crear métricas complejas y Power Query es una herramienta de transformación de datos tan capaz que muchas personas la usan incluso fuera de Power BI, dentro del propio Excel.</li>
+            <li><strong>Precio:</strong> Power BI Desktop es completamente gratis. La versión Pro, que incluye publicación y actualización en la nube, cuesta unos 10 dólares al mes por usuario. Es la opción más accesible del mercado.</li>
+            <li><strong>Familiaridad con Excel:</strong> la transición de Excel a Power BI es natural. Muchos analistas empiezan importando un Excel, crean un par de gráficos y publican. En una tarde tienen su primer dashboard funcional.</li>
+          </ul>
+          <p>El lado negativo de Power BI es que sus visualizaciones por defecto son más sobrias. Puedes personalizarlas, pero no alcanzan el nivel de detalle visual que ofrece Tableau sin esfuerzo extra.</p>
+
+          <h2>Tableau: puntos fuertes</h2>
+          <p>Tableau nació como una herramienta pensada para visualización pura, y se nota. Su filosofía es distinta: en lugar de arrastrar campos a un panel, trabajas con un lienzo donde cada elemento se coloca con precisión. Es la herramienta preferida de los equipos de datos de empresas grandes que valoran el diseño por encima de todo.</p>
+          <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li><strong>Potencia visual:</strong> Tableau crea visualizaciones que parecen hechas por un diseñador. Los mapas, los gráficos de dispersión y las visualizaciones geoespaciales son su punto fuerte indiscutible.</li>
+            <li><strong>Manejo de grandes volúmenes:</strong> Tableau está optimizado para trabajar con millones de filas sin perder fluidez. Si tu empresa maneja datasets enormes, Tableau rinde mejor que Power BI en muchos escenarios.</li>
+            <li><strong>Flexibilidad de diseño:</strong> puedes colocar cualquier elemento donde quieras, combinar múltiples fuentes de datos en un mismo dashboard y crear layouts personalizados que en Power BI requerirían trucos.</li>
+          </ul>
+          <p>El lado negativo: Tableau tiene una curva de aprendizaje más pronunciada y su precio es considerablemente más alto. No existe una versión Desktop gratuita plenamente equipada como la de Power BI.</p>
+
+          <h2>Tabla comparativa</h2>
+          <table class="w-full border-collapse my-6 text-sm">
+            <thead>
+              <tr class="bg-amber-50 dark:bg-amber-900/20">
+                <th class="border border-slate-300 dark:border-slate-600 p-3 text-left font-bold text-slate-900 dark:text-slate-100">Aspecto</th>
+                <th class="border border-slate-300 dark:border-slate-600 p-3 text-left font-bold text-slate-900 dark:text-slate-100">Power BI</th>
+                <th class="border border-slate-300 dark:border-slate-600 p-3 text-left font-bold text-slate-900 dark:text-slate-100">Tableau</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Curva de aprendizaje</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Suave, sobre todo si sabes Excel</td><td class="border border-slate-300 dark:border-slate-600 p-3">Más pronunciada, requiere práctica</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Precio inicial</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Gratis (Desktop)</td><td class="border border-slate-300 dark:border-slate-600 p-3">Desde ~70 USD/mes (Creator)</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Facilidad de uso</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Arrastrar y soltar, muy intuitivo</td><td class="border border-slate-300 dark:border-slate-600 p-3">Potente pero requiere conocer sus conceptos</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Mercado laboral en España</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Más ofertas, sobre todo en pymes y consultoras</td><td class="border border-slate-300 dark:border-slate-600 p-3">Menos ofertas pero mejor pagadas en grandes empresas</td></tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800"><td class="border border-slate-300 dark:border-slate-600 p-3"><strong>Integración con Excel</strong></td><td class="border border-slate-300 dark:border-slate-600 p-3">Nativa, forma del ecosistema Microsoft</td><td class="border border-slate-300 dark:border-slate-600 p-3">Buena, pero no nativa del mismo entorno</td></tr>
+            </tbody>
+          </table>
+
+          <h2>¿Cuál elegir según tu puesto de trabajo actual?</h2>
+          <p>La respuesta correcta depende de dónde estás ahora mismo y hacia dónde quieres ir. Aquí tienes una guía práctica por perfil:</p>
+          <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
+            <li><strong>Contabilidad y finanzas:</strong> Power BI, sin dudarlo. Trabajas con Excel todos los días, necesitas algo que conecte con tus hojas sin fricción y los presupuestos de tu departamento agradecerán la versión gratuita.</li>
+            <li><strong>Marketing:</strong> Power BI para empezar, Tableau si quieres especializarte en visualización avanzada. En marketing los dashboards son la herramienta principal para reportar campañas y KPIs, y la capacidad visual de Tableau marca la diferencia en presentaciones.</li>
+            <li><strong>Data Analytics:</strong> aprende las dos. Power BI te abrirá la puerta de la mayoría de ofertas en España. Tableau te diferenciará en procesos de selección de empresas grandes y consultoras estratégicas. Si tienes que elegir una para empezar, Power BI. Añade Tableau cuando domines los conceptos de BI.</li>
+          </ul>
+
+          <h2>Conclusión y recomendación de aprendizaje</h2>
+          <p>Mi recomendación para alguien que empieza desde cero es clara: <strong>Power BI primero</strong>. Es gratis, es más fácil si vienes de Excel y cubre el 90% de las necesidades reales de una oficina. Con Power BI Desktop y un Excel puedes crear dashboards profesionales en una semana.</p>
+          <p>Una vez que domines Power BI, conceptos como conexión de datos, transformación con Power Query y creación de medidas con DAX te servirán como base. Aprender Tableau después será mucho más rápido porque ya entenderás la lógica del Business Intelligence. Hablarás el idioma antes de cambiar de herramienta.</p>
+          <p>Y si ya trabajas en una empresa que usa Tableau, aprende Tableau directamente. No tiene sentido aprender Power BI si tu entorno laboral no lo usa y no vas a poder practicar con datos reales. La mejor herramienta para aprender es la que vas a usar de verdad en tu día a día.</p>
+
+          <div class="my-8 rounded-2xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-5">
+            <p class="text-amber-800 dark:text-amber-200 font-semibold mb-2">Pro Tip</p>
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed">No descartes Excel mientras aprendes BI. Power Query vive tanto en Excel como en Power BI, y dominarlo primero en Excel (donde ya estás cómodo) hace que el salto a Power BI sea inmediato. Es el puente natural entre las dos herramientas.</p>
+          </div>
+        </div>
+        <div class="mt-10 mb-6">
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="shareArticle('whatsapp')" class="share-btn-whatsapp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 0C5.374 0 0 5.373 0 11.998c0 2.117.554 4.1 1.522 5.826L0 24l6.335-1.502A11.945 11.945 0 0 0 11.998 24C18.623 24 24 18.627 24 12.002 24 5.374 18.623 0 11.998 0zm0 21.818a9.808 9.808 0 0 1-5.003-1.368l-.36-.213-3.76.89.949-3.653-.233-.374A9.784 9.784 0 0 1 2.18 12c0-5.415 4.407-9.82 9.818-9.82 5.413 0 9.82 4.405 9.82 9.82 0 5.415-4.407 9.818-9.82 9.818z"/></svg> WhatsApp</button>
+            <button onclick="shareArticle('twitter')" class="share-btn-twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Twitter / X</button>
+            <button onclick="shareArticle('linkedin')" class="share-btn-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</button>
+          </div>
+        </div>
+        <div class="author-block mt-6 mb-4">
+          <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center flex-shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><p class="text-sm font-semibold text-[#1E293B] dark:text-slate-100">ExcelyDatos</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Guías prácticas de Excel, Power BI y SQL escritas desde la experiencia en entornos de trabajo reales.</p></div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/powerbi/que-es-power-bi-para-que-sirve/" class="block bg-white dark:bg-slate-800 border border-amber-100 dark:border-amber-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-powerbi mb-2 inline-block">Power BI & Tableau</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">¿Qué es Power BI y para qué sirve?</p></a>
+            <a href="/powerbi/crear-primer-dashboard-tableau-desde-excel/" class="block bg-white dark:bg-slate-800 border border-amber-100 dark:border-amber-900/50 rounded-xl p-4 hover:shadow-md transition-shadow"><span class="badge-powerbi mb-2 inline-block">Power BI & Tableau</span><p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo crear tu primer Dashboard en Tableau desde un Excel</p></a>
+          </div>
+        </div>
+      </div>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+    </div>
+    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
+  </div>
+</Layout>
+<script is:inline>
+  function shareArticle(p){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title);if(p==='whatsapp')window.open('https://api.whatsapp.com/send?text='+t+'%20'+u);else if(p==='twitter')window.open('https://twitter.com/intent/tweet?url='+u+'&text='+t);else if(p==='linkedin')window.open('https://www.linkedin.com/sharing/share-offsite/?url='+u);}
+</script>
