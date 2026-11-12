@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://excelydatos.com/sitemap-index.xml
