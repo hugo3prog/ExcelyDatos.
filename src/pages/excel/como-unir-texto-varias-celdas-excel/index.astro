@@ -22,7 +22,6 @@ const jsonLd = [
 
 <Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
     <div class="flex gap-10">
       <div class="min-w-0 flex-1">
         <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
@@ -43,7 +42,7 @@ const jsonLd = [
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
           <img src="/tabla dinamica excel.png" alt="Hoja de Excel con nombres y apellidos en columnas separadas listos para unir" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
-        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"></div>
         <div class="article-body">
           <h2>El problema clásico de oficina: nombres y apellidos separados</h2>
           <p>Es la tarea más recurrente que existe. Tu empresa tiene una base de datos exportada del ERP con los nombres en una columna y los apellidos en otra. Para enviar un correo personalizado, imprimir etiquetas o rellenar un formulario necesitas el nombre completo en una sola celda. Hacerlo a mano con cientos de filas es impensable.</p>
@@ -120,9 +119,8 @@ UNIRCADENAS:   =UNIRCADENAS(" "; VERDADERO; A2:B2)</code></pre>
           </div>
         </div>
       </div>
-      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"></aside>
     </div>
-    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
   </div>
 </Layout>
 <script is:inline>

@@ -22,7 +22,6 @@ const jsonLd = [
 
 <Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
     <div class="flex gap-10">
       <div class="min-w-0 flex-1">
         <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
@@ -44,7 +43,7 @@ const jsonLd = [
           <!-- IMAGEN: editor de Excel mostrando función BUSCARX con resultado -->
           <img src="/excel-hero.jpg" alt="Hoja de Excel con la función BUSCARX escrita en la barra de fórmulas" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
-        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"></div>
         <div class="article-body">
           <h2>Por qué Microsoft creó BUSCARX</h2>
           <p>BUSCARV lleva décadas siendo la función más usada de Excel, pero también la que más problemas da. Tienes que contar columnas para saber qué devolver, solo puede buscar hacia la derecha y si insertas una columna en medio, tu fórmula se rompe. Microsoft lo sabía y por eso lanzó BUSCARX (XLOOKUP) en 2019: una función moderna que hace lo mismo pero sin las limitaciones de su predecesora.</p>
@@ -132,9 +131,8 @@ const jsonLd = [
           </div>
         </div>
       </div>
-      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"></aside>
     </div>
-    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
   </div>
 </Layout>
 <script is:inline>

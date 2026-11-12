@@ -17,7 +17,6 @@ const jsonLd = [
 
 <Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="adsense-slot adsense-slot--leaderboard mb-8" aria-hidden="true"></div>
     <div class="flex gap-10">
       <div class="min-w-0 flex-1">
         <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6" aria-label="Breadcrumb">
@@ -39,7 +38,7 @@ const jsonLd = [
           <!-- IMAGEN: tabla SQL con registros duplicados de clientes antes de limpiar -->
           <img src="/sql duplicados.png" alt="Tabla SQL con registros duplicados de clientes antes de limpiar datos" class="w-full h-auto object-contain" loading="eager" width="1200" height="400" />
         </div>
-        <div class="float-right ml-6 mb-6 hidden lg:block"><div class="adsense-slot adsense-slot--rectangle" aria-hidden="true"></div></div>
+        <div class="float-right ml-6 mb-6 hidden lg:block"></div>
         <div class="article-body">
           <h2>Primero: no borres nada hasta saber qué está duplicado</h2>
           <p>Uno de los errores más habituales trabajando con bases de datos es ver filas repetidas y lanzar un <code>DELETE</code> directamente. Parece lógico, pero es justo lo que no debes hacer.</p>
@@ -136,9 +135,8 @@ WHERE id_cliente NOT IN (
           </div>
         </div>
       </div>
-      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"><div class="adsense-slot adsense-slot--sidebar sticky top-24" aria-hidden="true"></div></aside>
+      <aside class="hidden xl:block w-72 flex-shrink-0 space-y-6"></aside>
     </div>
-    <div class="adsense-slot adsense-slot--leaderboard mt-12" aria-hidden="true"></div>
   </div>
 </Layout>
 <script is:inline>
