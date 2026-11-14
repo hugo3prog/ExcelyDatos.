@@ -2,8 +2,8 @@
 import '@/styles/globals.css';
 import Layout from '../../../layouts/Layout.astro';
 
-const title = 'Cómo fijar filas y columnas en Excel para que no se muevan al hacer scroll';
-const description = 'Fija la primera fila, la primera columna o ambas a la vez en Excel y Google Sheets con Inmovilizar paneles. Incluye atajos de teclado y el truco de arrastrar barras grises.';
+const title = 'Inmovilizar filas y columnas en Excel y Google Sheets';
+const description = 'Inmoviliza la primera fila, la primera columna o ambas en Excel y Google Sheets. Incluye la regla de la celda B2, el atajo Alt + W + F + F y cómo quitarlo.';
 const publishDate = '2026-08-13';
 const updateDate = '2026-07-07';
 const readTime = '4 min';
@@ -90,102 +90,110 @@ const jsonLd = [
         </div>
 
         <div class="article-body">
-
-          <h2>El problema: los encabezados se pierden al hacer scroll</h2>
           <p>
-            En cualquier tabla grande, los títulos de columna están en la fila 1 y los de fila en la columna A. En cuanto bajas o te desplazas hacia la derecha, esos títulos salen de la pantalla y dejas de saber qué datos estás viendo. La función de inmovilizar paneles deja esas filas y columnas fijas mientras el resto de la hoja sigue moviéndose.
+            Tienes una tabla de inventario con 200 columnas y 3.000 filas. Bajas hasta la fila 2.500 y los encabezados desaparecen: ya no sabes qué significa cada número. En Excel y en Google Sheets se arregla con Inmovilizar, que se activa desde el menú Vista (Excel) o Ver (Sheets).
+          </p>
+          <h2>El problema: los encabezados desaparecen al hacer scroll</h2>
+          <p>
+            En una tabla grande, los títulos de columna están en la fila 1 y los de fila en la columna A. Al bajar o desplazarte a la derecha, salen de la pantalla y dejas de saber qué datos estás mirando. Inmovilizar paneles deja fijas las filas y columnas que elijas mientras el resto de la hoja sigue moviéndose.
           </p>
 
           <h2>Caso 1: fijar solo la primera fila</h2>
           <p>
-            Si lo que necesitas es que los encabezados de columna se queden arriba al bajar, los pasos varían según el programa:
-          </p>
-          <p><strong>En Excel:</strong></p>
-          <ol>
-            <li>Ve a la pestaña <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
-            <li>Selecciona <strong>Inmovilizar fila superior</strong>.</li>
-          </ol>
-          <p><strong>En Google Sheets:</strong></p>
-          <ol>
-            <li>Ve a <strong>Ver</strong> &gt; <strong>Inmovilizar</strong>.</li>
-            <li>Selecciona <strong>1 fila</strong> (o <em>Hasta la fila actual</em> si estás situado en otra).</li>
-          </ol>
-          <p>
-            Listo. La fila 1 se queda pegada arriba por mucho que hagas scroll. Verás una línea gris fina o una franja divisoria marcando el límite.
-          </p>
-
-          <h2>Caso 2: fijar solo la primera columna</h2>
-          <p>
-            Si lo que se pierde al desplazarte hacia la derecha es la identificación de cada registro (el nombre de cliente o código de producto en la columna A):
+            Si solo necesitas que los encabezados de columna se queden arriba al bajar, los pasos cambian según el programa.
           </p>
           <p><strong>En Excel:</strong></p>
           <ol>
             <li>Ve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
-            <li>Haz clic en <strong>Inmovilizar primera columna</strong>.</li>
+            <li>Elige <strong>Inmovilizar fila superior</strong>.</li>
           </ol>
           <p><strong>En Google Sheets:</strong></p>
           <ol>
             <li>Ve a <strong>Ver</strong> &gt; <strong>Inmovilizar</strong>.</li>
-            <li>Selecciona <strong>1 columna</strong>.</li>
+            <li>Elige <strong>1 fila</strong>, o <em>Hasta la fila actual</em> si estás situado en otra.</li>
           </ol>
           <p>
-            La columna A se queda fija a la izquierda mientras navegas de forma horizontal.
+            La fila 1 se queda pegada arriba aunque hagas scroll. El límite se marca con una línea gris fina.
+          </p>
+
+          <h2>Caso 2: fijar solo la primera columna</h2>
+          <p>
+            Si lo que pierdes al desplazarte a la derecha es la identificación de cada registro (el nombre del cliente o el código de producto en la columna A):
+          </p>
+          <p><strong>En Excel:</strong></p>
+          <ol>
+            <li>Ve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
+            <li>Elige <strong>Inmovilizar primera columna</strong>.</li>
+          </ol>
+          <p><strong>En Google Sheets:</strong></p>
+          <ol>
+            <li>Ve a <strong>Ver</strong> &gt; <strong>Inmovilizar</strong>.</li>
+            <li>Elige <strong>1 columna</strong>.</li>
+          </ol>
+          <p>
+            La columna A se queda fija a la izquierda mientras navegas en horizontal.
           </p>
 
           <h2>Caso 3: fijar filas y columnas a la vez</h2>
           <p>
-            Este es el escenario más habitual en tablas de trabajo reales: necesitas fijar la fila 1 arriba y la columna A a la izquierda al mismo tiempo.
+            Es el caso más habitual en tablas de trabajo: la fila 1 arriba y la columna A a la izquierda al mismo tiempo.
           </p>
 
           <h3>En Excel: la regla de la celda esquina</h3>
           <p>
-            En Excel debe usarse la opción general "Inmovilizar paneles", la cual toma la celda activa como punto de referencia:
+            Aquí hay que usar la opción general Inmovilizar paneles, que toma como referencia la celda activa:
           </p>
           <ol>
-            <li>Selecciona la celda <strong>B2</strong> (la que está justo debajo de la fila a fijar y a la derecha de la columna a fijar).</li>
+            <li>Selecciona la celda <strong>B2</strong>: justo debajo de la fila a fijar y a la derecha de la columna a fijar.</li>
             <li>Ve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong> &gt; <strong>Inmovilizar paneles</strong>.</li>
           </ol>
           <p>
-            Excel fija todo lo que queda por encima y a la izquierda de B2. Si quisieras inmovilizar dos filas y tres columnas, seleccionarías la celda D3.
+            Excel fija todo lo que queda por encima y a la izquierda de B2. Para inmovilizar dos filas y tres columnas, selecciona D3.
           </p>
 
-          <h3>En Google Sheets: menús directos o arrastrar las barras</h3>
+          <h3>En Google Sheets: menú o arrastrar las barras</h3>
           <p>
-            En Google Sheets no es necesario memorizar qué celda seleccionar. Puedes fijar filas y columnas combinando las opciones del menú <strong>Ver</strong> &gt; <strong>Inmovilizar</strong> (marcando por ejemplo <em>1 fila</em> y luego <em>1 columna</em>).
+            En Sheets no hace falta pensar en qué celda seleccionar. Puedes combinar las opciones de <strong>Ver</strong> &gt; <strong>Inmovilizar</strong> (por ejemplo, <em>1 fila</em> y luego <em>1 columna</em>).
           </p>
           <p>
-            O mejor aún, puedes usar el método visual: en la esquina superior izquierda (sobre el número de la fila 1 y a la izquierda de la letra A) verás dos barras grises más gruesas. Solo tienes que hacer clic sobre una de esas barras y arrastrarla directamente con el ratón hasta la fila o columna donde quieras situar el bloqueo.
+            También puedes hacerlo a mano. En la esquina superior izquierda, entre el número de la fila 1 y la letra A, hay dos barras grises más gruesas. Arrastra una de ellas con el ratón hasta la fila o la columna donde quieras el bloqueo.
           </p>
 
-          <pre><code>Regla en Excel: la celda seleccionada marca la esquina.
-En Google Sheets: puedes arrastrar las barras grises superiores directamente.</code></pre>
+          <h2>Resumen rápido</h2>
+          <table>
+            <thead>
+              <tr><th>Qué quieres fijar</th><th>Excel</th><th>Google Sheets</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Primera fila</td><td>Vista &gt; Inmovilizar paneles &gt; Inmovilizar fila superior</td><td>Ver &gt; Inmovilizar &gt; 1 fila</td></tr>
+              <tr><td>Primera columna</td><td>Vista &gt; Inmovilizar paneles &gt; Inmovilizar primera columna</td><td>Ver &gt; Inmovilizar &gt; 1 columna</td></tr>
+              <tr><td>Filas y columnas</td><td>Seleccionar B2 y Vista &gt; Inmovilizar paneles &gt; Inmovilizar paneles</td><td>Ver &gt; Inmovilizar, o arrastrar las barras grises</td></tr>
+            </tbody>
+          </table>
 
           <h2>Cómo quitar el bloqueo</h2>
-          <p>
-            Cuando ya no necesitas mantener los paneles estáticos:
-          </p>
           <ul>
-            <li><strong>En Excel:</strong> ve a <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong> &gt; <strong>Movilizar paneles</strong>.</li>
-            <li><strong>En Google Sheets:</strong> ve a <strong>Ver</strong> &gt; <strong>Inmovilizar</strong> y selecciona <strong>Sin filas</strong> / <strong>Sin columnas</strong> (o arrastra las barras grises de vuelta a la esquina original).</li>
+            <li><strong>En Excel:</strong> <strong>Vista</strong> &gt; <strong>Inmovilizar paneles</strong> &gt; <strong>Movilizar paneles</strong>.</li>
+            <li><strong>En Google Sheets:</strong> <strong>Ver</strong> &gt; <strong>Inmovilizar</strong> y elige <strong>Sin filas</strong> o <strong>Sin columnas</strong>. También puedes arrastrar las barras grises de vuelta a la esquina.</li>
           </ul>
 
-          <h2>Los errores que te hacen perder la tarde</h2>
+          <h2>Errores comunes</h2>
           <ul>
-            <li><strong>Las opciones aparecen en gris en Excel:</strong> ocurre cuando estás en modo "Editar" dentro de una celda. Pulsa <code>Esc</code> para salir de la celda y el menú volverá a activarse.</li>
-            <li><strong>Se fijan más filas de las deseadas:</strong> en Excel tenías seleccionada una celda diferente a B2 antes de aplicar la opción. Cancela el bloqueo con "Movilizar paneles", vuelve a marcar B2 e inmoviliza de nuevo.</li>
-            <li><strong>La línea de separación apenas se aprecia:</strong> según el tema o monitor, la línea divisoria gris puede resultar sutil. Realiza un ligero desplazamiento para comprobar si el panel responde correctamente.</li>
+            <li><strong>Las opciones salen en gris en Excel:</strong> estás editando una celda. Pulsa <code>Esc</code> para salir y el menú vuelve a activarse.</li>
+            <li><strong>Se fijan más filas de las que querías:</strong> antes de aplicar la opción tenías seleccionada una celda distinta de B2. Quita el bloqueo con Movilizar paneles, selecciona B2 y vuelve a inmovilizar.</li>
+            <li><strong>La línea de separación casi no se ve:</strong> según el tema o el monitor, la línea gris es muy sutil. Haz un pequeño scroll para comprobar que el panel responde.</li>
           </ul>
 
           <h2>Pro Tip</h2>
           <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 my-6 flex items-center gap-4">
             <div class="text-3xl font-mono font-bold text-emerald-700 dark:text-emerald-400">Alt + W + F + F</div>
             <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-              En Excel, seleccionando la celda adecuada, pulsa la secuencia <strong>Alt</strong>, <strong>W</strong>, <strong>F</strong> y <strong>F</strong> para inmovilizar o movilizar paneles rápidamente sin usar el ratón. En Google Sheets, el atajo visual de arrastrar la barra gris desde la esquina superior izquierda es el método más rápido.
+              En Excel, con la celda adecuada seleccionada, pulsa <strong>Alt</strong>, <strong>W</strong>, <strong>F</strong> y <strong>F</strong> para inmovilizar o movilizar paneles sin usar el ratón [VERIFICAR: teclas en Excel en español]. En Google Sheets, lo más rápido es arrastrar la barra gris desde la esquina superior izquierda.
             </div>
           </div>
 
           <p>
-            Con los paneles bien fijados, moverte por tablas enormes deja de ser un problema de navegación. Si además combinas esto con una tabla dinámica o la función BUSCARV, tendrás un control total sobre volúmenes grandes de información.
+            Con los paneles fijados, moverte por una tabla grande es mucho más cómodo. Si trabajas con volúmenes así, te vendrán bien la <a href="/excel/como-hacer-tabla-dinamica/">guía de tablas dinámicas</a> y la <a href="/excel/guia-buscarv-paso-a-paso/">de BUSCARV</a>.
           </p>
         </div>
 
