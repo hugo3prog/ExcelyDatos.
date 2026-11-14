@@ -479,39 +479,18 @@ const featuredArticles = [
     </div>
   </section>
 
-  <!-- ===================== NEWSLETTER ===================== -->
+  <!-- Rutas de aprendizaje -->
   <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="bg-[#00754a] text-white py-12 px-6 rounded-2xl text-center my-10 shadow-lg">
-      <h2 class="text-3xl font-bold mb-3">Recibe nuevas guías cada semana</h2>
-      <p class="text-base sm:text-lg opacity-90 max-w-2xl mx-auto mb-6">
-        Sin spam. Solo artículos prácticos sobre Excel, Power BI y SQL que puedes aplicar en tu trabajo de inmediato.
-      </p>
-
-      <div id="newsletter-container" class="max-w-md mx-auto min-h-[50px] flex flex-col justify-center items-center">
-        <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 w-full justify-center">
-          <input
-            type="email"
-            id="newsletter-email"
-            name="email"
-            placeholder="Tu correo electrónico..."
-            required
-            class="px-4 py-3 rounded-xl text-gray-900 bg-white border border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-300 flex-1 text-base shadow-sm"
-          />
-          <button
-            type="submit"
-            id="newsletter-btn"
-            class="px-6 py-3 bg-gray-900 text-white font-semibold rounded-xl hover:bg-black transition-all shadow-md active:scale-95 whitespace-nowrap"
-          >
-            Suscribirme
-          </button>
-        </form>
-
-        <div id="newsletter-message" class="hidden text-amber-200 font-medium text-lg mt-2">
-          ¡Gracias por suscribirte! Revisa tu bandeja de entrada.
-        </div>
+      <h2 class="text-3xl font-bold mb-6">Empieza por aquí: rutas de aprendizaje</h2>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/powerbi/" class="inline-flex items-center justify-center bg-white text-emerald-800 font-semibold px-5 py-3 rounded-xl hover:bg-emerald-50 transition-colors">
+          De Excel a Power BI
+        </a>
+        <a href="/sql/" class="inline-flex items-center justify-center bg-white text-emerald-800 font-semibold px-5 py-3 rounded-xl hover:bg-emerald-50 transition-colors">
+          De Excel a SQL
+        </a>
       </div>
-
-      <p class="text-xs opacity-75 mt-4">Puedes darte de baja cuando quieras.</p>
     </div>
   </section>
 
@@ -649,38 +628,6 @@ const featuredArticles = [
       });
     }
 
-    // 2. Lógica de la Newsletter (MailerLite JSONP)
-    const form = document.getElementById('newsletter-form') as HTMLFormElement;
-    const message = document.getElementById('newsletter-message');
-    const btn = document.getElementById('newsletter-btn') as HTMLButtonElement;
-    const input = document.getElementById('newsletter-email') as HTMLInputElement;
-
-    if (form && message && btn && input) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = input.value.trim();
-        if (!email) return;
-
-        btn.disabled = true;
-        btn.textContent = 'Enviando...';
-
-        const callbackName = 'ml_cb_' + Math.random().toString(36).substring(7);
-        (window as any)[callbackName] = function() {
-          delete (window as any)[callbackName];
-        };
-
-        const script = document.createElement('script');
-        script.src = `https://assets.mailerlite.com/jsonp/2495707/forms/192351734327150216/subscribe?fields%5Bemail%5D=${encodeURIComponent(email)}&callback=${callbackName}`;
-
-        document.body.appendChild(script);
-
-        setTimeout(() => {
-          form.classList.add('hidden');
-          message.classList.remove('hidden');
-          if (script.parentNode) script.parentNode.removeChild(script);
-        }, 800);
-      });
-    }
   }
 
   initPageLogic();
