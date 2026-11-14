@@ -135,6 +135,21 @@ const jsonLd = [
           <button onclick="shareArticle('copy')" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 dark:hover:bg-amber-900 rounded-lg text-sm font-medium transition-colors">Copiar enlace</button>
         </div>
 
+
+        <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-[#1E293B] dark:text-slate-100 mb-4">Artículos relacionados</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/excel/como-sumar-celdas-en-excel/" class="block bg-white dark:bg-slate-800 border rounded-xl p-4 hover:shadow-md transition-shadow border-emerald-100 dark:border-emerald-900/50">
+              <span class="badge-excel mb-2 inline-block">Excel</span>
+              <p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">Cómo sumar celdas en Excel: guía rápida</p>
+            </a>
+            <a href="/sql/que-es-un-select-en-sql/" class="block bg-white dark:bg-slate-800 border rounded-xl p-4 hover:shadow-md transition-shadow border-sky-100 dark:border-sky-900/50">
+              <span class="badge-sql mb-2 inline-block">SQL</span>
+              <p class="font-semibold text-sm text-[#1E293B] dark:text-slate-100">¿Qué es un SELECT en SQL? Aprende en 5 minutos</p>
+            </a>
+          </div>
+        </div>
+
   <script is:inline>
     function shareArticle(platform) {
       const url = 'https://www.excelydatos.com/powerbi/que-es-power-bi-para-que-sirve/';
