@@ -2,8 +2,8 @@
 import '@/styles/globals.css';
 import Layout from '../../../layouts/Layout.astro';
 
-const title = 'Cómo pasar un PDF a Excel sin desconfigurar las tablas (Adiós al copiar y pegar)';
-const description = 'Guía para importar tablas de un archivo PDF a Excel y Google Sheets manteniendo el formato intacto, usando Power Query y sin conversores online dudosos.';
+const title = 'Pasar un PDF a Excel con Power Query, sin romper las tablas';
+const description = 'Importa tablas de un PDF a Excel con Power Query, y a Google Sheets pasando por Google Docs. Sin conversores online y sin celdas combinadas.';
 const publishDate = '2026-09-10';
 const updateDate = '2026-04-05';
 const readTime = '7 min';
@@ -15,7 +15,7 @@ const jsonLd = [
 ];
 ---
 
-<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+<Layout title={title} description={description} jsonLd={jsonLd} showReadingProgress={true}>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex gap-10">
       <div class="min-w-0 flex-1">
@@ -31,7 +31,7 @@ const jsonLd = [
           </div>
           <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
           <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500 pl-4">
-            Un cliente te envía un listado de precios o un informe de 50 páginas... en PDF. Intentas seleccionar la tabla, le das a copiar, vas a tu hoja de cálculo, pegas y ¡bum!, todo el texto se queda metido en una sola columna infinita. Arreglar eso a mano te llevaría toda la mañana. Vamos a ver cómo hacerlo en segundos sin romper nada.
+            Un cliente te manda un listado de precios o un informe de 50 páginas, en PDF. Copias la tabla, la pegas en Excel y todo el texto cae en una sola columna. Arreglarlo a mano es un trabajo largo. Con Power Query, la tabla entra en la hoja ya separada en celdas.
           </p>
         </header>
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
@@ -40,33 +40,42 @@ const jsonLd = [
         </div>
         <div class="float-right ml-6 mb-6 hidden lg:block"></div>
         <div class="article-body">
-          <h2>La solución nativa en Excel: Magia con Power Query</h2>
-          <p>Las versiones modernas de Excel traen una herramienta brutal escondida a simple vista. Ya no necesitas programas de terceros ni jugártela con webs raras.</p>
+          <h2>En Excel: importar el PDF con Power Query</h2>
+          <p>Las versiones recientes de Excel [VERIFICAR: versiones que incluyen esta opción] traen una opción para importar PDF sin programas de terceros ni webs de conversión.</p>
           <ol class="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-3 mb-6">
             <li>Abre un Excel en blanco.</li>
-            <li>Vete a la pestaña <strong>Datos</strong> en la cinta superior.</li>
-            <li>Busca el botón <strong>Obtener datos</strong> &gt; <strong>De un archivo</strong> &gt; <strong>De PDF</strong>.</li>
+            <li>Ve a la pestaña <strong>Datos</strong>.</li>
+            <li>Pulsa <strong>Obtener datos</strong> &gt; <strong>De un archivo</strong> &gt; <strong>De PDF</strong>.</li>
             <li>Selecciona el PDF en tu ordenador.</li>
-            <li>Se abrirá una ventana (el Navegador). A la izquierda verás que Excel ha detectado automáticamente las tablas del PDF (saldrán nombradas como "Tabla 1", "Tabla 2", etc.).</li>
-            <li>Haz clic en la tabla que necesitas. A la derecha verás una vista previa. ¡Está perfecta!</li>
-            <li>Pulsa el botón <strong>Cargar</strong> abajo a la derecha y listo, ya la tienes en tu hoja con cada dato en su celda.</li>
+            <li>Se abre el Navegador. A la izquierda aparecen las tablas que Excel ha detectado en el PDF [VERIFICAR: nombre que les pone, "Tabla 1" o "Table001 (Page 1)"].</li>
+            <li>Haz clic en la tabla que necesitas. A la derecha verás una vista previa: comprueba que las columnas y los datos coinciden con el PDF.</li>
+            <li>Pulsa <strong>Cargar</strong>, abajo a la derecha. La tabla llega a tu hoja con cada dato en su celda.</li>
           </ol>
-          <h2>¿Cómo se hace esto en Google Sheets?</h2>
-          <p>Google Sheets no tiene un botón nativo de "Obtener datos de PDF" tan potente como Excel. Pero hay una ruta alternativa usando el ecosistema de Google sin salir del navegador:</p>
+
+          <h2>En Google Sheets: pasar por Google Docs</h2>
+          <p>Google Sheets no tiene una opción para importar PDF tan directa como la de Excel [VERIFICAR]. Hay una ruta alternativa sin salir del navegador:</p>
           <ol class="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-3 mb-6">
-            <li>Sube el archivo PDF a tu <strong>Google Drive</strong>.</li>
-            <li>Haz clic derecho sobre el PDF en Drive, dale a <strong>Abrir con</strong> y elige <strong>Documentos de Google</strong> (Google Docs).</li>
-            <li>Google Docs convertirá el PDF a texto y detectará las tablas bastante bien.</li>
-            <li>Ahí sí, selecciona la tabla en el Documento, cópiala (Ctrl+C) y pégala (Ctrl+V) en tu Google Sheets. En el 95% de los casos las columnas se mantendrán en su sitio.</li>
+            <li>Sube el PDF a <strong>Google Drive</strong>.</li>
+            <li>Haz clic derecho sobre el archivo, elige <strong>Abrir con</strong> y después <strong>Documentos de Google</strong>.</li>
+            <li>Google Docs convierte el PDF en texto y detecta las tablas.</li>
+            <li>Selecciona la tabla en el documento, cópiala con <code>Ctrl + C</code> y pégala en tu hoja con <code>Ctrl + V</code>. Las columnas suelen quedar en su sitio, pero revísalas antes de seguir.</li>
           </ol>
-          <h2>Errores comunes: Cuidado con los conversores gratuitos</h2>
-          <p>Cuando te desesperas, lo más fácil es buscar en Google "PDF a Excel gratis" y subir tu archivo a la primera web que sale. <strong>No lo hagas con datos sensibles de la empresa</strong>.</p>
-          <p>Aparte del riesgo de privacidad, estos conversores online suelen crear archivos Excel con celdas combinadas por todas partes para intentar imitar el diseño visual del PDF. Intentar sumar o filtrar una columna que tiene celdas combinadas es un infierno. Usa la importación de datos nativa siempre que puedas para tener datos limpios.</p>
-          <h2>El Pro Tip para ir a la velocidad de la luz</h2>
+
+          <h2>Errores comunes</h2>
+          <ul class="list-disc list-inside text-slate-700 dark:text-slate-300 space-y-2 mb-6">
+            <li><strong>Subir datos sensibles a un conversor gratuito:</strong> cuando buscas "PDF a Excel gratis", la primera web que sale pide que le subas el archivo. Con datos de la empresa, no lo hagas: pierdes el control de dónde acaba ese documento.</li>
+            <li><strong>Usar el archivo que devuelve un conversor sin revisarlo:</strong> muchos intentan imitar el diseño del PDF y llenan la hoja de celdas combinadas. Con celdas combinadas, sumar o filtrar una columna da problemas. La importación nativa te deja una tabla limpia, con una celda por dato.</li>
+          </ul>
+
+          <h2>Pro Tip</h2>
           <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 my-6 flex items-center gap-4">
             <div class="text-3xl font-mono font-bold text-emerald-700 dark:text-emerald-400">Alt + D + O</div>
-            <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">En Excel para Windows, pulsa esta secuencia (primero Alt, luego sueltas, D, sueltas, O) para desplegar directamente el menú de "Obtener datos" sin tocar el ratón. Te ahorras estar navegando por las pestañas si lo haces varias veces al día.</div>
+            <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">En Excel para Windows, pulsa Alt, suéltala, y luego D y O [VERIFICAR: esta secuencia] para abrir el menú de "Obtener datos" sin usar el ratón. Si importas PDF varias veces al día, te evitas recorrer las pestañas.</div>
           </div>
+
+          <p>
+            Con la tabla ya en la hoja, lo siguiente suele ser limpiarla. La <a href="/excel/como-quitar-duplicados-excel/">guía para quitar duplicados</a> te explica cómo hacerlo sin desalinear las filas, y la <a href="/excel/como-hacer-tabla-dinamica/">de tablas dinámicas</a>, cómo resumirla. Si luego quieres llevarla a un cuadro de mando, está la <a href="/powerbi/como-conectar-excel-con-power-bi/">guía para conectar Excel con Power BI</a>.
+          </p>
         </div>
         <div class="mt-10 mb-6">
           <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
