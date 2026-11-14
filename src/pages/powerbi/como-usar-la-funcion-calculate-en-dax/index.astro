@@ -2,8 +2,8 @@
 import '@/styles/globals.css';
 import Layout from '../../../layouts/Layout.astro';
 
-const title = 'Cómo usar la función CALCULATE en DAX: Guía práctica del corazón de Power BI';
-const description = 'Domina CALCULATE en DAX, la función más poderosa de Power BI. Aprende paso a paso con ejemplos reales de oficina: filtros simples, contexto de fila, columnas y más.';
+const title = 'CALCULATE en DAX: qué hace y cómo usarlo, con ejemplos';
+const description = 'Qué hace CALCULATE en DAX y cómo usarlo en Power BI: un filtro, varios filtros, porcentajes sobre el total y contexto de fila, con ejemplos de oficina.';
 const publishDate = '2026-10-16';
 const updateDate = '2026-10-16';
 const readTime = '8 min';
@@ -15,7 +15,7 @@ const jsonLd = [
 ];
 ---
 
-<Layout title={`${title} — ExcelyDatos`} description={description} jsonLd={jsonLd} showReadingProgress={true}>
+<Layout title={title} description={description} jsonLd={jsonLd} showReadingProgress={true}>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex gap-10">
       <div class="min-w-0 flex-1">
@@ -31,7 +31,7 @@ const jsonLd = [
           </div>
           <h1 class="text-3xl sm:text-4xl font-bold text-[#1E293B] dark:text-slate-100 leading-tight mb-5">{title}</h1>
           <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed border-l-4 border-amber-500 pl-4">
-            CALCULATE es el corazón de DAX. Es la función que necesitas entender si quieres dejar de hacer trucos raros en Power BI y empezar a construir informes que realmente funcionen. Sin volverte loco con la teoría, aquí te lo explicamos de verdad.
+            CALCULATE calcula un valor cambiando los filtros que están activos en ese momento. Entenderla te permite hacer medidas que no dependen de gráficos ni segmentadores auxiliares. Esta guía va de un filtro a varios, y de ahí a porcentajes sobre el total.
           </p>
         </header>
         <div class="mb-10 rounded-2xl overflow-hidden shadow-sm">
@@ -40,105 +40,105 @@ const jsonLd = [
         </div>
         <div class="float-right ml-6 mb-6 hidden lg:block"></div>
         <div class="article-body">
-          <h2>¿Qué hace CALCULATE (sin tecnicismos)?</h2>
-          <p>CALCULATE es una función que calcula algo, pero <strong>cambiando los filtros que hay activos</strong>. Punto. Eso es todo.</p>
-          <p>Normalmente, en un visual, los filtros vienen del contexto (lo que ha seleccionado el usuario en los segmentadores). CALCULATE te permite ignorar esos filtros, añadir otros nuevos, o mezclar los dos. Es como decirle a Power BI: "Calcula esto, pero pretende que estos filtros existen".</p>
+          <h2>Qué hace CALCULATE</h2>
+          <p>CALCULATE calcula un valor <strong>cambiando los filtros que están activos</strong>.</p>
+          <p>En un visual, los filtros vienen del contexto: lo que el usuario ha seleccionado en los segmentadores, por ejemplo. CALCULATE permite sustituir esos filtros, añadir otros o quitarlos. Es como decirle a Power BI: «calcula esto como si estos filtros estuvieran puestos».</p>
           <pre><code>CALCULATE(expresión, filtro1, filtro2, filtro3...)</code></pre>
-          <p>Eso es literalmente la estructura. Ahora veamos cómo funciona.</p>
-          <h2>Paso 1: El caso más simple (CALCULATE con un filtro)</h2>
-          <p>Imagina que tienes una tabla de ventas. Tu jefe te pide: <strong>"Quiero ver las ventas totales, pero también quiero ver cuáles fueron solo en el año 2023"</strong>.</p>
-          <p>Sin CALCULATE, tendrías que crear otro gráfico o un segmentador. Con CALCULATE, haces esto:</p>
+          <p>Esa es toda la estructura: una expresión y tantos filtros como necesites.</p>
+
+          <h2>Paso 1: CALCULATE con un filtro</h2>
+          <p>Tienes una tabla de ventas y tu jefe te pide: <strong>«Quiero ver las ventas totales y también las que fueron solo en 2023»</strong>.</p>
+          <p>Sin CALCULATE tendrías que montar otro gráfico o un segmentador. Con CALCULATE basta una medida:</p>
           <pre><code>Ventas 2023 = 
 CALCULATE(
-  SUM([Ventas]),
-  YEAR('Calendario'[Fecha]) = 2023
+  SUM(Ventas[Importe]),
+  'Calendario'[Año] = 2023
 )</code></pre>
-          <p>Lo que dice: "Suma todas las ventas, pero solo cuenta las que ocurrieron en 2023, sin importar qué año haya seleccionado el usuario".</p>
-          <p>Si el usuario ha filtrado por 2024 en el segmentador, esta medida ignorará ese filtro y te dará 2023. Así es de potente.</p>
-          <h2>Paso 2: Múltiples filtros (el caso realista)</h2>
-          <p>Ahora tu jefe quiere más: <strong>"Ventas en 2023, solo para la región de Madrid, y solo productos de la categoría 'Electrónica'"</strong>.</p>
-          <p>Tranquilo. Añades más filtros:</p>
+          <p>La medida suma todas las ventas, pero solo las de 2023. Si hay un segmentador sobre la columna Año y el usuario elige 2024, la medida sigue dando 2023: el filtro de CALCULATE sustituye al del segmentador sobre esa misma columna.</p>
+
+          <h2>Paso 2: varios filtros</h2>
+          <p>Ahora tu jefe quiere más: <strong>«Ventas de 2023, solo de la región de Madrid y solo de la categoría Electrónica»</strong>. Añades un filtro por cada condición:</p>
           <pre><code>Ventas Electrónica Madrid 2023 = 
 CALCULATE(
-  SUM([Ventas]),
-  YEAR('Calendario'[Fecha]) = 2023,
+  SUM(Ventas[Importe]),
+  'Calendario'[Año] = 2023,
   'Geografía'[Región] = "Madrid",
   'Productos'[Categoría] = "Electrónica"
 )</code></pre>
-          <p>CALCULATE solo suma ventas que cumplan <strong>todos</strong> estos filtros a la vez. Si una venta no es de 2023, no entra. Si no es de Madrid, no entra. Si no es Electrónica, no entra.</p>
-          <h2>Paso 3: Comparaciones (el truco del porcentaje)</h2>
-          <p>Aquí es donde CALCULATE empieza a brillar de verdad. Quieres ver: <strong>"¿Cuál es el porcentaje de ventas de 2023 respecto al total de todos los años?"</strong></p>
-          <p>Necesitas dos medidas:</p>
+          <p>CALCULATE solo suma las ventas que cumplen <strong>todos</strong> los filtros a la vez. Si una venta no es de 2023, no entra. Si no es de Madrid, tampoco. Y si no es de Electrónica, igual.</p>
+
+          <h2>Paso 3: porcentaje sobre el total</h2>
+          <p>Aquí CALCULATE empieza a dar más juego. Quieres saber: <strong>«¿Qué porcentaje de las ventas de todos los años son de 2023?»</strong>. Necesitas dos medidas:</p>
           <pre><code>Ventas 2023 = 
 CALCULATE(
-  SUM([Ventas]),
-  YEAR('Calendario'[Fecha]) = 2023
+  SUM(Ventas[Importe]),
+  'Calendario'[Año] = 2023
 )
 
 Porcentaje 2023 = 
 DIVIDE(
   [Ventas 2023],
-  CALCULATE(SUM([Ventas]), ALL('Calendario'))
+  CALCULATE(SUM(Ventas[Importe]), ALL('Calendario'))
 ) * 100</code></pre>
-          <p>¿Ves qué pasó? La segunda medida usa CALCULATE para calcular el total sin aplicar ningún filtro de año. <code>ALL('Calendario')</code> es como decirle: "olvídate de cualquier filtro de fecha, suma TODO".</p>
-          <p>Resultado: tienes en una medida las ventas de 2023, y en otra el porcentaje que representan del total. Sin hacer nada en Excel.</p>
-          <h2>Paso 4: El contexto de fila (cuando CALCULATE se vuelve mágico)</h2>
-          <p>Hasta ahora hemos usado CALCULATE en medidas. Pero también funciona en columnas calculadas. La diferencia es que en una columna, CALCULATE conoce qué fila está evaluando.</p>
-          <p>Imagina una tabla con clientes y sus compras. Quieres una columna que diga: <strong>"¿Cuántas veces ha comprado este cliente en el último año?"</strong></p>
+          <p>La segunda medida usa CALCULATE para calcular el total sin ningún filtro de fecha. <code>ALL('Calendario')</code> le dice a Power BI que se olvide de los filtros de esa tabla y sume todo. Con las dos medidas tienes las ventas de 2023 y el porcentaje que representan, sin salir de Power BI.</p>
+
+          <h2>Paso 4: CALCULATE en una columna calculada</h2>
+          <p>CALCULATE también funciona en columnas calculadas. Aquí entra en juego la <strong>transición de contexto</strong>: dentro de una columna calculada, CALCULATE convierte la fila que está evaluando en un filtro.</p>
+          <p>Tienes una tabla de clientes y otra de compras, y quieres una columna que diga <strong>«cuántas veces ha comprado este cliente en el último año»</strong>:</p>
           <pre><code>Compras Último Año = 
 CALCULATE(
-  COUNTA([ID Compra]),
-  'Calendario'[Año] = MAX('Calendario'[Año]),
-  RELATED('Clientes'[ID]) = [ClienteID]
+  COUNTA(Compras[ID Compra]),
+  'Calendario'[Año] = MAX('Calendario'[Año])
 )</code></pre>
-          <p>Power BI evaluará esta columna para <strong>cada fila</strong>. Cuando esté en la fila del cliente A, filtrará solo sus compras. Cuando esté en la del cliente B, filtrará solo las suyas. Así de inteligente.</p>
-          <h2>Errores comunes que te rompen todo</h2>
+          <p>Power BI evalúa la columna para <strong>cada fila</strong>. En la fila del cliente A cuenta solo las compras del cliente A, y en la del cliente B, solo las suyas. Para que esto funcione, la tabla de compras tiene que estar relacionada con la de clientes y con el calendario [VERIFICAR: relaciones del modelo].</p>
+
+          <h2>Errores comunes</h2>
           <ul class="list-disc pl-6 space-y-3 text-slate-700 dark:text-slate-300">
-            <li><strong>Olvidar los filtros:</strong> Si escribes <code>CALCULATE(SUM([Ventas]))</code> sin filtros, estás sumando todo, siempre. CALCULATE sin filtros es inútil (casi).</li>
-            <li><strong>Mezclar el contexto:</strong> Si usas una columna calculada con CALCULATE en un visual que ya está filtrado, ambos filtros se aplican. Esto a veces es lo que quieres, a veces no. Ten cuidado.</li>
-            <li><strong>Usar texto en lugar de columnas:</strong> Si escribes <code>CALCULATE(..., 'Tabla'[Columna] = "Texto")</code> y esa columna tiene espacios raros o mayúsculas, no va a funcionar. Usa variables o asegúrate de que el texto es idéntico.</li>
-            <li><strong>Olvidar que ALL elimina TODOS los filtros:</strong> <code>ALL('Tabla')</code> limpia absolutamente todos los filtros de esa tabla. A veces solo quieres limpiar uno. Usa <code>REMOVEFILTERS('Tabla'[Columna])</code> en su lugar.</li>
-            <li><strong>CALCULATE anidado innecesariamente:</strong> Si tienes <code>CALCULATE(CALCULATE(...), ...)</code>, algo está mal. Simplifica con variables.</li>
+            <li><strong>Esperar que CALCULATE sin filtros cambie algo:</strong> <code>CALCULATE(SUM(Ventas[Importe]))</code> devuelve lo mismo que <code>SUM(Ventas[Importe])</code> en el mismo contexto. No quita los filtros que ya hay. Para quitarlos necesitas una función como <code>ALL</code>.</li>
+            <li><strong>Mezclar los filtros del visual con los de CALCULATE sin saberlo:</strong> si el visual filtra una columna y tu CALCULATE filtra otra, se aplican los dos. Si ambos filtran la misma columna, el de CALCULATE sustituye al del visual. Cuando una medida da un valor que no esperabas, revisa primero esto.</li>
+            <li><strong>Comparar con texto que no coincide:</strong> si escribes <code>CALCULATE(..., 'Tabla'[Columna] = "Texto")</code> y los datos tienen espacios sobrantes, la condición no encuentra nada. Límpialos antes, por ejemplo en Power Query.</li>
+            <li><strong>Usar ALL cuando solo querías quitar un filtro:</strong> <code>ALL('Tabla')</code> elimina todos los filtros de esa tabla. Si solo quieres quitar uno, usa <code>REMOVEFILTERS('Tabla'[Columna])</code>.</li>
+            <li><strong>Anidar CALCULATE sin necesidad:</strong> si tienes <code>CALCULATE(CALCULATE(...), ...)</code>, normalmente se puede simplificar, y las variables ayudan a que se lea mejor.</li>
           </ul>
-          <h2>Un ejemplo que realmente funciona en la oficina</h2>
-          <p>Tú estás en tu escritorio y tu jefe dice: "Necesito ver las ventas por producto, pero quiero una columna extra que diga qué porcentaje es cada producto sobre el total de la tienda, y otra que diga qué porcentaje es sobre el total de su región".</p>
-          <p>Sin CALCULATE, esto sería pesadilla. Con CALCULATE:</p>
-          <pre><code>Ventas = SUM([Ventas])
+
+          <h2>Un ejemplo de oficina: porcentajes sobre el total y sobre la región</h2>
+          <p>Tu jefe te pide las ventas por producto, con dos columnas más: qué porcentaje es cada producto sobre el total de la tienda y qué porcentaje es sobre el total de su región. Con CALCULATE:</p>
+          <pre><code>Total Ventas = SUM(Ventas[Importe])
 
 % del Total Tienda = 
 DIVIDE(
-  [Ventas],
-  CALCULATE([Ventas], ALL('Productos'), ALL('Geografía'))
+  [Total Ventas],
+  CALCULATE([Total Ventas], ALL('Productos'), ALL('Geografía'))
 )
 
 % de su Región = 
 DIVIDE(
-  [Ventas],
-  CALCULATE([Ventas], ALL('Productos'))
+  [Total Ventas],
+  CALCULATE([Total Ventas], ALL('Productos'))
 )</code></pre>
-          <p>Primera medida: suma vendido por producto (normal).</p>
-          <p>Segunda medida: suma vendido por producto, pero divide por el total de TODOS los productos de TODAS las regiones.</p>
-          <p>Tercera medida: suma vendido por producto, pero divide por el total de todos los productos <strong>de esa región</strong>.</p>
-          <p>Tres medidas. Tres líneas de lógica. En Excel esto tomaría 30 minutos y terminarías con referencias raras. En DAX, son 30 segundos.</p>
-          <h2>Pro Tip: Usa SELECTEDVALUE para valores dinámicos</h2>
+          <p>La primera medida suma lo vendido en cada producto. La segunda lo divide entre el total de todos los productos de todas las regiones. La tercera lo divide entre el total de todos los productos, pero respetando el filtro de región. Eso solo da «el total de su región» si el visual o un segmentador está filtrando por región [VERIFICAR].</p>
+
+          <h2>Pro Tip: SELECTEDVALUE para valores dinámicos</h2>
           <div class="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-5 my-6">
             <h3 class="font-bold text-amber-900 dark:text-amber-100 mb-2">SELECTEDVALUE</h3>
-            <p class="text-amber-900 dark:text-amber-100 text-sm leading-relaxed">En lugar de escribir valores fijos como <code>YEAR(...) = 2023</code>, usa <code>SELECTEDVALUE</code>: <pre><code>Ventas Año Seleccionado = 
+            <p class="text-amber-900 dark:text-amber-100 text-sm leading-relaxed">En lugar de escribir un valor fijo como <code>2023</code>, puedes leer el que elija el usuario:</p>
+            <pre><code>Ventas Año Seleccionado =
 CALCULATE(
-  SUM([Ventas]),
-  YEAR('Calendario'[Fecha]) = SELECTEDVALUE('Parámetros'[Año])
-)</code></pre> Así, si el usuario cambia el año en un segmentador, la medida se adapta automáticamente. Es como darle control total a tu usuario sin que tenga que tocar DAX.</p>
+  SUM(Ventas[Importe]),
+  'Calendario'[Año] = SELECTEDVALUE('Parámetros'[Año])
+)</code></pre>
+            <p class="text-amber-900 dark:text-amber-100 text-sm leading-relaxed">Si el usuario cambia el año en un segmentador basado en esa tabla de parámetros, la medida se adapta sin tocar el código.</p>
           </div>
-          <h2>Resumiendo</h2>
-          <p>CALCULATE es simplemente una función que permite recalcular algo bajo diferentes filtros. Eso es.</p>
+
+          <h2>Resumen</h2>
+          <p>CALCULATE recalcula algo bajo filtros distintos de los que hay en el visual. Lo básico:</p>
           <ol class="list-decimal pl-6 space-y-2 text-slate-700 dark:text-slate-300">
-            <li>Aprende la sintaxis básica: <code>CALCULATE(expresión, filtro1, filtro2)</code></li>
-            <li>Entiende que cada filtro es una condición que <strong>debe cumplirse</strong> (AND lógico).</li>
-            <li>Usa <code>ALL()</code> cuando quieras ignorar filtros completamente.</li>
-            <li>Combina CALCULATE con DIVIDE para porcentajes y proporciones.</li>
-            <li>Practica con datos reales: año, región, categoría. Eso es todo.</li>
+            <li>La sintaxis: <code>CALCULATE(expresión, filtro1, filtro2)</code>.</li>
+            <li>Cada filtro es una condición que <strong>debe cumplirse</strong> (un AND lógico).</li>
+            <li>Usa <code>ALL()</code> cuando quieras ignorar los filtros de una tabla.</li>
+            <li>Combínalo con <code>DIVIDE</code> para porcentajes y proporciones.</li>
           </ol>
-          <p>Una vez que CALCULATE te entre en la cabeza, no vuelves atrás. Es como aprender el condicional en un idioma: de repente puedes decir cosas 10 veces más complejas y más precisas.</p>
+          <p>La próxima vez que una medida no responda a un segmentador como esperas, mira primero qué filtros está sustituyendo tu CALCULATE. Si ya has filtrado con <code>WHERE</code> en SQL, la idea de combinar condiciones te resultará familiar: lo tienes en la <a href="/sql/como-filtrar-datos-sql-where/">guía de WHERE</a>. Y si tu informe tarda en responder, la guía de <a href="/powerbi/por-que-tu-informe-power-bi-va-lento-trucos-dax/">por qué va lento un informe de Power BI</a> explica por dónde empezar.</p>
         </div>
         <div class="mt-10 mb-6">
           <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">Compartir este artículo</p>
