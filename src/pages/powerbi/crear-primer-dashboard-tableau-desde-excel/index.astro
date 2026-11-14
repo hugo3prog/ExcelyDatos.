@@ -10,7 +10,7 @@ const readTime = '8 min';
 const url = 'https://www.excelydatos.com/powerbi/crear-primer-dashboard-tableau-desde-excel/';
 
 const jsonLd = [
-  { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://www.excelydatos.com" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://www.excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
+  { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "datePublished": publishDate, "dateModified": updateDate, "author": { "@type": "Person", "name": "ExcelyDatos", "url": "https://www.excelydatos.com/autor/" }, "publisher": { "@type": "Organization", "name": "ExcelyDatos", "url": "https://www.excelydatos.com" }, "mainEntityOfPage": { "@type": "WebPage", "@id": url } },
   { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.excelydatos.com/" }, { "@type": "ListItem", "position": 2, "name": "Power BI & Tableau", "item": "https://www.excelydatos.com/powerbi/" }, { "@type": "ListItem", "position": 3, "name": "Primer Dashboard en Tableau", "item": url } ] },
   { "@context": "https://schema.org", "@type": "HowTo", "name": "Crear un dashboard en Tableau Desktop desde Excel", "step": [
     { "@type": "HowToStep", "position": 1, "name": "Conectar el archivo de Excel", "text": "Abre Tableau Desktop, selecciona Microsoft Excel en el panel de conexiones y elige tu archivo .xlsx. Tableau detecta automáticamente las hojas y tablas del libro." },

@@ -1,0 +1,48 @@
+---
+import '@/styles/globals.css';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Autor de ExcelyDatos"
+  description="Quién escribe ExcelyDatos y cómo se verifica cada guía."
+>
+  <section class="bg-gradient-to-br from-emerald-700 to-emerald-900 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <nav class="flex items-center gap-2 text-sm text-emerald-300 mb-8" aria-label="Ruta de navegación">
+        <a href="/" class="hover:text-white transition-colors">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/sobre-nosotros/" class="hover:text-white transition-colors">Sobre ExcelyDatos</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-emerald-100">Autor</span>
+      </nav>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Autor de ExcelyDatos</h1>
+    </div>
+  </section>
+
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="article-body">
+      <div
+        class="w-24 h-24 bg-emerald-700 text-white rounded-lg flex items-center justify-center text-3xl font-bold mb-8"
+        role="img"
+        aria-label="Avatar de ExcelyDatos con las letras ED"
+      >
+        ED
+      </div>
+      <h2>Quién escribe ExcelyDatos</h2>
+      <p>
+        Soy analista de datos junior y estudio Excel, SQL y Power BI. Esta web es
+        donde documento lo que practico. Cada fórmula y consulta que aparece aquí la
+        he ejecutado antes de publicarla, y corrijo los artículos cuando algo deja de
+        funcionar o cambia.
+      </p>
+      <p>
+        Si algo no funciona o quieres proponer un tema, escribe a
+        <a href="mailto:contacto@excelydatos.com" class="text-emerald-700 underline hover:text-emerald-900">contacto@excelydatos.com</a>.
+      </p>
+      <p>
+        <a href="/sobre-nosotros/" class="text-emerald-700 underline hover:text-emerald-900">Volver a Sobre nosotros</a>
+      </p>
+    </div>
+  </div>
+</Layout>
