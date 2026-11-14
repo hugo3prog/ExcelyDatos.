@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/excel/como-fijar-filas-columnas/",
+      "destination": "/excel/como-inmovilizar-filas-columnas/",
+      "permanent": true
+    }
+  ]
+}
